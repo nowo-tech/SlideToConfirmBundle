@@ -1,0 +1,31 @@
+# PHP 8.2 for SlideToConfirmBundle (Symfony 7)
+FROM php:8.2-cli-alpine
+
+RUN apk add --no-cache \
+    git \
+    unzip \
+    bash \
+    libzip-dev \
+    icu-dev
+
+RUN docker-php-ext-install -j$(nproc) \
+    zip \
+    intl
+
+RUN apk add --no-cache $PHPIZE_DEPS \
+    && pecl install pcov \
+    && docker-php-ext-enable pcov \
+    && apk del $PHPIZE_DEPS
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Node + pnpm (para tests de TypeScript / assets)
+RUN apk add --no-cache nodejs npm \
+    && npm install -g pnpm
+
+RUN git config --global --add safe.directory /app
+
+WORKDIR /app
+
+ENV COMPOSER_ALLOW_SUPERUSER=1
+ENV PATH="/app/vendor/bin:${PATH}"

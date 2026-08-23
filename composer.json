@@ -1,0 +1,105 @@
+{
+    "name": "nowo-tech/slide-to-confirm-bundle",
+    "description": "Symfony FormType for slide-to-confirm / swipe-to-submit actions (payments, deletions, legal consent, and other irreversible submits).",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "keywords": [
+        "symfony",
+        "symfony-bundle",
+        "form",
+        "submit",
+        "slide-to-confirm",
+        "swipe-to-submit",
+        "confirmation",
+        "stimulus",
+        "vite"
+    ],
+    "homepage": "https://github.com/nowo-tech/SlideToConfirmBundle",
+    "support": {
+        "issues": "https://github.com/nowo-tech/SlideToConfirmBundle/issues",
+        "source": "https://github.com/nowo-tech/SlideToConfirmBundle"
+    },
+    "authors": [
+        {
+            "name": "Nowo.tech",
+            "homepage": "https://nowo.tech"
+        }
+    ],
+    "require": {
+        "php": ">=8.1 <8.6",
+        "symfony/asset": "^6.0 || ^7.0 || ^8.0",
+        "symfony/config": "^6.0 || ^7.0 || ^8.0",
+        "symfony/dependency-injection": "^6.0 || ^7.0 || ^8.0",
+        "symfony/form": "^6.0 || ^7.0 || ^8.0",
+        "symfony/framework-bundle": "^6.0 || ^7.0 || ^8.0",
+        "symfony/http-kernel": "^6.0 || ^7.0 || ^8.0",
+        "symfony/translation": "^6.0 || ^7.0 || ^8.0",
+        "symfony/twig-bundle": "^6.0 || ^7.0 || ^8.0",
+        "symfony/validator": "^6.0 || ^7.0 || ^8.0",
+        "twig/extra-bundle": "^3.12",
+        "twig/string-extra": "^3.12"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "nowo-tech/phpstan-frankenphp": "^1.0",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
+        "phpunit/phpunit": "^10.0",
+        "rector/rector": "^2.0",
+        "symfony/yaml": "^6.0 || ^7.0 || ^8.0",
+        "vincentlanglet/twig-cs-fixer": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nowo\\SlideToConfirmBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Nowo\\SlideToConfirmBundle\\Tests\\": "tests/"
+        }
+    },
+    "archive": {
+        "exclude": [
+            "/demo",
+            "/.cursor"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "scripts": {
+        "cs-check": "php-cs-fixer fix --dry-run --diff",
+        "cs-fix": "php-cs-fixer fix",
+        "test": "phpunit --color=always",
+        "test-coverage": "phpunit --color=always --coverage-text --coverage-html=coverage --coverage-clover=coverage.xml",
+        "rector": "rector process",
+        "rector-dry": "rector process --dry-run --no-progress-bar",
+        "phpstan": "phpstan analyse --memory-limit=512M",
+        "update": "composer update --no-interaction",
+        "validate": "composer validate --strict",
+        "qa": [
+            "@cs-check",
+            "@test"
+        ],
+        "twig:lint": "twig-cs-fixer lint --config=.twig-cs-fixer.php",
+        "twig:fix": "twig-cs-fixer fix --config=.twig-cs-fixer.php",
+        "twig:fix:check": "twig-cs-fixer lint --config=.twig-cs-fixer.php --fix"
+    },
+    "scripts-descriptions": {
+        "cs-check": "Check code style with PHP-CS-Fixer",
+        "cs-fix": "Fix code style with PHP-CS-Fixer",
+        "test": "Run PHPUnit tests",
+        "test-coverage": "Run PHPUnit tests with code coverage",
+        "rector": "Apply Rector refactoring",
+        "rector-dry": "Run Rector in dry-run mode",
+        "phpstan": "Run PHPStan static analysis",
+        "update": "Update composer.lock",
+        "validate": "Validate composer.json (composer validate --strict)",
+        "qa": "Run all quality assurance checks"
+    }
+}

@@ -1,0 +1,38 @@
+checks:
+  php:
+    code_rating: true
+    duplication: true
+
+filter:
+  excluded_paths:
+    - "demo/*"
+    - "tests/*"
+    - "vendor/*"
+    - "node_modules/*"
+
+build:
+  environment:
+    php:
+      version: 8.2
+      ini:
+        memory_limit: -1
+        'xdebug.mode': coverage
+    # No `node` block: Scrutinizer workers use glibc older than 2.28, so official Node 20+
+    # binaries (required by Vite 6 / Vitest 2 in this repo) fail at runtime after nvm download.
+    # TypeScript / Vitest runs in GitHub Actions and in Docker (`make assets-test`).
+
+  cache:
+    directories:
+      - vendor/
+
+  tests:
+    before:
+      - composer validate --strict
+      - composer install --no-interaction --prefer-dist --optimize-autoloader
+    override:
+      - command: composer test-coverage
+        environment:
+          XDEBUG_MODE: coverage
+        coverage:
+          file: coverage.xml
+          format: clover

@@ -1,0 +1,22 @@
+form:
+  slide_to_confirm: 'Glissez pour confirmer'
+  slide_to_delete: 'Glissez pour supprimer'
+  slide_to_pay: 'Glissez pour payer'
+  slide_to_agree: 'Glissez pour accepter'
+  slide_to_publish: 'Glissez pour publier'
+  slide_to_unlock: 'Glissez pour déverrouiller'
+  confirmed: 'Confirmé'
+  deleted: 'Supprimé'
+  paid: 'Payé'
+  agreed: 'Accepté'
+  published: 'Publié'
+  unlocked: 'Déverrouillé'
+  hint:
+    default: 'Faites glisser le contrôle jusqu''au bout pour confirmer cette action.'
+    danger: 'Cette action est irréversible. Glissez jusqu''au bout.'
+    payment: 'Vérifiez le montant, puis glissez pour autoriser le paiement.'
+    legal: 'En glissant, vous acceptez les conditions affichées ci-dessus.'
+    publish: 'En glissant, ce contenu devient public.'
+    gate: 'Glissez pour déverrouiller le bouton d''envoi.'
+  error:
+    not_confirmed: 'Vous devez terminer le glissement pour confirmer cette action.'

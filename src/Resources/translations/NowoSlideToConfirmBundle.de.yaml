@@ -1,0 +1,22 @@
+form:
+  slide_to_confirm: 'Zum Bestätigen schieben'
+  slide_to_delete: 'Zum Löschen schieben'
+  slide_to_pay: 'Zum Bezahlen schieben'
+  slide_to_agree: 'Zum Zustimmen schieben'
+  slide_to_publish: 'Zum Veröffentlichen schieben'
+  slide_to_unlock: 'Zum Entsperren schieben'
+  confirmed: 'Bestätigt'
+  deleted: 'Gelöscht'
+  paid: 'Bezahlt'
+  agreed: 'Zugestimmt'
+  published: 'Veröffentlicht'
+  unlocked: 'Entsperrt'
+  hint:
+    default: 'Ziehen Sie das Steuerelement ganz nach rechts, um diese Aktion zu bestätigen.'
+    danger: 'Dies kann nicht rückgängig gemacht werden. Schieben Sie vollständig bis zum Ende.'
+    payment: 'Prüfen Sie den Betrag und schieben Sie, um die Zahlung zu autorisieren.'
+    legal: 'Durch Schieben akzeptieren Sie die oben genannten Bedingungen.'
+    publish: 'Durch Schieben wird dieser Inhalt öffentlich.'
+    gate: 'Schieben Sie, um die Senden-Schaltfläche freizugeben.'
+  error:
+    not_confirmed: 'Sie müssen den Schieberegler vollständig bewegen, um diese Aktion zu bestätigen.'

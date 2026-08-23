@@ -1,0 +1,22 @@
+form:
+  slide_to_confirm: 'Scorri per confermare'
+  slide_to_delete: 'Scorri per eliminare'
+  slide_to_pay: 'Scorri per pagare'
+  slide_to_agree: 'Scorri per accettare'
+  slide_to_publish: 'Scorri per pubblicare'
+  slide_to_unlock: 'Scorri per sbloccare'
+  confirmed: 'Confermato'
+  deleted: 'Eliminato'
+  paid: 'Pagato'
+  agreed: 'Accettato'
+  published: 'Pubblicato'
+  unlocked: 'Sbloccato'
+  hint:
+    default: 'Trascina il controllo fino in fondo per confermare questa azione.'
+    danger: 'Questa azione è irreversibile. Scorri fino in fondo.'
+    payment: 'Controlla l''importo, poi scorri per autorizzare il pagamento.'
+    legal: 'Scorrendo accetti i termini mostrati sopra.'
+    publish: 'Scorrendo questo contenuto diventa pubblico.'
+    gate: 'Scorri per sbloccare il pulsante di invio.'
+  error:
+    not_confirmed: 'Devi completare lo scorrimento per confermare questa azione.'

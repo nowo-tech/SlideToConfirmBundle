@@ -1,0 +1,6 @@
+# CODEOWNERS for SlideToConfirmBundle
+* @HecFranco
+/.github/ @HecFranco
+/src/ @HecFranco
+/tests/ @HecFranco
+/.scripts/ @HecFranco

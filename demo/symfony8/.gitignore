@@ -1,0 +1,24 @@
+# Local environment (do not version secrets)
+/.env
+/.env.dev
+/.env.local
+/.env.*.local
+
+# Dependencies and build artifacts
+/vendor/
+/node_modules/
+/.pnpm-store/
+/public/build/
+/public/bundles/
+/var/
+
+# Logs
+*.log
+
+# Archives / compressed
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z

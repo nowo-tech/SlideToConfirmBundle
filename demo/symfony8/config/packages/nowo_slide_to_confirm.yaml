@@ -1,0 +1,5 @@
+nowo_slide_to_confirm:
+  default_profile: default
+  form_theme: 'bootstrap_5_layout.html.twig'
+  translation_domain: NowoSlideToConfirmBundle
+  debug: true

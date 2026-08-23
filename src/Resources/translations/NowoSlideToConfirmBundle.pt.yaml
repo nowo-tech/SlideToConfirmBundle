@@ -1,0 +1,22 @@
+form:
+  slide_to_confirm: 'Deslize para confirmar'
+  slide_to_delete: 'Deslize para eliminar'
+  slide_to_pay: 'Deslize para pagar'
+  slide_to_agree: 'Deslize para aceitar'
+  slide_to_publish: 'Deslize para publicar'
+  slide_to_unlock: 'Deslize para desbloquear'
+  confirmed: 'Confirmado'
+  deleted: 'Eliminado'
+  paid: 'Pago'
+  agreed: 'Aceite'
+  published: 'Publicado'
+  unlocked: 'Desbloqueado'
+  hint:
+    default: 'Arraste o controlo até ao fim para confirmar esta ação.'
+    danger: 'Isto não pode ser anulado. Deslize até ao fim.'
+    payment: 'Reveja o montante e deslize para autorizar o pagamento.'
+    legal: 'Ao deslizar, aceita os termos apresentados acima.'
+    publish: 'Ao deslizar, este conteúdo torna-se público.'
+    gate: 'Deslize para desbloquear o botão de envio.'
+  error:
+    not_confirmed: 'Tem de concluir o deslize para confirmar esta ação.'

@@ -1,0 +1,22 @@
+form:
+  slide_to_confirm: 'Schuif om te bevestigen'
+  slide_to_delete: 'Schuif om te verwijderen'
+  slide_to_pay: 'Schuif om te betalen'
+  slide_to_agree: 'Schuif om akkoord te gaan'
+  slide_to_publish: 'Schuif om te publiceren'
+  slide_to_unlock: 'Schuif om te ontgrendelen'
+  confirmed: 'Bevestigd'
+  deleted: 'Verwijderd'
+  paid: 'Betaald'
+  agreed: 'Akkoord'
+  published: 'Gepubliceerd'
+  unlocked: 'Ontgrendeld'
+  hint:
+    default: 'Sleep de bediening helemaal naar het einde om deze actie te bevestigen.'
+    danger: 'Dit kan niet ongedaan worden gemaakt. Schuif helemaal tot het einde.'
+    payment: 'Controleer het bedrag en schuif om de betaling te autoriseren.'
+    legal: 'Door te schuiven accepteert u de hierboven getoonde voorwaarden.'
+    publish: 'Door te schuiven wordt deze inhoud openbaar.'
+    gate: 'Schuif om de verzendknop te ontgrendelen.'
+  error:
+    not_confirmed: 'U moet de schuifactie voltooien om deze actie te bevestigen.'

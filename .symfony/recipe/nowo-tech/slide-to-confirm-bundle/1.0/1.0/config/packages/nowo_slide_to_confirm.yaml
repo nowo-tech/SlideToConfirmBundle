@@ -1,0 +1,8 @@
+# SlideToConfirmBundle — default configuration
+# https://github.com/nowo-tech/SlideToConfirmBundle
+
+nowo_slide_to_confirm:
+    default_profile: default
+    form_theme: 'form_div_layout.html.twig'
+    translation_domain: NowoSlideToConfirmBundle
+    debug: false

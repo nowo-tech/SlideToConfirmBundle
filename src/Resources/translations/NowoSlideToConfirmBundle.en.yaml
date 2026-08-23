@@ -1,0 +1,22 @@
+form:
+  slide_to_confirm: 'Slide to confirm'
+  slide_to_delete: 'Slide to delete'
+  slide_to_pay: 'Slide to pay'
+  slide_to_agree: 'Slide to agree'
+  slide_to_publish: 'Slide to publish'
+  slide_to_unlock: 'Slide to unlock'
+  confirmed: 'Confirmed'
+  deleted: 'Deleted'
+  paid: 'Paid'
+  agreed: 'Agreed'
+  published: 'Published'
+  unlocked: 'Unlocked'
+  hint:
+    default: 'Drag the control all the way to confirm this action.'
+    danger: 'This cannot be undone. Slide fully to the end.'
+    payment: 'Review the amount, then slide to authorize payment.'
+    legal: 'Sliding means you accept the terms shown above.'
+    publish: 'Sliding makes this content public.'
+    gate: 'Slide to unlock the submit button.'
+  error:
+    not_confirmed: 'You must complete the slide to confirm this action.'

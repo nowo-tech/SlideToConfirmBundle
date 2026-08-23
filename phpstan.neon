@@ -1,0 +1,19 @@
+# PHPStan configuration for SlideToConfirmBundle.
+#
+# Static analysis on src/ and tests/ (level 8). PHP 8.2+ and Symfony 7|8.
+# Run: make phpstan
+parameters:
+    level: 8
+    paths:
+        - src
+        - tests
+    excludePaths:
+        - demo/*
+        - vendor/*
+    reportUnmatchedIgnoredErrors: false
+    treatPhpDocTypesAsCertain: false
+    ignoreErrors: []
+
+includes:
+  - vendor/nowo-tech/phpstan-frankenphp/ruleset-classic.neon
+  - vendor/nowo-tech/phpstan-frankenphp/ruleset-worker.neon

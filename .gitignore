@@ -1,0 +1,36 @@
+# Dependencies
+/vendor
+/node_modules
+/.pnpm-store
+/demo/**/vendor
+/demo/**/var
+/demo/**/node_modules
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+
+# Test coverage
+/coverage
+/coverage.xml
+/coverage-php.txt
+/coverage-ts
+/coverage-ts.txt
+
+# PHP tool caches
+/.php-cs-fixer.cache
+/.phpunit.cache
+/.phpunit.result.cache
+/.twig-cs-fixer.cache
+
+# Archives / compressed
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# Cursor local sandbox (machine-specific; REQ-IDE-005)
+.cursor/sandbox.json

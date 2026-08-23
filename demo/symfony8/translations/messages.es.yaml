@@ -1,0 +1,60 @@
+demo:
+  title: 'Desliza para confirmar'
+  brand: 'Demo SlideToConfirm'
+  page_title: 'Desliza para confirmar / envío deslizado'
+  heading: 'Desliza para confirmar'
+  description: 'Un envío que se completa deslizando: pagos, borrados, consentimiento legal y otras acciones irreversibles.'
+  language: 'Idioma'
+  language_switch_hint: 'Idioma:'
+  form_submitted: 'Aceptado. Datos: %data%'
+  case:
+    payment:
+      nav: 'Pagar'
+      title: 'Enviar dinero'
+      body: 'Revisa el IBAN y el importe y desliza para autorizar la transferencia.'
+    delete:
+      nav: 'Eliminar'
+      title: 'Eliminar cuenta'
+      body: 'Irreversible. Marca el acuse y desliza para borrar la cuenta.'
+    publish:
+      nav: 'Publicar'
+      title: 'Publicar'
+      body: 'Al deslizar, este borrador pasa a ser público.'
+    legal:
+      nav: 'Legal'
+      title: 'Aceptar términos'
+      body: 'Al deslizar registras que aceptas la versión del contrato mostrada.'
+    cancel:
+      nav: 'Cancelar'
+      title: 'Cancelar suscripción'
+      body: 'Termina la renovación automática en la próxima fecha de cobro.'
+    batch:
+      nav: 'Lote'
+      title: 'Aprobar nómina'
+      body: 'Un desliz confirma todo el lote de pagos.'
+    emergency:
+      nav: 'Emergencia'
+      title: 'Cerrar sesión en todas partes'
+      body: 'Invalida todas las sesiones cuando completas el deslizamiento.'
+    gate:
+      nav: 'Candado'
+      title: 'Desbloquear y enviar'
+      body: 'Desliza primero; el botón de envío permanece deshabilitado hasta confirmar.'
+  payment:
+    iban: 'IBAN del beneficiario'
+    amount: 'Importe'
+  delete:
+    acknowledge: 'Entiendo que esto no se puede deshacer'
+  publish:
+    title: 'Título del artículo'
+  cancel:
+    slide: 'Desliza para cancelar tu plan'
+    done: 'Cancelado'
+  batch:
+    slide: 'Desliza para aprobar 24 pagos'
+  emergency:
+    slide: 'Desliza para cerrar sesión en todos los dispositivos'
+  gate:
+    submit: 'Guardar'
+
+demo.symfony_version: 'Symfony 8'

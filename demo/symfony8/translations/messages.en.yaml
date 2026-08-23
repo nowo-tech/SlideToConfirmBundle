@@ -1,0 +1,60 @@
+demo:
+  title: 'Slide to confirm'
+  brand: 'SlideToConfirm demo'
+  page_title: 'Slide to confirm / swipe to submit'
+  heading: 'Slide to confirm'
+  description: 'A submit you complete by sliding — payments, deletes, legal consent, and other irreversible actions.'
+  language: 'Language'
+  language_switch_hint: 'Language:'
+  form_submitted: 'Accepted. Payload: %data%'
+  case:
+    payment:
+      nav: 'Pay'
+      title: 'Send money'
+      body: 'Review the IBAN and amount, then slide to authorize the transfer.'
+    delete:
+      nav: 'Delete'
+      title: 'Delete account'
+      body: 'Irreversible. Tick the acknowledgement, then slide to wipe the account.'
+    publish:
+      nav: 'Publish'
+      title: 'Go live'
+      body: 'Sliding publishes this draft to the public site.'
+    legal:
+      nav: 'Legal'
+      title: 'Accept terms'
+      body: 'Sliding records that you accept the contract version shown to you.'
+    cancel:
+      nav: 'Cancel'
+      title: 'Cancel subscription'
+      body: 'Ends auto-renewal at the next billing date.'
+    batch:
+      nav: 'Batch'
+      title: 'Approve payroll'
+      body: 'One swipe confirms the whole payment batch.'
+    emergency:
+      nav: 'Emergency'
+      title: 'Sign out everywhere'
+      body: 'Invalidates every session after you complete the slide.'
+    gate:
+      nav: 'Gate'
+      title: 'Unlock then submit'
+      body: 'Slide first; the submit button stays disabled until the control confirms.'
+  payment:
+    iban: 'Beneficiary IBAN'
+    amount: 'Amount'
+  delete:
+    acknowledge: 'I understand this cannot be undone'
+  publish:
+    title: 'Article title'
+  cancel:
+    slide: 'Slide to cancel your plan'
+    done: 'Cancelled'
+  batch:
+    slide: 'Slide to approve 24 payments'
+  emergency:
+    slide: 'Slide to sign out everywhere'
+  gate:
+    submit: 'Save'
+
+demo.symfony_version: 'Symfony 8'

@@ -1,0 +1,37 @@
+name: slide-to-confirm-bundle-demo-symfony-8
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: slide-to-confirm-demo-symfony8-php
+    working_dir: /app
+    restart: unless-stopped
+    volumes:
+      - .:/app
+      - ../..:/var/slide-to-confirm-bundle
+      - ./docker/php-dev.ini:/usr/local/etc/php/conf.d/99-dev.ini:ro
+      - composer-cache:/root/.composer/cache
+    environment:
+      - COMPOSER_ALLOW_SUPERUSER=1
+      - APP_ENV=dev
+      - APP_DEBUG=1
+      - APP_SECRET=change-me
+      - FRANKENPHP_MODE=${FRANKENPHP_MODE:-worker}
+      - PORT=8055
+    # Mitigate Docker/WSL DNS failures resolving repo.packagist.org (composer curl error 6).
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    ports:
+      - "${PORT:-8055}:80"
+    networks:
+      - slide-to-confirm-demo-network
+
+volumes:
+  composer-cache:
+    driver: local
+
+networks:
+  slide-to-confirm-demo-network:
+    driver: bridge

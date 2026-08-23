@@ -1,0 +1,63 @@
+name: Sync Releases
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  sync-releases:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Ensure GitHub CLI is authenticated
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh auth status
+
+      - name: Sync releases for v* tags
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+
+          TAGS="$(git tag -l 'v*' | sort -V)"
+          if [ -z "$TAGS" ]; then
+            echo "No v* tags found."
+            exit 0
+          fi
+
+          for tag in $TAGS; do
+            version="${tag#v}"
+            tag_message="$(git tag -l --format='%(contents)' "$tag" 2>/dev/null || true)"
+            if [ -z "$tag_message" ]; then
+              tag_message="Release $tag"
+            fi
+
+            changelog_entry=""
+            if [ -f docs/CHANGELOG.md ]; then
+              version_re="$(printf '%s' "$version" | sed 's/\./\\./g')"
+              changelog_entry="$(awk "/^## \\[?${version_re}\\]?/ {flag=1; next} /^## \\[?[0-9]/ {flag=0} flag" docs/CHANGELOG.md || true)"
+            fi
+
+            body="$tag_message"
+            if [ -n "$changelog_entry" ]; then
+              body="$(printf '%s\n\n## Changelog\n\n%s\n' "$tag_message" "$changelog_entry")"
+            fi
+
+            if gh release view "$tag" >/dev/null 2>&1; then
+              echo "Updating existing release for $tag"
+              gh release edit "$tag" --title "Release $tag" --notes "$body"
+            else
+              echo "Creating missing release for $tag"
+              gh release create "$tag" --title "Release $tag" --notes "$body"
+            fi
+          done

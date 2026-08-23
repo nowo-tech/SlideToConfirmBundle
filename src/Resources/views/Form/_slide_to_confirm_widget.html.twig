@@ -1,0 +1,49 @@
+{#
+  Shared slide-to-confirm / swipe-to-submit widget.
+  Renders a visually hidden checkbox (authoritative submitted value) and the slider chrome.
+#}
+{% set slide_text = form.vars.slide_text|trans({}, form.vars.slide_translation_domain) %}
+{% set slide_confirmed_text = form.vars.slide_confirmed_text|trans({}, form.vars.slide_translation_domain) %}
+{% set slide_hint = form.vars.slide_hint|trans({}, form.vars.slide_translation_domain) %}
+{% set is_checked = checked is defined and checked %}
+<nowo-slide-to-confirm
+    class="{{ form.vars.slide_container_css_class }} nowo-slide-to-confirm--{{ form.vars.slide_variant }}{% if is_checked %} is-confirmed{% endif %}"
+    data-controller="slide-to-confirm"
+    data-slide-to-confirm-debug-value="{{ form.vars.slide_debug ? '1' : '0' }}"
+    data-slide-to-confirm-threshold-value="{{ form.vars.slide_threshold }}"
+    data-slide-to-confirm-submit-on-confirm-value="{{ form.vars.slide_submit_on_confirm ? '1' : '0' }}"
+    data-slide-to-confirm-reset-on-release-value="{{ form.vars.slide_reset_on_release ? '1' : '0' }}"
+    data-slide-to-confirm-text-value="{{ slide_text|e('html_attr') }}"
+    data-slide-to-confirm-confirmed-text-value="{{ slide_confirmed_text|e('html_attr') }}"
+>
+    <input
+        type="checkbox"
+        {{ block('widget_attributes') }}
+        class="nowo-slide-to-confirm__input"
+        value="{{ value is defined and value is not empty ? value : '1' }}"
+        {% if is_checked %}checked="checked"{% endif %}
+        data-slide-to-confirm-target="input"
+    />
+    <div
+        class="{{ form.vars.slide_track_css_class }}"
+        data-slide-to-confirm-target="track"
+    >
+        <span class="{{ form.vars.slide_text_css_class }}" data-slide-to-confirm-target="label">
+            {{ is_checked ? slide_confirmed_text : slide_text }}
+        </span>
+        <button
+            type="button"
+            class="{{ form.vars.slide_thumb_css_class }}"
+            data-slide-to-confirm-target="thumb"
+            role="slider"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="{{ is_checked ? 100 : 0 }}"
+            aria-label="{{ slide_text }}"
+            {% if disabled %}disabled="disabled"{% endif %}
+        ></button>
+    </div>
+    {% if slide_hint is not empty %}
+        <p class="nowo-slide-to-confirm__hint" data-slide-to-confirm-target="hint">{{ slide_hint }}</p>
+    {% endif %}
+</nowo-slide-to-confirm>
