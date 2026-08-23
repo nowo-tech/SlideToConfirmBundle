@@ -12,7 +12,8 @@
         "swipe-to-submit",
         "confirmation",
         "stimulus",
-        "vite"
+        "vite",
+        "pentatrion"
     ],
     "homepage": "https://github.com/nowo-tech/SlideToConfirmBundle",
     "support": {
@@ -65,6 +66,9 @@
             "/demo",
             "/.cursor"
         ]
+    },
+    "suggest": {
+        "pentatrion/vite-bundle": "Compile the Stimulus controller with Pentatrion Vite in the host app (Twig vite_entry_* helpers). The Symfony 8 demo uses this stack with pnpm."
     },
     "config": {
         "allow-plugins": {

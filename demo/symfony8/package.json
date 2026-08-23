@@ -2,8 +2,9 @@
   "name": "slide-to-confirm-demo-symfony8",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@9.15.0",
+  "packageManager": "pnpm@10.15.0",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
@@ -11,15 +12,13 @@
   },
   "devDependencies": {
     "typescript": "~5.7.3",
-    "vite": "^6.4.3"
+    "vite": "^6.4.3",
+    "vite-plugin-symfony": "^8.2.4"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2"
   },
   "pnpm": {
-    "overrides": {
-      "postcss": ">=8.5.18",
-      "nanoid": ">=3.3.18"
-    }
+    "onlyBuiltDependencies": ["esbuild"]
   }
 }

@@ -19,8 +19,8 @@ This project follows the [Contributor Covenant Code of Conduct](../CODE_OF_CONDU
 
 ## Development setup
 
-- **PHP** >= 8.2 and **Composer** (or use the provided Docker setup).
-- **Frontend**: TypeScript and Vite; from the bundle root, `pnpm install` then `pnpm typecheck` or `pnpm build` to type-check or build the assets (optional; consuming apps typically build the bundle’s TS via Vite alias).
+- **PHP** >= 8.1 and **Composer** (or use the provided Docker setup).
+- **Frontend**: TypeScript and Vite via **pnpm** (`packageManager` in `package.json`). From the bundle root: `pnpm install`, then `pnpm typecheck`, `pnpm test`, or `pnpm run build`. Do not use npm/yarn. The published IIFE lives in `src/Resources/public`. Host apps can compile the bundle TS with **Pentatrion Vite** (`vite-plugin-symfony` + `pentatrion/vite-bundle`); that is what `demo/symfony8` does.
 - **Docker** (optional): from the bundle root, run `make up` then `make install` to use the container for all PHP/Composer commands.
 
 ## Running tests and QA

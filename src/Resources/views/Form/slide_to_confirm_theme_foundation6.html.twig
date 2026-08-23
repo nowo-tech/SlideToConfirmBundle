@@ -1,10 +1,2 @@
-{# Form theme for SlideToConfirmType / SwipeToSubmitType (foundation_6_layout base). #}
-{% use 'foundation_6_layout.html.twig' %}
-
-{% block nowo_slide_to_confirm_widget %}
-    {{ include('@NowoSlideToConfirmBundle/Form/_slide_to_confirm_widget.html.twig') }}
-{% endblock %}
-
-{% block nowo_swipe_to_submit_widget %}
-    {{ block('nowo_slide_to_confirm_widget') }}
-{% endblock %}
+{# Form theme for SlideToConfirmType / SwipeToSubmitType (foundation_6_layout). #}
+{% use '@NowoSlideToConfirmBundle/Form/slide_to_confirm_theme.html.twig' %}

@@ -203,6 +203,24 @@ describe('slide-to-confirm-lib', () => {
       expect(submit).toHaveBeenCalled();
     });
 
+    it('fills the travelled track via --nowo-slide-progress while dragging', () => {
+      const host = createHost({ threshold: '0.9', submit: '0', reset: '0' });
+      initSlideContainer(host);
+      expect(host.style.getPropertyValue('--nowo-slide-progress')).toBe('0');
+
+      const thumb = host.querySelector('button') as HTMLButtonElement;
+      // Track 300px, thumb 44px → travel 256px. Move 128px → ratio 0.5.
+      thumb.dispatchEvent(pointerEvent('pointerdown', 1, 10));
+      thumb.dispatchEvent(pointerEvent('pointermove', 1, 138));
+      expect(Number(host.style.getPropertyValue('--nowo-slide-progress'))).toBeCloseTo(0.5);
+
+      confirmSlide(host);
+      expect(host.style.getPropertyValue('--nowo-slide-progress')).toBe('1');
+
+      resetSlide(host);
+      expect(host.style.getPropertyValue('--nowo-slide-progress')).toBe('0');
+    });
+
     it('resets when released below the threshold', () => {
       const host = createHost({ threshold: '0.9' });
       initSlideContainer(host);

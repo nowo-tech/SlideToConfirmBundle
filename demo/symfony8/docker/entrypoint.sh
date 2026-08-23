@@ -52,6 +52,18 @@ if [ ! -f vendor/autoload_runtime.php ]; then
     echo "Composer install done."
 fi
 
+if [ ! -f public/build/entrypoints.json ] && [ ! -f public/build/.vite/entrypoints.json ]; then
+    echo "Building frontend assets (public/build/entrypoints.json missing)..."
+    if ! command -v pnpm >/dev/null 2>&1; then
+        echo "ERROR: pnpm is required to build demo assets (see packageManager in package.json)." >&2
+        exit 1
+    fi
+    pnpm install
+    pnpm rebuild esbuild
+    pnpm run build
+    echo "Frontend assets built with pnpm (Pentatrion Vite)."
+fi
+
 # Clear Symfony cache on startup in dev so template/config changes are reflected
 if [ "${APP_ENV:-}" = "dev" ] && [ -f bin/console ]; then
     php bin/console cache:clear --no-warmup 2>/dev/null || true

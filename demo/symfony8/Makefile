@@ -1,4 +1,4 @@
-# Makefile for SlideToConfirmBundle Demo - Symfony 8
+# Makefile for SlideToConfirmBundle Demo - Symfony 8.1
 # Prefer Compose V2; absolute docker path avoids shadowing by local docker/ when PATH has "." (REQ-MAKE-010).
 DOCKER_BIN := $(shell command -v docker 2>/dev/null)
 COMPOSE_FILE := docker-compose.yml
@@ -10,10 +10,13 @@ endif
 COMPOSE     := $(COMPOSE_BIN) -f $(COMPOSE_FILE)
 SERVICE_PHP := php
 
+# Pin the same pnpm as package.json "packageManager" (global latest pnpm 10+ rejects this lockfile's identity).
+PNPM := npx --yes pnpm@10.15.0
+
 .PHONY: help up down restart build install shell logs cache-clear update-bundle ensure-up ensure-install test test-coverage assets verify
 
 help:
-	@echo "SlideToConfirmBundle Demo - Symfony 8"
+	@echo "SlideToConfirmBundle Demo - Symfony 8.1"
 	@echo "  make up            Start container, install deps (Composer + pnpm) and build assets (http://localhost:$${PORT:-8055})"
 	@echo "  make down          Stop container"
 	@echo "  make restart       Restart container"
@@ -21,7 +24,7 @@ help:
 	@echo "  make install       Install dependencies (Composer + pnpm + vite build)"
 	@echo "  make ensure-up     Start container if needed (and install deps + assets on first start)"
 	@echo "  make ensure-install ensure-up + composer install + assets"
-	@echo "  make assets        Build frontend (pnpm install + vite build; needs ensure-up)"
+	@echo "  make assets        pnpm install + Vite build (Pentatrion; needs ensure-up)"
 	@echo "  make update-bundle Update bundle from path repo"
 	@echo "  make shell         Open shell in PHP container"
 	@echo "  make logs          Show container logs"
@@ -57,7 +60,7 @@ ensure-up:
 		$(COMPOSE) up -d; \
 		sleep 5; \
 		$(COMPOSE) exec -T -e COMPOSER_MEMORY_LIMIT=-1 $(SERVICE_PHP) composer install --no-interaction; \
-		$(COMPOSE) exec -T -e BUNDLE_PATH=/var/slide-to-confirm-bundle/src/Resources/assets/src/slide-to-confirm.ts $(SERVICE_PHP) sh -c "/usr/local/bin/pnpm install && /usr/local/bin/pnpm build"; \
+		$(COMPOSE) exec -T $(SERVICE_PHP) sh -c '$(PNPM) install && $(PNPM) rebuild esbuild && $(PNPM) run build'; \
 	fi
 
 ensure-install: ensure-up
@@ -67,7 +70,9 @@ ensure-install: ensure-up
 install: ensure-install
 
 assets: ensure-up
-	$(COMPOSE) exec -T -e BUNDLE_PATH=/var/slide-to-confirm-bundle/src/Resources/assets/src/slide-to-confirm.ts $(SERVICE_PHP) sh -c "/usr/local/bin/pnpm install && /usr/local/bin/pnpm build"
+	$(COMPOSE) exec -T $(SERVICE_PHP) sh -c '$(PNPM) install && $(PNPM) rebuild esbuild && $(PNPM) run build'
+	@echo "Restarting FrankenPHP worker so Pentatrion reloads entrypoints.json..."
+	$(COMPOSE) restart $(SERVICE_PHP)
 
 shell: ensure-up
 	$(COMPOSE) exec $(SERVICE_PHP) sh

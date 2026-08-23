@@ -6,4 +6,4 @@ Fill these fields in the GitHub repository **About** panel when the repo is publ
 | ----- | ----- |
 | **Description** | Symfony FormType for slide-to-confirm / swipe-to-submit (payments, deletes, legal consent). |
 | **Website** | https://nowo.tech |
-| **Topics** | `symfony`, `symfony-bundle`, `form`, `slide-to-confirm`, `swipe-to-submit`, `stimulus`, `frankenphp`, `php` |
+| **Topics** | `symfony`, `symfony-bundle`, `form`, `slide-to-confirm`, `swipe-to-submit`, `stimulus`, `vite`, `pnpm`, `frankenphp`, `php` |

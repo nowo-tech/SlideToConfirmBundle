@@ -1,10 +1,11 @@
-# FrankenPHP + Node for SlideToConfirmBundle Demo (Symfony 8, Vite)
+# FrankenPHP + Node for SlideToConfirmBundle Demo (Symfony 8.1, Pentatrion Vite, pnpm)
 FROM dunglas/frankenphp:1-php8.5-alpine
 
 RUN apk add --no-cache git unzip bash nodejs npm curl
 
-# pnpm (Alpine nodejs does not ship corepack; use npm global install)
-RUN npm install -g pnpm
+# Pin pnpm to packageManager in package.json (Alpine nodejs often has no corepack).
+RUN npm install -g pnpm@10.15.0 \
+    && pnpm --version
 ENV PNPM_HOME="/usr/local/share/pnpm"
 ENV PATH="/usr/local/bin:/usr/local/share/pnpm:${PATH}"
 

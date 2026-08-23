@@ -1,8 +1,8 @@
-{# Form theme for SlideToConfirmType / SwipeToSubmitType (form_div_layout base). #}
-{% use 'form_div_layout.html.twig' %}
-
+{# Form theme for SlideToConfirmType / SwipeToSubmitType.
+   Only widget blocks. Do not `{% use %}` a Symfony layout here: that copies form_row
+   onto this theme and FormRenderer then hits "Undefined array key -1" on form_row. #}
 {% block nowo_slide_to_confirm_widget %}
-    {{ include('@NowoSlideToConfirmBundle/Form/_slide_to_confirm_widget.html.twig') }}
+    {{ include('@NowoSlideToConfirmBundle/Form/_slide_to_confirm_widget.html.twig', {widget_attributes: block('widget_attributes')}) }}
 {% endblock %}
 
 {% block nowo_swipe_to_submit_widget %}

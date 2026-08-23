@@ -1,11 +1,14 @@
 {#
   Shared slide-to-confirm / swipe-to-submit widget.
   Renders a visually hidden checkbox (authoritative submitted value) and the slider chrome.
+  Host form themes must pass `widget_attributes` (output of block('widget_attributes')).
+  This partial is included, so it cannot call that block itself.
 #}
 {% set slide_text = form.vars.slide_text|trans({}, form.vars.slide_translation_domain) %}
 {% set slide_confirmed_text = form.vars.slide_confirmed_text|trans({}, form.vars.slide_translation_domain) %}
 {% set slide_hint = form.vars.slide_hint|trans({}, form.vars.slide_translation_domain) %}
 {% set is_checked = checked is defined and checked %}
+{% set widget_attributes = widget_attributes|default('') %}
 <nowo-slide-to-confirm
     class="{{ form.vars.slide_container_css_class }} nowo-slide-to-confirm--{{ form.vars.slide_variant }}{% if is_checked %} is-confirmed{% endif %}"
     data-controller="slide-to-confirm"
@@ -18,7 +21,7 @@
 >
     <input
         type="checkbox"
-        {{ block('widget_attributes') }}
+        {{ widget_attributes|raw }}
         class="nowo-slide-to-confirm__input"
         value="{{ value is defined and value is not empty ? value : '1' }}"
         {% if is_checked %}checked="checked"{% endif %}

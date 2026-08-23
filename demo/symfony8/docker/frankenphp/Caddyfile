@@ -10,6 +10,12 @@
         anonymous
     }
 
+    # Built Pentatrion Vite assets (pnpm run build). Do not send /build to PHP —
+    # the ViteBundle /build proxy expects a running `vite` dev server.
+    handle /build/* {
+        file_server
+    }
+
     php_server {
         hot_reload
         worker {

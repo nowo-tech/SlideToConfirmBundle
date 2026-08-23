@@ -57,4 +57,4 @@ demo:
   gate:
     submit: 'Save'
 
-demo.symfony_version: 'Symfony 8'
+demo.symfony_version: 'Symfony 8.1'

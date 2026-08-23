@@ -36,9 +36,10 @@ Looking for **Symfony slide to confirm**, **swipe to submit form type**, **slide
 - ✅ **Named profiles** — `default`, `payment`, `danger`, `legal`, `publish`, `gate` (REQ-CFG-001)
 - ✅ **Use cases** — payments, irreversible deletes, publish/go-live, legal consent, subscription cancel, batch approve, emergency logout, gate-then-submit (see [docs/USAGE.md](docs/USAGE.md#use-cases))
 - ✅ **Keyboard and RTL** — slider role, arrows, Home/End, pointer + touch
+- ✅ **Track fill** — the travelled portion of the track uses the same colour as the thumb
 - ✅ **Server validation** — required fields add `IsTrue`; an incomplete POST is invalid
 - ✅ **Works with or without Stimulus** — built IIFE + MutationObserver, or a Stimulus controller
-- ✅ **TypeScript + Vite** — no Encore / Importmap required
+- ✅ **TypeScript + Vite + pnpm** — bundle IIFE is built with Vite; the Symfony 8 demo uses **Pentatrion Vite** (`pentatrion/vite-bundle` + `vite-plugin-symfony`) and **pnpm only**
 - ✅ Compatible with **Symfony 7 and 8** and **FrankenPHP**
 
 ## Installation
@@ -114,7 +115,7 @@ Use cases (pay, delete, publish, legal, cancel, batch, emergency, gate): [docs/U
 
 ## Demo
 
-The Symfony 8 demo is in `demo/symfony8`. Run from the bundle root: `make up-symfony8` (http://localhost:8055). See [demo/README.md](demo/README.md).
+The Symfony 8.1 demo is in `demo/symfony8`. Run from the bundle root: `make up-symfony8` (http://localhost:8055). See [demo/README.md](demo/README.md).
 
 The demos use **FrankenPHP**. Default `FRANKENPHP_MODE=worker` (Caddyfile with `worker { file; watch }`). Set `FRANKENPHP_MODE=classic` for per-request PHP so Twig/asset changes show on refresh (see [docs/DEMO-FRANKENPHP.md](docs/DEMO-FRANKENPHP.md)).
 

@@ -1,14 +1,16 @@
 # Installation
 
-This guide covers installing SlideToConfirmBundle in a Symfony 7 or 8 application.
+This guide covers installing SlideToConfirmBundle in a Symfony 6, 7, or 8 application.
 
 ## Requirements
 
-- **PHP** >= 8.2
-- **Symfony** ^7.0 or ^8.0
+- **PHP** `>=8.1 <8.6`
+- **Symfony** `^6.0 || ^7.0 || ^8.0`
 - **symfony/form**, **symfony/twig-bundle**, **symfony/translation**, **symfony/validator**
 - **Stimulus** optional (`symfony/stimulus-bundle` or `@hotwired/stimulus`)
-- **Vite** if you compile the bundle TypeScript in the host app
+- **Vite + pnpm** to rebuild the bundle IIFE, or **Pentatrion Vite** (`pentatrion/vite-bundle` + `vite-plugin-symfony`) if the host app compiles the Stimulus controller (that is what the demo uses)
+
+The Symfony 8.1 demo additionally needs **PHP 8.4+**.
 
 ## Install with Composer
 

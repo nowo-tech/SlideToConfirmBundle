@@ -77,7 +77,7 @@ nowo_slide_to_confirm:
 | --- | ---- | ------- | ----------- |
 | `default_profile` | string | `default` | Profile used when the form option `profile` is omitted. |
 | `profiles` | map | built-in set | Complete settings blocks per name. |
-| `form_theme` | string | `form_div_layout.html.twig` | Symfony layout the bundle theme `{% use %}`s. |
+| `form_theme` | string | `form_div_layout.html.twig` | Symfony layout the host app uses. The bundle prepends a matching theme that only defines the slide widgets (it does not `{% use %}` the host layout). |
 | `translation_domain` | string | `NowoSlideToConfirmBundle` | Domain for slider strings. |
 | `debug` | bool | `false` | Frontend console debug logs. |
 
@@ -106,6 +106,8 @@ Set `form_theme` to the **same** layout your app uses. The extension prepends th
 | `tailwind_2_layout.html.twig` | `slide_to_confirm_theme_tailwind2.html.twig` |
 
 Do **not** also list `@NowoSlideToConfirmBundle/Form/slide_to_confirm_theme*.html.twig` in `twig.form_themes`.
+
+The prepended theme only defines the slide widgets. It does **not** `{% use %}` `bootstrap_*_layout.html.twig` (or other host layouts). Doing both registers `form_row` twice and Symfony FormRenderer throws `Undefined array key -1`.
 
 ## Translations
 

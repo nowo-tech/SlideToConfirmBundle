@@ -5,7 +5,8 @@ The slider uses BEM classes under `nowo-slide-to-confirm` and CSS custom propert
 | Token | Role |
 | ----- | ---- |
 | `--nowo-slide-track-bg` | Track background |
-| `--nowo-slide-thumb-bg` | Thumb fill |
+| `--nowo-slide-thumb-bg` | Thumb fill (the travelled track uses the same colour) |
+| `--nowo-slide-progress` | `0`–`1` ratio of the track already travelled (set by the script while dragging) |
 | `--nowo-slide-text` | Track label color |
 | `--nowo-slide-confirmed-bg` | Track after confirm |
 

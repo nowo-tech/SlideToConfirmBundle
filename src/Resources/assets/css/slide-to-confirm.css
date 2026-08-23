@@ -1,4 +1,6 @@
 .nowo-slide-to-confirm {
+  --nowo-slide-progress: 0;
+  --nowo-slide-thumb-size: 2.75rem;
   display: block;
   width: 100%;
   max-width: 28rem;
@@ -31,8 +33,30 @@
   box-shadow: inset 0 0 0 1px rgb(15 23 42 / 8%);
 }
 
+.nowo-slide-to-confirm__track::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  left: 0.25rem;
+  width: calc(
+    var(--nowo-slide-thumb-size)
+    + var(--nowo-slide-progress, 0) * (100% - var(--nowo-slide-thumb-size) - 0.5rem)
+  );
+  pointer-events: none;
+  border-radius: inherit;
+  background: var(--nowo-slide-thumb-bg, #111827);
+}
+
+.nowo-slide-to-confirm__track:dir(rtl)::before {
+  left: auto;
+  right: 0.25rem;
+}
+
 .nowo-slide-to-confirm__text {
   position: absolute;
+  z-index: 1;
   inset: 0;
   display: flex;
   align-items: center;
@@ -100,6 +124,11 @@
   color: #fff;
 }
 
+.nowo-slide-to-confirm.is-confirmed .nowo-slide-to-confirm__track::before {
+  width: calc(100% - 0.5rem);
+  background: var(--nowo-slide-confirmed-bg, #059669);
+}
+
 .nowo-slide-to-confirm.is-confirmed .nowo-slide-to-confirm__thumb {
   background: #fff;
 }
@@ -140,6 +169,10 @@
 
   .nowo-slide-to-confirm:not(.is-dragging) .nowo-slide-to-confirm__thumb {
     transition: transform 180ms ease;
+  }
+
+  .nowo-slide-to-confirm:not(.is-dragging) .nowo-slide-to-confirm__track::before {
+    transition: width 180ms ease, background-color 180ms ease;
   }
 
   .nowo-slide-to-confirm__track {

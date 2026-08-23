@@ -23,7 +23,7 @@ help:
 	@echo "  build          Rebuild Docker image (no cache)"
 	@echo "  shell          Open shell in container"
 	@echo "  install        Install Composer dependencies"
-	@echo "  assets         Build frontend (TypeScript via Vite; requires pnpm on host)"
+	@echo "  assets         Build frontend (pnpm + Vite IIFE; in Docker)"
 	@echo "  test           Run PHPUnit tests"
 	@echo "  test-coverage  Run tests with code coverage (PCOV, console)"
 	@echo "  coverage-check Fail if PHP Lines coverage is under 100%"
@@ -48,7 +48,9 @@ help:
 	@echo "  assets-clean    Clean built assets"
 	@echo ""
 	@echo "Demos:"
-	@echo "  (use make -C demo or make -C demo/symfonyX)"
+	@echo "  up-symfony8    Start Symfony 8.1 demo (http://localhost:8055)"
+	@echo "  down-symfony8  Stop Symfony 8.1 demo"
+	@echo "  (or: make -C demo or make -C demo/symfony8)"
 	@echo ""
 
 ensure-up:
@@ -146,7 +148,7 @@ clean: ensure-up
 	$(RUN) sh -c 'rm -rf vendor .phpunit.cache coverage coverage.xml .php-cs-fixer.cache'
 
 assets: ensure-up
-	$(RUN) sh -lc 'CI=true pnpm install && CI=true pnpm build'
+	$(RUN) sh -lc 'CI=true pnpm install && CI=true pnpm run build'
 
 assets-test: ensure-up
 	$(RUN) sh -lc 'CI=true pnpm install && CI=true pnpm run test:coverage' | tee coverage-ts.txt

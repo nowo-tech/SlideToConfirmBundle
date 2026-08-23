@@ -122,6 +122,8 @@ function applyVisual(host: HTMLElement, ratio: number): void {
   const sign = isRtl(track) ? -1 : 1;
   thumb.style.transform = `translateX(${sign * offset}px)`;
   thumb.setAttribute('aria-valuenow', String(Math.round(ratio * 100)));
+  // Progress fill behind the thumb (same colour as the circle).
+  host.style.setProperty('--nowo-slide-progress', String(ratio));
 }
 
 function setLabel(host: HTMLElement, confirmed: boolean, config: SlideConfig): void {

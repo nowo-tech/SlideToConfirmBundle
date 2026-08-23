@@ -1,6 +1,6 @@
 # SlideToConfirmBundle demos
 
-Demo for **Symfony 8** that shows **slide-to-confirm / swipe-to-submit** use cases (pay, delete, publish, legal, cancel, batch, emergency, gate). Vite + TypeScript + Stimulus.
+Demo for **Symfony 8.1** that shows **slide-to-confirm / swipe-to-submit** use cases (pay, delete, publish, legal, cancel, batch, emergency, gate). **Pentatrion Vite** + TypeScript + Stimulus. JavaScript deps: **pnpm only**.
 
 ## Quick start (Docker)
 
@@ -16,6 +16,6 @@ Then open http://localhost:8055.
 
 | Demo     | Port | Description |
 |----------|------|-------------|
-| symfony8 | 8055 | Symfony 8 + use-case forms, Vite + Stimulus, Web Profiler (dev) |
+| symfony8 | 8055 | Symfony 8.1 + use-case forms, Pentatrion Vite + Stimulus, Web Profiler (dev) |
 
 Locale in the URL: `/en`, `/es`. Use-case query: `?case=payment` (and `delete`, `publish`, `legal`, `cancel`, `batch`, `emergency`, `gate`).

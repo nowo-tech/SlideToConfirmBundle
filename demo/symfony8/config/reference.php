@@ -51,7 +51,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     shared?: bool,
  *     lazy?: bool|string,
  *     public?: bool,
- *     factory?: CallbackType,
  *     properties?: array<string, mixed>,
  *     configurator?: CallbackType,
  *     calls?: list<CallType>,
@@ -137,7 +136,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     http_method_override?: bool|Param, // Set true to enable support for the '_method' request parameter to determine the intended HTTP method on POST requests. // Default: false
  *     allowed_http_method_override?: null|list<string|Param>,
  *     trust_x_sendfile_type_header?: scalar|Param|null, // Set true to enable support for xsendfile in binary file responses. // Default: "%env(bool:default::SYMFONY_TRUST_X_SENDFILE_TYPE_HEADER)%"
- *     ide?: scalar|Param|null, // Deprecated: Setting the "framework.ide.ide" configuration option is deprecated, use the "SYMFONY_IDE" env var instead. // Default: "%env(default::SYMFONY_IDE)%"
+ *     ide?: scalar|Param|null, // Default: "%env(default::SYMFONY_IDE)%"
  *     test?: bool|Param,
  *     default_locale?: scalar|Param|null, // Default: "en"
  *     set_locale_from_accept_language?: bool|Param, // Whether to use the Accept-Language HTTP header to set the Request locale (only when the "_locale" request attribute is not passed). // Default: false
@@ -185,11 +184,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     },
  *     fragments?: bool|array{ // Fragments configuration
  *         enabled?: bool|Param, // Default: false
- *         hinclude_default_template?: scalar|Param|null, // Deprecated: Setting the "framework.fragments.hinclude_default_template.hinclude_default_template" configuration option is deprecated. It will be removed in version 9.0. // Default: null
+ *         hinclude_default_template?: scalar|Param|null, // Default: null
  *         path?: scalar|Param|null, // Default: "/_fragment"
- *     },
- *     uri_signer?: array{ // URI signer configuration
- *         expiration?: int|Param, // Default expiration of signed URIs, in seconds. // Default: null
  *     },
  *     profiler?: bool|array{ // Profiler configuration
  *         enabled?: bool|Param, // Default: false
@@ -197,8 +193,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         collect_parameter?: scalar|Param|null, // The name of the parameter to use to enable or disable collection on a per request basis. // Default: null
  *         only_exceptions?: bool|Param, // Default: false
  *         only_main_requests?: bool|Param, // Default: false
- *         excluded_paths?: Param|string|list<scalar|Param|null>,
- *         excluded_http_codes?: Param|int|string|list<Param|string|list<scalar|Param|null>>,
  *         dsn?: scalar|Param|null, // Default: "file:%kernel.cache_dir%/profiler"
  *         collect_serializer_data?: true|Param, // Deprecated: Setting the "framework.profiler.collect_serializer_data.collect_serializer_data" configuration option is deprecated. It will be removed in version 9.0. // Default: true
  *     },
@@ -303,9 +297,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         importmap_path?: scalar|Param|null, // The path of the importmap.php file. // Default: "%kernel.project_dir%/importmap.php"
  *         importmap_polyfill?: scalar|Param|null, // The importmap name that will be used to load the polyfill. Set to false to disable. // Default: "es-module-shims"
  *         importmap_script_attributes?: array<string, scalar|Param|null>,
- *         importmap_integrity_algorithms?: list<"sha256"|"sha384"|"sha512"|Param>,
  *         vendor_dir?: scalar|Param|null, // The directory to store JavaScript vendors. // Default: "%kernel.project_dir%/assets/vendor"
- *         minimum_release_age?: int|Param, // Minimum age in seconds a package version must have to be considered when checking for updates (0 disables the check). Enabling it makes update checks download the full npm metadata document, which is larger than the abbreviated one. // Default: 0
  *         precompress?: bool|array{ // Precompress assets with Brotli, Zstandard and gzip.
  *             enabled?: bool|Param, // Default: false
  *             formats?: list<scalar|Param|null>,
@@ -330,7 +322,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         },
  *         providers?: array<string, array{ // Default: []
  *             dsn?: scalar|Param|null,
- *             domains?: array<string, scalar|Param|null>,
+ *             domains?: list<scalar|Param|null>,
  *             locales?: list<scalar|Param|null>,
  *         }>,
  *         globals?: array<string, Param|string|array{ // Default: []
@@ -394,10 +386,9 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     },
  *     cache?: array{ // Cache configuration
  *         prefix_seed?: scalar|Param|null, // Used to namespace cache keys when using several apps with the same shared backend. // Default: "_%kernel.project_dir%.%kernel.container_class%"
- *         app?: scalar|Param|null, // App related cache pools configuration. Cannot be combined with "default_provider". // Default: "cache.adapter.filesystem"
+ *         app?: scalar|Param|null, // App related cache pools configuration. // Default: "cache.adapter.filesystem"
  *         system?: scalar|Param|null, // System related cache pools configuration. // Default: "cache.adapter.system"
  *         directory?: scalar|Param|null, // Default: "%kernel.share_dir%/pools/app"
- *         default_provider?: scalar|Param|null, // DSN of the backend to use for "cache.app"; the adapter is deduced from it. Replaces "app", which cannot be set alongside it.
  *         default_psr6_provider?: scalar|Param|null,
  *         default_redis_provider?: scalar|Param|null, // Default: "redis://localhost"
  *         default_valkey_provider?: scalar|Param|null, // Default: "valkey://localhost"
@@ -429,7 +420,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     },
  *     lock?: Param|bool|string|array{ // Lock configuration
  *         enabled?: bool|Param, // Default: false
- *         resources?: Param|string|array<string, Param|string|list<mixed>>,
+ *         resources?: Param|string|array<string, Param|string|list<scalar|Param|null>>,
  *     },
  *     semaphore?: Param|bool|string|array{ // Semaphore configuration
  *         enabled?: bool|Param, // Default: false
@@ -459,11 +450,9 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *                 jitter?: float|Param, // Randomness to apply to the delay (between 0 and 1). // Default: 0.1
  *             },
  *             rate_limiter?: scalar|Param|null, // Rate limiter name to use when processing messages. // Default: null
- *             priority?: int|Param, // Order in which "messenger:consume --all" consumes this transport, higher comes first. // Default: 0
  *         }>,
  *         failure_transport?: scalar|Param|null, // Transport name to send failed messages to (after all retries have failed). // Default: null
  *         stop_worker_on_signals?: Param|int|string|list<scalar|Param|null>,
- *         reject_redelivered_messages?: bool|Param, // Whether redeliveries should be rejected and retried through a new message instead of being handled directly. This mostly makes sense for AMQP, which redelivers messages that were neither acknowledged nor rejected. Disabling it avoids losing a message when the retry or the failure transport is unreachable, at the risk of a redelivery loop that blocks the queue. // Default: true
  *         default_bus?: scalar|Param|null, // Default: null
  *         buses?: array<string, array{ // Default: {"messenger.bus.default":{"default_middleware":{"enabled":true,"allow_no_handlers":false,"allow_no_senders":true},"middleware":[]}}
  *             default_middleware?: Param|bool|string|array{
@@ -482,11 +471,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     },
  *     disallow_search_engine_index?: bool|Param, // Enabled by default when debug is enabled. // Default: true
  *     http_client?: bool|array{ // HTTP Client configuration
- *         enabled?: bool|Param, // Default: false
+ *         enabled?: bool|Param, // Default: true
  *         max_host_connections?: int|Param, // The maximum number of connections to a single host.
  *         default_options?: array{
- *             vars?: array<string, mixed>,
  *             headers?: array<string, mixed>,
+ *             vars?: array<string, mixed>,
  *             max_redirects?: int|Param, // The maximum number of redirects to follow.
  *             http_version?: scalar|Param|null, // The default HTTP version, typically 1.1 or 2.0, leave to null for the best version.
  *             resolve?: array<string, scalar|Param|null>,
@@ -494,7 +483,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             no_proxy?: scalar|Param|null, // A comma separated list of hosts that do not require a proxy to be reached.
  *             timeout?: float|Param, // The idle timeout, defaults to the "default_socket_timeout" ini parameter.
  *             max_duration?: float|Param, // The maximum execution time for the request+response as a whole.
- *             max_connect_duration?: float|Param, // The maximum duration allowed for DNS + TCP + TLS connection; a value lower than or equal to 0 means unlimited.
  *             bindto?: scalar|Param|null, // A network interface name, IP address, a host name or a UNIX socket to bind to.
  *             verify_peer?: bool|Param, // Indicates if the peer should be verified in a TLS context.
  *             verify_host?: bool|Param, // Indicates if the host should exist as a certificate common name.
@@ -503,7 +491,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             local_cert?: scalar|Param|null, // A PEM formatted certificate file.
  *             local_pk?: scalar|Param|null, // A private key file.
  *             passphrase?: scalar|Param|null, // The passphrase used to encrypt the "local_pk" file.
- *             ciphers?: scalar|Param|null, // A list of TLS ciphers separated by colons, commas or spaces (e.g. "RC3-SHA:TLS13-AES-128-GCM-SHA256"...).
+ *             ciphers?: scalar|Param|null, // A list of TLS ciphers separated by colons, commas or spaces (e.g. "RC3-SHA:TLS13-AES-128-GCM-SHA256"...)
  *             peer_fingerprint?: array{ // Associative array: hashing algorithm => hash(es).
  *                 sha1?: mixed,
  *                 pin-sha256?: mixed,
@@ -520,7 +508,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             },
  *             retry_failed?: bool|array{
  *                 enabled?: bool|Param, // Default: false
- *                 base_uris?: Param|string|list<string|Param>,
  *                 retry_strategy?: scalar|Param|null, // service id to override the retry strategy. // Default: null
  *                 http_codes?: Param|int|string|array<string, array{ // Default: []
  *                     code?: int|Param,
@@ -541,7 +528,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             auth_bearer?: scalar|Param|null, // A token enabling HTTP Bearer authorization.
  *             auth_ntlm?: scalar|Param|null, // A "username:password" pair to use Microsoft NTLM authentication (requires the cURL extension).
  *             query?: array<string, scalar|Param|null>,
- *             mock_response_factory?: scalar|Param|null, // `true` to always return empty 200 responses, `false` to disable mocking, or the id of the service to use to generate mock responses (invokable or iterable).
  *             headers?: array<string, mixed>,
  *             max_redirects?: int|Param, // The maximum number of redirects to follow.
  *             http_version?: scalar|Param|null, // The default HTTP version, typically 1.1 or 2.0, leave to null for the best version.
@@ -550,7 +536,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             no_proxy?: scalar|Param|null, // A comma separated list of hosts that do not require a proxy to be reached.
  *             timeout?: float|Param, // The idle timeout, defaults to the "default_socket_timeout" ini parameter.
  *             max_duration?: float|Param, // The maximum execution time for the request+response as a whole.
- *             max_connect_duration?: float|Param, // The maximum duration allowed for DNS + TCP + TLS connection; a value lower than or equal to 0 means unlimited.
  *             bindto?: scalar|Param|null, // A network interface name, IP address, a host name or a UNIX socket to bind to.
  *             verify_peer?: bool|Param, // Indicates if the peer should be verified in a TLS context.
  *             verify_host?: bool|Param, // Indicates if the host should exist as a certificate common name.
@@ -566,6 +551,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *                 md5?: mixed,
  *             },
  *             crypto_method?: scalar|Param|null, // The minimum version of TLS to accept; must be one of STREAM_CRYPTO_METHOD_TLSv*_CLIENT constants.
+ *             mock_response_factory?: scalar|Param|null, // `true` to always return empty 200 responses, `false` to disable mocking, or the id of the service to use to generate mock responses (invokable or iterable).
  *             extra?: array<string, mixed>,
  *             rate_limiter?: scalar|Param|null, // Rate limiter name to use for throttling requests. // Default: null
  *             caching?: bool|array{ // Caching configuration.
@@ -576,7 +562,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             },
  *             retry_failed?: bool|array{
  *                 enabled?: bool|Param, // Default: false
- *                 base_uris?: Param|string|list<string|Param>,
  *                 retry_strategy?: scalar|Param|null, // service id to override the retry strategy. // Default: null
  *                 http_codes?: Param|int|string|array<string, array{ // Default: []
  *                     code?: int|Param,
@@ -594,10 +579,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         enabled?: bool|Param, // Default: false
  *         message_bus?: scalar|Param|null, // The message bus to use. Defaults to the default bus if the Messenger component is installed. // Default: null
  *         dsn?: scalar|Param|null, // Default: null
- *         transports?: array<string, Param|string|array{ // Default: []
- *             dsn?: scalar|Param|null,
- *             rate_limiter?: scalar|Param|null, // Rate limiter name used to limit the number of messages sent through this transport; when the limit is exceeded, sending fails with a RateLimitExceededException. // Default: null
- *         }>,
+ *         transports?: array<string, scalar|Param|null>,
  *         envelope?: array{ // Mailer Envelope configuration
  *             sender?: scalar|Param|null,
  *             recipients?: Param|string|list<scalar|Param|null>,
@@ -606,10 +588,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         headers?: array<string, Param|string|array{ // Default: []
  *             value?: mixed,
  *         }>,
- *         tracking?: array{ // Default open/click tracking for every message that does not carry an explicit "X-Track" header; null keeps each provider's default. An "X-Track" entry in the "headers" option wins over this one.
- *             opens?: true|false|Param|null, // Default: null
- *             clicks?: true|false|Param|null, // Default: null
- *         },
  *         dkim_signer?: bool|array{ // DKIM signer configuration
  *             enabled?: bool|Param, // Default: false
  *             key?: scalar|Param|null, // Key content, or path to key (in PEM format with the `file://` prefix) // Default: ""
@@ -629,29 +607,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         smime_encrypter?: bool|array{ // S/MIME encrypter configuration
  *             enabled?: bool|Param, // Default: false
  *             repository?: scalar|Param|null, // S/MIME certificate repository service. This service shall implement the `Symfony\Component\Mailer\EventListener\SmimeCertificateRepositoryInterface`. // Default: ""
- *             certificates?: array<string, scalar|Param|null>,
- *             on_missing_certificate?: "send_unencrypted"|"fail"|"encrypt"|"skip"|Param, // Default behavior when a recipient has no S/MIME certificate: "send_unencrypted" (send the message unencrypted, deprecated since 8.2), "fail" (throw an exception), "encrypt" (encrypt for the recipients that have a certificate, the others receive an unreadable message), "skip" (encrypt for the recipients that have a certificate and drop the others from the envelope; note that "framework.mailer.envelope.recipients" is applied afterwards and overrides that list). Can be overridden per message by setting the "X-SMime-Encrypt" header to one of these values. // Default: "send_unencrypted"
- *             encrypt_for_sender?: bool|Param, // Also encrypt for the sender, when a certificate is available for its address, so that the sender can read the messages it sent. // Default: false
  *             cipher?: int|Param, // A set of algorithms used to encrypt the message // Default: null
- *         },
- *         pgp_signer?: bool|array{ // PGP/MIME signer configuration
- *             enabled?: bool|Param, // Default: false
- *             secret_key?: scalar|Param|null, // Path to the secret key (ASCII armored format without the `file://` prefix) // Default: ""
- *             public_key?: scalar|Param|null, // Path to the public key (ASCII armored format without the `file://` prefix) // Default: null
- *             passphrase?: scalar|Param|null, // The secret key passphrase // Default: null
- *             binary?: scalar|Param|null, // Path to the GnuPG binary // Default: "gpg"
- *             digest_algorithm?: "SHA224"|"SHA256"|"SHA384"|"SHA512"|Param, // The digest algorithm used to sign the message // Default: "SHA512"
- *         },
- *         pgp_encrypter?: bool|array{ // PGP/MIME encrypter configuration
- *             enabled?: bool|Param, // Default: false
- *             repository?: scalar|Param|null, // Service or class implementing `Symfony\Component\Mailer\EventListener\PgpPublicKeyRepositoryInterface` to provide recipient PGP public keys. // Default: ""
- *             keys?: array<string, scalar|Param|null>,
- *             binary?: scalar|Param|null, // Path to the GnuPG binary // Default: "gpg"
- *             cipher_algorithm?: "AES"|"AES192"|"AES256"|"TWOFISH"|"CAMELLIA128"|"CAMELLIA192"|"CAMELLIA256"|Param, // The cipher algorithm used to encrypt the message // Default: "AES256"
- *             timeout?: float|Param, // Timeout in seconds for the GPG process (null for no timeout) // Default: 60.0
- *             hide_recipients?: bool|Param, // Hide every recipient's key ID in the encrypted message (gpg --hidden-recipient). Recipients listed in the Bcc header are always hidden regardless of this option; set it to true to also hide To and Cc recipients. // Default: false
- *             on_missing_key?: "fail"|"encrypt"|"skip"|Param, // Default behavior when a recipient has no PGP public key: "fail" (throw an exception), "encrypt" (encrypt for the recipients that have a key, the others receive an unreadable message), "skip" (encrypt for the recipients that have a key and drop the others from the envelope; note that "framework.mailer.envelope.recipients" is applied afterwards and overrides that list). The message is never sent unencrypted. Can be overridden per message by setting the "X-Pgp-Encrypt" header to one of these values. // Default: "fail"
- *             encrypt_for_sender?: bool|Param, // Also encrypt for the sender, when a public key is available for its address, so that the sender can read the messages it sent. // Default: false
  *         },
  *     },
  *     secrets?: bool|array{
@@ -674,11 +630,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     },
  *     rate_limiter?: bool|array{ // Rate limiter configuration
  *         enabled?: bool|Param, // Default: false
- *         builder?: array{ // Configuration for the RateLimiterBuilder service.
- *             lock_factory?: scalar|Param|null, // The service ID of the lock factory to use with the RateLimiterBuilder. // Default: "auto"
- *             cache_pool?: scalar|Param|null, // The cache pool to use with RateLimiterBuilder. // Default: "cache.rate_limiter"
- *             storage_service?: scalar|Param|null, // The service ID of a custom storage implementation, this precedes any configured "cache_pool". // Default: null
- *         },
  *         limiters?: array<string, array{ // Default: []
  *             lock_factory?: scalar|Param|null, // The service ID of the lock factory used by this limiter (or null to disable locking). // Default: "auto"
  *             cache_pool?: scalar|Param|null, // The cache pool to use for storing the current limiter state. // Default: "cache.rate_limiter"
@@ -732,11 +683,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         message_bus?: scalar|Param|null, // The message bus to use. // Default: "messenger.default_bus"
  *         event_header_name?: scalar|Param|null, // Default: "Webhook-Event"
  *         id_header_name?: scalar|Param|null, // Default: "Webhook-Id"
- *         timestamp_header_name?: scalar|Param|null, // Default: "Webhook-Timestamp"
  *         signature_header_name?: scalar|Param|null, // Default: "Webhook-Signature"
  *         signing_algorithm?: scalar|Param|null, // Default: "sha256"
- *         signature_format?: "legacy"|"standard"|"transitional"|Param, // The signature scheme to emit and to require: "legacy" (default) for Symfony's historical "<algo>=<hex>" over the event name, the id and the body; "standard" for the Standard Webhooks "v1,<base64>" over the id, the timestamp and the body, which moves the event name from the "Webhook-Event" header to the payload's "type" key; "transitional" for both at once, during a migration. // Default: "legacy"
- *         timestamp_tolerance?: int|Param, // How far, in seconds, an incoming Standard Webhooks timestamp may be from the current time before the request is rejected as a replay. Set to 0 to accept any timestamp. Legacy signatures carry no timestamp and are never bounded. // Default: 300
  *         routing?: array<string, array{ // Default: []
  *             service?: scalar|Param|null,
  *             secret?: scalar|Param|null, // Default: ""
@@ -785,6 +733,34 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     mailer?: array{
  *         html_to_text_converter?: scalar|Param|null, // A service implementing the "Symfony\Component\Mime\HtmlToTextConverter\HtmlToTextConverterInterface". // Default: null
  *     },
+ * }
+ * @psalm-type PentatrionViteConfig = array{
+ *     public_directory?: scalar|Param|null, // Default: "public"
+ *     build_directory?: scalar|Param|null, // we only need build_directory to locate entrypoints.json file, it's the "base" vite config parameter without slashes. // Default: "build"
+ *     proxy_origin?: scalar|Param|null, // Allows to use different origin for asset proxy, eg. http://host.docker.internal:5173 // Default: null
+ *     absolute_url?: bool|Param, // Prepend the rendered link and script tags with an absolute URL. // Default: false
+ *     throw_on_missing_entry?: scalar|Param|null, // Throw exception when entry is not present in the entrypoints file // Default: false
+ *     throw_on_missing_asset?: scalar|Param|null, // Throw exception when asset is not present in the manifest file // Default: true
+ *     cache?: bool|Param, // Enable caching of the entry point file(s) // Default: false
+ *     preload?: "none"|"link-tag"|"link-header"|Param, // preload all rendered script and link tags automatically via the http2 Link header. (symfony/web-link is required) Instead <link rel="modulepreload"> will be used. // Default: "link-tag"
+ *     crossorigin?: false|true|"anonymous"|"use-credentials"|Param, // crossorigin value, can be false, true (default), anonymous (same as true) or use-credentials // Default: true
+ *     script_attributes?: list<scalar|Param|null>,
+ *     link_attributes?: list<scalar|Param|null>,
+ *     preload_attributes?: list<scalar|Param|null>,
+ *     default_build?: scalar|Param|null, // Deprecated: The "default_build" option is deprecated. Use "default_config" instead. // Default: null
+ *     builds?: array<string, array{ // Default: []
+ *         build_directory?: scalar|Param|null, // Default: "build"
+ *         script_attributes?: list<scalar|Param|null>,
+ *         link_attributes?: list<scalar|Param|null>,
+ *         preload_attributes?: list<scalar|Param|null>,
+ *     }>,
+ *     default_config?: scalar|Param|null, // Default: null
+ *     configs?: array<string, array{ // Default: []
+ *         build_directory?: scalar|Param|null, // Default: "build"
+ *         script_attributes?: list<scalar|Param|null>,
+ *         link_attributes?: list<scalar|Param|null>,
+ *         preload_attributes?: list<scalar|Param|null>,
+ *     }>,
  * }
  * @psalm-type DebugConfig = array{
  *     max_items?: int|Param, // Max number of displayed items past the first level, -1 means no limit. // Default: 2500
@@ -904,12 +880,9 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     services?: ServicesConfig,
  *     framework?: FrameworkConfig,
  *     twig?: TwigConfig,
- *     debug?: DebugConfig,
- *     web_profiler?: WebProfilerConfig,
+ *     pentatrion_vite?: PentatrionViteConfig,
  *     stimulus?: StimulusConfig,
  *     nowo_slide_to_confirm?: NowoSlideToConfirmConfig,
- *     nowo_hot_reload?: NowoHotReloadConfig,
- *     nowo_twig_inspector?: NowoTwigInspectorConfig,
  *     twig_extra?: TwigExtraConfig,
  *     "when@dev"?: array{
  *         imports?: ImportsConfig,
@@ -917,6 +890,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         services?: ServicesConfig,
  *         framework?: FrameworkConfig,
  *         twig?: TwigConfig,
+ *         pentatrion_vite?: PentatrionViteConfig,
  *         debug?: DebugConfig,
  *         web_profiler?: WebProfilerConfig,
  *         stimulus?: StimulusConfig,
@@ -925,12 +899,24 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         nowo_twig_inspector?: NowoTwigInspectorConfig,
  *         twig_extra?: TwigExtraConfig,
  *     },
+ *     "when@prod"?: array{
+ *         imports?: ImportsConfig,
+ *         parameters?: ParametersConfig,
+ *         services?: ServicesConfig,
+ *         framework?: FrameworkConfig,
+ *         twig?: TwigConfig,
+ *         pentatrion_vite?: PentatrionViteConfig,
+ *         stimulus?: StimulusConfig,
+ *         nowo_slide_to_confirm?: NowoSlideToConfirmConfig,
+ *         twig_extra?: TwigExtraConfig,
+ *     },
  *     "when@test"?: array{
  *         imports?: ImportsConfig,
  *         parameters?: ParametersConfig,
  *         services?: ServicesConfig,
  *         framework?: FrameworkConfig,
  *         twig?: TwigConfig,
+ *         pentatrion_vite?: PentatrionViteConfig,
  *         debug?: DebugConfig,
  *         web_profiler?: WebProfilerConfig,
  *         stimulus?: StimulusConfig,
@@ -995,7 +981,6 @@ namespace Symfony\Component\Routing\Loader\Configurator;
  *     format?: string,
  *     utf8?: bool,
  *     stateless?: bool,
- *     firewall?: string,
  * }
  * @psalm-type ImportConfig = array{
  *     resource: string,
@@ -1016,7 +1001,6 @@ namespace Symfony\Component\Routing\Loader\Configurator;
  *     format?: string,
  *     utf8?: bool,
  *     stateless?: bool,
- *     firewall?: string,
  * }
  * @psalm-type AliasConfig = array{
  *     alias: string,
@@ -1024,6 +1008,7 @@ namespace Symfony\Component\Routing\Loader\Configurator;
  * }
  * @psalm-type RoutesConfig = array{
  *     "when@dev"?: array<string, RouteConfig|ImportConfig|AliasConfig>,
+ *     "when@prod"?: array<string, RouteConfig|ImportConfig|AliasConfig>,
  *     "when@test"?: array<string, RouteConfig|ImportConfig|AliasConfig>,
  *     ...<string, RouteConfig|ImportConfig|AliasConfig>
  * }
