@@ -6,6 +6,7 @@ namespace Nowo\SlideToConfirmBundle\Form\Type;
 
 use Nowo\SlideToConfirmBundle\Form\SlideToConfirmVariant;
 use Nowo\SlideToConfirmBundle\Profile\SlideToConfirmProfileRegistry;
+use Nowo\SlideToConfirmBundle\Validator\Constraints\SlideConfirmed;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormInterface;
@@ -115,7 +116,7 @@ class SlideToConfirmType extends AbstractType
                 }
             }
 
-            $value[] = new IsTrue(message: 'form.error.not_confirmed');
+            $value[] = new SlideConfirmed();
 
             return $value;
         });

@@ -4,9 +4,20 @@
   Host form themes must pass `widget_attributes` (output of block('widget_attributes')).
   This partial is included, so it cannot call that block itself.
 #}
-{% set slide_text = form.vars.slide_text|trans({}, form.vars.slide_translation_domain) %}
-{% set slide_confirmed_text = form.vars.slide_confirmed_text|trans({}, form.vars.slide_translation_domain) %}
-{% set slide_hint = form.vars.slide_hint|trans({}, form.vars.slide_translation_domain) %}
+{# Bundle domain first; fall back to messages so host keys (demo.*, app.*) still resolve. #}
+{% set _slide_domain = form.vars.slide_translation_domain %}
+{% set slide_text = form.vars.slide_text|trans({}, _slide_domain) %}
+{% if slide_text == form.vars.slide_text %}
+    {% set slide_text = form.vars.slide_text|trans %}
+{% endif %}
+{% set slide_confirmed_text = form.vars.slide_confirmed_text|trans({}, _slide_domain) %}
+{% if slide_confirmed_text == form.vars.slide_confirmed_text %}
+    {% set slide_confirmed_text = form.vars.slide_confirmed_text|trans %}
+{% endif %}
+{% set slide_hint = form.vars.slide_hint|trans({}, _slide_domain) %}
+{% if slide_hint == form.vars.slide_hint %}
+    {% set slide_hint = form.vars.slide_hint|trans %}
+{% endif %}
 {% set is_checked = checked is defined and checked %}
 {% set widget_attributes = widget_attributes|default('') %}
 <nowo-slide-to-confirm
