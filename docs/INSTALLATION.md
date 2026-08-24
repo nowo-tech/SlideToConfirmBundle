@@ -63,3 +63,8 @@ composer require twig/extra-bundle twig/string-extra
 ```
 
 Register `Twig\Extra\TwigExtraBundle\TwigExtraBundle`. Demos already include it. `make check-twig-extra` guards this contract.
+
+## Next steps
+
+- [USAGE.md](USAGE.md) — assets, complete FormType + controller example, options, events
+- [USE-CASES.md](USE-CASES.md) — payments, deletes, legal consent, gate mode, custom profiles

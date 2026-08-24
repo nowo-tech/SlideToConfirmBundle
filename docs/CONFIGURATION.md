@@ -85,7 +85,7 @@ Per-profile keys: `text`, `confirmed_text`, `hint`, `variant` (`default` \| `dan
 
 ## Built-in profiles
 
-See [USAGE.md](USAGE.md#named-profiles) for when to pick each profile.
+See [USAGE.md](USAGE.md#named-profiles) for when to pick each profile, and [USE-CASES.md](USE-CASES.md) for copy-paste FormType + controller examples.
 
 ## Form theme (Symfony layouts)
 

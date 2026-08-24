@@ -4,6 +4,16 @@
 
 Symfony bundle providing `SlideToConfirmType` and `SwipeToSubmitType`: a checkbox-backed slide-to-confirm widget that optionally submits the parent form.
 
+## User Scenarios
+
+### US-01 — Slide to confirm checkout (P1)
+
+As a shopper, I drag the slider to confirm a sensitive action; the hidden checkbox becomes checked and the parent form may submit.
+
+### US-02 — Gate mode (P2)
+
+As a host app, I use the `gate` profile to unlock a separate submit button without auto-submitting the form.
+
 ## Functional requirements
 
 - FR-1: Completing the slide sets the checkbox to true.

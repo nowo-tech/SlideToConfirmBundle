@@ -1,5 +1,7 @@
 # Code inventory — SlideToConfirmBundle
 
+**Last audited:** 2026-08-24 (aligned with `spec.md` user scenarios and FR-* requirements).
+
 Production PHP (`src/`):
 
 - `NowoSlideToConfirmBundle.php` — bundle + TwigPathsPass
