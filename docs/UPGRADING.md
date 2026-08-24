@@ -2,8 +2,26 @@
 
 ## Table of contents
 
+
+- [From 1.0.0 to 1.1.0](#from-100-to-110)
 - [Unreleased](#unreleased)
 - [1.0.0 (2026-08-23)](#100-2026-08-23)
+
+## From 1.0.0 to 1.1.0
+
+Review the [CHANGELOG](CHANGELOG.md) entry. PHP **8.2+** may now be required.
+
+```bash
+composer update nowo-tech/slide-to-confirm-bundle
+```
+
+## From 1.0.0 to 1.1.0
+
+Review the [CHANGELOG](CHANGELOG.md) entry. PHP **8.2+** may now be required.
+
+```bash
+composer update nowo-tech/slide-to-confirm-bundle
+```
 
 ## Unreleased
 

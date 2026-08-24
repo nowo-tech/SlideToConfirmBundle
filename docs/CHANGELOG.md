@@ -12,6 +12,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [1.1.0] - 2026-08-24
+
+### Added
+
+- add slide-to-confirm validator and expand form widget coverage.
+
+### Changed
+
+- Raise minimum PHP to **8.2** and sync README badge (REQ-SF-001).
+- **Docs:** Spec Kit baseline refresh.
+- **Style:** PHP CS Fixer alignment.
+
+### Notes
+
+- **No API or configuration changes** for integrators unless noted above.
+
 ### Added
 
 - Usage docs: complete FormType + controller + Twig example, Stimulus Vite snippet, frontend events, and a dedicated [USE-CASES.md](USE-CASES.md) with copy-paste examples for all eight profiles.
@@ -21,6 +38,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Required fields now translate `form.error.not_confirmed` from `NowoSlideToConfirmBundle` (it was looked up in the `validators` domain).
 - The widget falls back to the `messages` domain when a `text` / `confirmed_text` / `hint` key is missing from the bundle catalogue (demo cancel/batch/emergency labels).
+[1.1.0]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.1.0
+
 
 ## [1.0.0] - 2026-08-23
 
