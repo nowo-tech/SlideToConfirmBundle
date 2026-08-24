@@ -1,10 +1,10 @@
 # Slide To Confirm Bundle
 
-[![CI](https://github.com/nowo-tech/SlideToConfirmBundle/actions/workflows/ci.yml/badge.svg)](https://github.com/nowo-tech/SlideToConfirmBundle/actions/workflows/ci.yml) [![Packagist Version](https://img.shields.io/packagist/v/nowo-tech/slide-to-confirm-bundle.svg?style=flat)](https://packagist.org/packages/nowo-tech/slide-to-confirm-bundle) [![Packagist Downloads](https://img.shields.io/packagist/dt/nowo-tech/slide-to-confirm-bundle.svg)](https://packagist.org/packages/nowo-tech/slide-to-confirm-bundle) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![PHP](https://img.shields.io/badge/PHP-8.1%2B-777BB4?logo=php)](https://php.net) [![Symfony](https://img.shields.io/badge/Symfony-6.0%2B%20%7C%207.4%2B%20%7C%208.0%20%7C%208.1%2B-000000?logo=symfony)](https://symfony.com) [![GitHub stars](https://img.shields.io/github/stars/nowo-tech/slide-to-confirm-bundle.svg?style=social&label=Star)](https://github.com/nowo-tech/SlideToConfirmBundle) [![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)](#tests-and-coverage)
+[![CI](https://github.com/nowo-tech/SlideToConfirmBundle/actions/workflows/ci.yml/badge.svg)](https://github.com/nowo-tech/SlideToConfirmBundle/actions/workflows/ci.yml) [![Packagist Version](https://img.shields.io/packagist/v/nowo-tech/slide-to-confirm-bundle.svg?style=flat)](https://packagist.org/packages/nowo-tech/slide-to-confirm-bundle) [![Packagist Downloads](https://img.shields.io/packagist/dt/nowo-tech/slide-to-confirm-bundle.svg)](https://packagist.org/packages/nowo-tech/slide-to-confirm-bundle) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php)](https://php.net) [![Symfony](https://img.shields.io/badge/Symfony-6.0%2B%20%7C%207.4%2B%20%7C%208.0%20%7C%208.1%2B-000000?logo=symfony)](https://symfony.com) [![GitHub stars](https://img.shields.io/github/stars/nowo-tech/slide-to-confirm-bundle.svg?style=social&label=Star)](https://github.com/nowo-tech/SlideToConfirmBundle) [![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)](#tests-and-coverage)
 
 > ⭐ **Found this useful?** Give it a **star** on [GitHub](https://github.com/nowo-tech/SlideToConfirmBundle) so more developers can find it.
 
-**Symfony FormType for slide-to-confirm / swipe-to-submit** — a submit control that must be dragged to the end of a track before the form is posted. Same family as PhoneInput, PasswordToggle, and SelectAllChoice: a drop-in field type, Twig themes, Stimulus or a standalone script. For **Symfony 6, 7 and 8** · PHP 8.1+.
+**Symfony FormType for slide-to-confirm / swipe-to-submit** — a submit control that must be dragged to the end of a track before the form is posted. Same family as PhoneInput, PasswordToggle, and SelectAllChoice: a drop-in field type, Twig themes, Stimulus or a standalone script. For **Symfony 6, 7 and 8** · PHP 8.2+.
 
 ![FrankenPHP Friendly Worker Mode](docs/images/frankenphp-friendly.png)
 
@@ -18,6 +18,7 @@ This bundle is **FrankenPHP worker mode friendly**.
 - [Requirements](#requirements)
 - [Configuration](#configuration)
 - [Usage](#usage)
+- [Use cases](#use-cases)
 - [Demo](#demo)
 - [Development](#development)
 - [Documentation](#documentation)
@@ -34,7 +35,7 @@ Looking for **Symfony slide to confirm**, **swipe to submit form type**, **slide
 - ✅ **`SlideToConfirmType`** — checkbox-backed slider; completing the swipe confirms and optionally submits
 - ✅ **`SwipeToSubmitType`** — semantic alias for “this field is the submit”
 - ✅ **Named profiles** — `default`, `payment`, `danger`, `legal`, `publish`, `gate` (REQ-CFG-001)
-- ✅ **Use cases** — payments, irreversible deletes, publish/go-live, legal consent, subscription cancel, batch approve, emergency logout, gate-then-submit (see [docs/USAGE.md](docs/USAGE.md#use-cases))
+- ✅ **Use cases** — payments, irreversible deletes, publish/go-live, legal consent, subscription cancel, batch approve, emergency logout, gate-then-submit (see [docs/USE-CASES.md](docs/USE-CASES.md))
 - ✅ **Keyboard and RTL** — slider role, arrows, Home/End, pointer + touch
 - ✅ **Track fill** — the travelled portion of the track uses the same colour as the thumb
 - ✅ **Server validation** — required fields add `IsTrue`; an incomplete POST is invalid
@@ -103,15 +104,63 @@ See [docs/CONFIGURATION.md](docs/CONFIGURATION.md) for built-in profiles and Sym
 
 ```php
 use Nowo\SlideToConfirmBundle\Form\Type\SlideToConfirmType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
 $builder
-    ->add('amount', MoneyType::class)
+    ->add('amount', MoneyType::class, ['currency' => 'EUR'])
     ->add('confirm', SlideToConfirmType::class, [
         'profile' => 'payment',
     ]);
 ```
 
-Use cases (pay, delete, publish, legal, cancel, batch, emergency, gate): [docs/USAGE.md](docs/USAGE.md#use-cases).
+Render with a child loop (no extra submit button unless you use profile `gate`):
+
+```twig
+{{ form_start(form) }}
+    {% for child in form %}
+        {% if not child.rendered %}
+            {{ form_row(child) }}
+        {% endif %}
+    {% endfor %}
+{{ form_end(form) }}
+```
+
+On a valid POST, `confirm` is `mapped: false` by default — read `$form->get('confirm')->getData()` (boolean). Full FormType + controller walkthrough: [docs/USAGE.md](docs/USAGE.md#complete-example).
+
+## Use cases
+
+| Case | Profile | How to use |
+| ---- | ------- | ---------- |
+| Pay / send money | `payment` | `SlideToConfirmType` after amount + IBAN |
+| Delete / wipe | `danger` | Ack checkbox + slide |
+| Publish / go live | `publish` | Slide replaces “Publish” |
+| Accept terms | `legal` | Store contract version on valid POST |
+| Cancel subscription | `danger` | Custom `text` / `confirmed_text` |
+| Approve batch | `payment` | `SwipeToSubmitType` with a count in the label |
+| Sign out everywhere | `danger` | Invalidate sessions after `isValid()` |
+| Unlock then submit | `gate` | Slide enables a `SubmitType` (no auto-POST) |
+
+```php
+use Nowo\SlideToConfirmBundle\Form\Type\SlideToConfirmType;
+use Nowo\SlideToConfirmBundle\Form\Type\SwipeToSubmitType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
+// Destructive
+$builder->add('confirm', SlideToConfirmType::class, ['profile' => 'danger']);
+
+// Batch submit (this field *is* the submit)
+$builder->add('confirm', SwipeToSubmitType::class, [
+    'profile' => 'payment',
+    'text'    => sprintf('Slide to approve %d payments', $count),
+]);
+
+// Gate: unlock a regular button
+$builder
+    ->add('unlock', SlideToConfirmType::class, ['profile' => 'gate'])
+    ->add('save', SubmitType::class);
+```
+
+Copy-paste FormTypes and controllers for all eight cases: [docs/USE-CASES.md](docs/USE-CASES.md). Quick snippets: [docs/USAGE.md](docs/USAGE.md#use-cases). Demo: `?case=payment` (and `delete`, `publish`, `legal`, `cancel`, `batch`, `emergency`, `gate`).
 
 ## Demo
 
@@ -140,10 +189,11 @@ Run tests and QA with Docker: `make up && make install && make test` (or `make t
 
 ### Additional documentation
 
-- [GitHub Actions CI requirements](docs/GITHUB_CI.md)
-- [PSR evaluation (REQ-CS-007)](docs/PSR.md)
+- [Use cases](docs/USE-CASES.md) — payments, deletes, legal, gate, and copy-paste FormTypes
 - [Theming](docs/THEMING.md) — CSS tokens, form themes, template overrides
 - [Demo with FrankenPHP](docs/DEMO-FRANKENPHP.md)
+- [GitHub Actions CI requirements](docs/GITHUB_CI.md)
+- [PSR evaluation (REQ-CS-007)](docs/PSR.md)
 - [GitHub About fields](docs/GITHUB.md)
 
 ## Tests and coverage

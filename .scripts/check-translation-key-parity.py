@@ -28,17 +28,17 @@ def flatten(path: Path) -> set[str]:
     return keys
 
 
-def main() -> int:
-    if not TRANS_DIR.is_dir():
-        print(f"ERROR: translations directory missing: {TRANS_DIR}", file=sys.stderr)
-        return 1
+def check_catalogue(trans_dir: Path, filename_tpl: str, label: str) -> bool:
+    if not trans_dir.is_dir():
+        print(f"ERROR: translations directory missing: {trans_dir}", file=sys.stderr)
+        return False
 
-    files = {loc: TRANS_DIR / f"{DOMAIN}.{loc}.yaml" for loc in REQUIRED_LOCALES}
+    files = {loc: trans_dir / filename_tpl.format(locale=loc) for loc in REQUIRED_LOCALES}
     missing = [str(path) for path in files.values() if not path.is_file()]
     if missing:
-        print("ERROR: missing locale files:", file=sys.stderr)
+        print(f"ERROR: missing {label} locale files:", file=sys.stderr)
         print("\n".join(missing), file=sys.stderr)
-        return 1
+        return False
 
     reference = flatten(files["en"])
     failed = False
@@ -55,10 +55,17 @@ def main() -> int:
                 print(f"  extra: {key}", file=sys.stderr)
 
     if failed:
-        return 1
+        return False
 
-    print(f"Translation key parity OK ({len(REQUIRED_LOCALES)} locales, {len(reference)} keys).")
-    return 0
+    print(f"{label} key parity OK ({len(REQUIRED_LOCALES)} locales, {len(reference)} keys).")
+    return True
+
+
+def main() -> int:
+    bundle_ok = check_catalogue(TRANS_DIR, f"{DOMAIN}.{{locale}}.yaml", "Bundle")
+    demo_dir = Path(__file__).resolve().parents[1] / "demo" / "symfony8" / "translations"
+    demo_ok = check_catalogue(demo_dir, "messages.{locale}.yaml", "Demo")
+    return 0 if bundle_ok and demo_ok else 1
 
 
 if __name__ == "__main__":

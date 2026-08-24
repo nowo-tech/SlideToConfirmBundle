@@ -10,6 +10,7 @@ use Nowo\SlideToConfirmBundle\Form\SlideToConfirmVariant;
 use Nowo\SlideToConfirmBundle\Form\Type\SlideToConfirmType;
 use Nowo\SlideToConfirmBundle\Form\Type\SwipeToSubmitType;
 use Nowo\SlideToConfirmBundle\Profile\SlideToConfirmProfileRegistry;
+use Nowo\SlideToConfirmBundle\Validator\Constraints\SlideConfirmed;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
@@ -135,6 +136,15 @@ final class SlideToConfirmTypeTest extends TestCase
             }
         }
         self::assertSame(1, $isTrueCount);
+    }
+
+    public function testRequiredUsesSlideConfirmedWithBundleMessage(): void
+    {
+        $form        = $this->createField();
+        $constraints = $form->getConfig()->getOption('constraints');
+        self::assertCount(1, $constraints);
+        self::assertInstanceOf(SlideConfirmed::class, $constraints[0]);
+        self::assertSame('form.error.not_confirmed', $constraints[0]->message);
     }
 
     public function testOptionalFieldDoesNotRequireConfirmation(): void
