@@ -13,6 +13,6 @@
     "resolveJsonModule": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"]
   },
-  "include": ["src/Resources/assets/**/*.ts"],
+  "include": ["src/Resources/assets/**/*.ts", "src/Resources/assets/**/*.d.ts"],
   "exclude": ["node_modules", "vendor", "src/Resources/assets/**/*.test.ts"]
 }
