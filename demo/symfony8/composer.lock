@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "/var/slide-to-confirm-bundle",
-                "reference": "9e703387e4c91558e66305b46d3d0db75ba28740"
+                "reference": "8ab209d380d9d31ab921d17dd1243cdf0cade587"
             },
             "require": {
                 "php": ">=8.1 <8.6",
@@ -38,6 +38,9 @@
                 "rector/rector": "^2.0",
                 "symfony/yaml": "^6.0 || ^7.0 || ^8.0",
                 "vincentlanglet/twig-cs-fixer": "^4.0"
+            },
+            "suggest": {
+                "pentatrion/vite-bundle": "Compile the Stimulus controller with Pentatrion Vite in the host app (Twig vite_entry_* helpers). The Symfony 8 demo uses this stack with pnpm."
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -112,6 +115,7 @@
             "keywords": [
                 "confirmation",
                 "form",
+                "pentatrion",
                 "slide-to-confirm",
                 "stimulus",
                 "submit",

@@ -1,0 +1,62 @@
+demo:
+  title: 'Zum Bestätigen schieben'
+  brand: 'SlideToConfirm-Demo'
+  page_title: 'Zum Bestätigen schieben / Absenden per Schieben'
+  heading: 'Zum Bestätigen schieben'
+  description: 'Ein Absenden, das Sie durch Schieben abschließen: Zahlungen, Löschungen, rechtliche Zustimmung und andere unwiderrufliche Aktionen.'
+  language: 'Sprache'
+  language_switch_hint: 'Sprache:'
+  form_submitted: 'Akzeptiert. Daten: %data%'
+  close: 'Schließen'
+  toggle_navigation: 'Navigation ein- oder ausblenden'
+  case:
+    payment:
+      nav: 'Zahlen'
+      title: 'Geld senden'
+      body: 'Prüfen Sie IBAN und Betrag und schieben Sie, um die Überweisung zu autorisieren.'
+    delete:
+      nav: 'Löschen'
+      title: 'Konto löschen'
+      body: 'Unwiderruflich. Bestätigen Sie den Hinweis und schieben Sie, um das Konto zu löschen.'
+    publish:
+      nav: 'Veröffentlichen'
+      title: 'Veröffentlichen'
+      body: 'Durch Schieben wird dieser Entwurf öffentlich.'
+    legal:
+      nav: 'Rechtliches'
+      title: 'Bedingungen akzeptieren'
+      body: 'Durch Schieben bestätigen Sie die angezeigte Vertragsversion.'
+    cancel:
+      nav: 'Kündigen'
+      title: 'Abo kündigen'
+      body: 'Beendet die automatische Verlängerung zum nächsten Abrechnungsdatum.'
+    batch:
+      nav: 'Stapel'
+      title: 'Gehaltsabrechnung freigeben'
+      body: 'Ein Schieben bestätigt den gesamten Zahlungsstapel.'
+    emergency:
+      nav: 'Notfall'
+      title: 'Überall abmelden'
+      body: 'Ungültigt jede Sitzung, nachdem Sie den Schieber vollständig bewegt haben.'
+    gate:
+      nav: 'Sperre'
+      title: 'Entsperren und senden'
+      body: 'Zuerst schieben; die Senden-Schaltfläche bleibt gesperrt, bis bestätigt wurde.'
+  payment:
+    iban: 'IBAN des Empfängers'
+    amount: 'Betrag'
+  delete:
+    acknowledge: 'Ich verstehe, dass dies nicht rückgängig gemacht werden kann'
+  publish:
+    title: 'Artikelüberschrift'
+  cancel:
+    slide: 'Schieben, um Ihren Tarif zu kündigen'
+    done: 'Gekündigt'
+  batch:
+    slide: 'Schieben, um 24 Zahlungen freizugeben'
+  emergency:
+    slide: 'Schieben, um sich überall abzumelden'
+  gate:
+    submit: 'Speichern'
+
+demo.symfony_version: 'Symfony 8.1'

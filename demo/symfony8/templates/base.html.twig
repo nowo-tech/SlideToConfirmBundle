@@ -12,7 +12,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="{{ path('demo_index', { _locale: app.request.locale }) }}">{{ 'demo.brand'|trans }}</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="{{ 'demo.toggle_navigation'|trans }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -22,8 +22,18 @@
                             {{ 'demo.language'|trans }} ({{ app.request.locale|upper }})
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="localeDropdown">
-                            <li><a class="dropdown-item {{ app.request.locale == 'en' ? 'active' : '' }}" href="{{ path('demo_index', { _locale: 'en' }) }}">English</a></li>
-                            <li><a class="dropdown-item {{ app.request.locale == 'es' ? 'active' : '' }}" href="{{ path('demo_index', { _locale: 'es' }) }}">Español</a></li>
+                            {% set locale_labels = {
+                                en: 'English',
+                                es: 'Español',
+                                it: 'Italiano',
+                                fr: 'Français',
+                                pt: 'Português',
+                                de: 'Deutsch',
+                                nl: 'Nederlands',
+                            } %}
+                            {% for loc in locales|default(['en', 'es']) %}
+                                <li><a class="dropdown-item {{ app.request.locale == loc ? 'active' : '' }}" href="{{ path('demo_index', { _locale: loc }) }}">{{ locale_labels[loc] }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                 </ul>

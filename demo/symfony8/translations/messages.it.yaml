@@ -1,0 +1,62 @@
+demo:
+  title: 'Scorri per confermare'
+  brand: 'Demo SlideToConfirm'
+  page_title: 'Scorri per confermare / invio con scorrimento'
+  heading: 'Scorri per confermare'
+  description: 'Un invio che si completa scorrendo: pagamenti, eliminazioni, consenso legale e altre azioni irreversibili.'
+  language: 'Lingua'
+  language_switch_hint: 'Lingua:'
+  form_submitted: 'Accettato. Dati: %data%'
+  close: 'Chiudi'
+  toggle_navigation: 'Apri o chiudi la navigazione'
+  case:
+    payment:
+      nav: 'Paga'
+      title: 'Invia denaro'
+      body: 'Controlla l''IBAN e l''importo, poi scorri per autorizzare il bonifico.'
+    delete:
+      nav: 'Elimina'
+      title: 'Elimina account'
+      body: 'Irreversibile. Spunta l''accettazione e scorri per cancellare l''account.'
+    publish:
+      nav: 'Pubblica'
+      title: 'Pubblica'
+      body: 'Scorrendo, questa bozza diventa pubblica.'
+    legal:
+      nav: 'Legale'
+      title: 'Accetta i termini'
+      body: 'Scorrendo registri di accettare la versione del contratto mostrata.'
+    cancel:
+      nav: 'Annulla'
+      title: 'Disdici l''abbonamento'
+      body: 'Termina il rinnovo automatico alla prossima data di fatturazione.'
+    batch:
+      nav: 'Lotto'
+      title: 'Approva il libro paga'
+      body: 'Uno scorrimento conferma l''intero lotto di pagamenti.'
+    emergency:
+      nav: 'Emergenza'
+      title: 'Disconnetti ovunque'
+      body: 'Invalida tutte le sessioni dopo aver completato lo scorrimento.'
+    gate:
+      nav: 'Blocco'
+      title: 'Sblocca e invia'
+      body: 'Scorri prima; il pulsante di invio resta disabilitato fino alla conferma.'
+  payment:
+    iban: 'IBAN del beneficiario'
+    amount: 'Importo'
+  delete:
+    acknowledge: 'Capisco che questa azione non si può annullare'
+  publish:
+    title: 'Titolo dell''articolo'
+  cancel:
+    slide: 'Scorri per disdire il piano'
+    done: 'Disdetto'
+  batch:
+    slide: 'Scorri per approvare 24 pagamenti'
+  emergency:
+    slide: 'Scorri per disconnetterti da tutti i dispositivi'
+  gate:
+    submit: 'Salva'
+
+demo.symfony_version: 'Symfony 8.1'

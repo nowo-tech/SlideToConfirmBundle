@@ -1,0 +1,62 @@
+demo:
+  title: 'Schuif om te bevestigen'
+  brand: 'SlideToConfirm-demo'
+  page_title: 'Schuif om te bevestigen / verzenden door te schuiven'
+  heading: 'Schuif om te bevestigen'
+  description: 'Een verzending die u afrondt door te schuiven: betalingen, verwijderingen, juridische toestemming en andere onomkeerbare acties.'
+  language: 'Taal'
+  language_switch_hint: 'Taal:'
+  form_submitted: 'Geaccepteerd. Gegevens: %data%'
+  close: 'Sluiten'
+  toggle_navigation: 'Navigatie tonen of verbergen'
+  case:
+    payment:
+      nav: 'Betalen'
+      title: 'Geld versturen'
+      body: 'Controleer IBAN en bedrag en schuif om de overboeking te autoriseren.'
+    delete:
+      nav: 'Verwijderen'
+      title: 'Account verwijderen'
+      body: 'Onomkeerbaar. Vink de bevestiging aan en schuif om het account te wissen.'
+    publish:
+      nav: 'Publiceren'
+      title: 'Live zetten'
+      body: 'Door te schuiven wordt dit concept openbaar.'
+    legal:
+      nav: 'Juridisch'
+      title: 'Voorwaarden accepteren'
+      body: 'Door te schuiven legt u vast dat u de getoonde contractversie accepteert.'
+    cancel:
+      nav: 'Opzeggen'
+      title: 'Abonnement opzeggen'
+      body: 'Stopt automatische verlenging op de volgende factuurdatum.'
+    batch:
+      nav: 'Batch'
+      title: 'Salarisbatch goedkeuren'
+      body: 'Eén schuif bevestigt de hele betalingsbatch.'
+    emergency:
+      nav: 'Noodgeval'
+      title: 'Overal afmelden'
+      body: 'Maakt elke sessie ongeldig nadat u de schuif hebt voltooid.'
+    gate:
+      nav: 'Vergrendeling'
+      title: 'Ontgrendelen en verzenden'
+      body: 'Schuif eerst; de verzendknop blijft uitgeschakeld tot bevestiging.'
+  payment:
+    iban: 'IBAN van de begunstigde'
+    amount: 'Bedrag'
+  delete:
+    acknowledge: 'Ik begrijp dat dit niet ongedaan kan worden gemaakt'
+  publish:
+    title: 'Artikeltitel'
+  cancel:
+    slide: 'Schuif om uw plan op te zeggen'
+    done: 'Opgezegd'
+  batch:
+    slide: 'Schuif om 24 betalingen goed te keuren'
+  emergency:
+    slide: 'Schuif om overal af te melden'
+  gate:
+    submit: 'Opslaan'
+
+demo.symfony_version: 'Symfony 8.1'

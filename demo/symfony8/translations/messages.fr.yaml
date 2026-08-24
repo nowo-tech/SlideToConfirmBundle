@@ -1,0 +1,62 @@
+demo:
+  title: 'Glissez pour confirmer'
+  brand: 'Démo SlideToConfirm'
+  page_title: 'Glissez pour confirmer / envoi par glissement'
+  heading: 'Glissez pour confirmer'
+  description: 'Un envoi que l''on termine en glissant : paiements, suppressions, consentement légal et autres actions irréversibles.'
+  language: 'Langue'
+  language_switch_hint: 'Langue :'
+  form_submitted: 'Accepté. Données : %data%'
+  close: 'Fermer'
+  toggle_navigation: 'Afficher ou masquer la navigation'
+  case:
+    payment:
+      nav: 'Payer'
+      title: 'Envoyer de l''argent'
+      body: 'Vérifiez l''IBAN et le montant, puis glissez pour autoriser le virement.'
+    delete:
+      nav: 'Supprimer'
+      title: 'Supprimer le compte'
+      body: 'Irréversible. Cochez l''accusé, puis glissez pour effacer le compte.'
+    publish:
+      nav: 'Publier'
+      title: 'Mettre en ligne'
+      body: 'En glissant, ce brouillon devient public.'
+    legal:
+      nav: 'Mentions'
+      title: 'Accepter les conditions'
+      body: 'En glissant, vous enregistrez que vous acceptez la version du contrat affichée.'
+    cancel:
+      nav: 'Résilier'
+      title: 'Résilier l''abonnement'
+      body: 'Met fin au renouvellement automatique à la prochaine date de facturation.'
+    batch:
+      nav: 'Lot'
+      title: 'Approuver la paie'
+      body: 'Un glissement confirme tout le lot de paiements.'
+    emergency:
+      nav: 'Urgence'
+      title: 'Se déconnecter partout'
+      body: 'Invalide toutes les sessions après le glissement.'
+    gate:
+      nav: 'Verrou'
+      title: 'Déverrouiller puis envoyer'
+      body: 'Glissez d''abord ; le bouton d''envoi reste désactivé jusqu''à confirmation.'
+  payment:
+    iban: 'IBAN du bénéficiaire'
+    amount: 'Montant'
+  delete:
+    acknowledge: 'Je comprends que cette action est irréversible'
+  publish:
+    title: 'Titre de l''article'
+  cancel:
+    slide: 'Glissez pour résilier votre offre'
+    done: 'Résilié'
+  batch:
+    slide: 'Glissez pour approuver 24 paiements'
+  emergency:
+    slide: 'Glissez pour vous déconnecter de tous les appareils'
+  gate:
+    submit: 'Enregistrer'
+
+demo.symfony_version: 'Symfony 8.1'

@@ -1,0 +1,62 @@
+demo:
+  title: 'Deslize para confirmar'
+  brand: 'Demo SlideToConfirm'
+  page_title: 'Deslize para confirmar / envio por deslize'
+  heading: 'Deslize para confirmar'
+  description: 'Um envio que se completa ao deslizar: pagamentos, eliminações, consentimento legal e outras ações irreversíveis.'
+  language: 'Idioma'
+  language_switch_hint: 'Idioma:'
+  form_submitted: 'Aceite. Dados: %data%'
+  close: 'Fechar'
+  toggle_navigation: 'Mostrar ou ocultar a navegação'
+  case:
+    payment:
+      nav: 'Pagar'
+      title: 'Enviar dinheiro'
+      body: 'Reveja o IBAN e o montante e deslize para autorizar a transferência.'
+    delete:
+      nav: 'Eliminar'
+      title: 'Eliminar conta'
+      body: 'Irreversível. Marque o reconhecimento e deslize para apagar a conta.'
+    publish:
+      nav: 'Publicar'
+      title: 'Publicar'
+      body: 'Ao deslizar, este rascunho passa a ser público.'
+    legal:
+      nav: 'Legal'
+      title: 'Aceitar os termos'
+      body: 'Ao deslizar, regista que aceita a versão do contrato apresentada.'
+    cancel:
+      nav: 'Cancelar'
+      title: 'Cancelar subscrição'
+      body: 'Termina a renovação automática na próxima data de faturação.'
+    batch:
+      nav: 'Lote'
+      title: 'Aprovar folha de pagamentos'
+      body: 'Um deslize confirma todo o lote de pagamentos.'
+    emergency:
+      nav: 'Emergência'
+      title: 'Terminar sessão em todo o lado'
+      body: 'Invalida todas as sessões depois de concluir o deslize.'
+    gate:
+      nav: 'Bloqueio'
+      title: 'Desbloquear e enviar'
+      body: 'Deslize primeiro; o botão de envio permanece desativado até confirmar.'
+  payment:
+    iban: 'IBAN do beneficiário'
+    amount: 'Montante'
+  delete:
+    acknowledge: 'Compreendo que isto não pode ser anulado'
+  publish:
+    title: 'Título do artigo'
+  cancel:
+    slide: 'Deslize para cancelar o seu plano'
+    done: 'Cancelado'
+  batch:
+    slide: 'Deslize para aprovar 24 pagamentos'
+  emergency:
+    slide: 'Deslize para terminar sessão em todos os dispositivos'
+  gate:
+    submit: 'Guardar'
+
+demo.symfony_version: 'Symfony 8.1'

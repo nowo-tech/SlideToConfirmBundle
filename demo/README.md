@@ -19,3 +19,5 @@ Then open http://localhost:8055.
 | symfony8 | 8055 | Symfony 8.1 + use-case forms, Pentatrion Vite + Stimulus, Web Profiler (dev) |
 
 Locale in the URL: `/en`, `/es`. Use-case query: `?case=payment` (and `delete`, `publish`, `legal`, `cancel`, `batch`, `emergency`, `gate`).
+
+How to reuse each case in a host app: [docs/USE-CASES.md](../docs/USE-CASES.md).

@@ -7,6 +7,8 @@ demo:
   language: 'Idioma'
   language_switch_hint: 'Idioma:'
   form_submitted: 'Aceptado. Datos: %data%'
+  close: 'Cerrar'
+  toggle_navigation: 'Mostrar u ocultar la navegación'
   case:
     payment:
       nav: 'Pagar'

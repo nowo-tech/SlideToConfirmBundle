@@ -29,13 +29,16 @@ final class DemoController extends AbstractController
         'gate',
     ];
 
+    /** @var list<string> */
+    private const LOCALES = ['en', 'es', 'it', 'fr', 'pt', 'de', 'nl'];
+
     #[Route('/', name: 'demo_index_default', methods: ['GET'])]
     public function indexDefault(): Response
     {
         return $this->redirectToRoute('demo_index', ['_locale' => 'en'], Response::HTTP_FOUND);
     }
 
-    #[Route('/{_locale}', name: 'demo_index', requirements: ['_locale' => 'en|es'], methods: ['GET', 'POST'])]
+    #[Route('/{_locale}', name: 'demo_index', requirements: ['_locale' => 'en|es|it|fr|pt|de|nl'], methods: ['GET', 'POST'])]
     public function index(Request $request, TranslatorInterface $translator): Response
     {
         $case = (string) $request->query->get('case', 'payment');
@@ -62,6 +65,7 @@ final class DemoController extends AbstractController
             'form'      => $form,
             'use_cases' => self::USE_CASES,
             'current'   => $case,
+            'locales'   => self::LOCALES,
         ]);
     }
 }

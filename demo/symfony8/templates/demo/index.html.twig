@@ -9,9 +9,10 @@
         <p class="lead text-muted">{{ 'demo.description'|trans }}</p>
         <p class="text-muted small mb-4">
             {{ 'demo.language_switch_hint'|trans }}
-            <a href="{{ path('demo_index', { _locale: 'en', case: current }) }}" class="text-primary {{ app.request.locale == 'en' ? 'fw-bold' : '' }}">EN</a>
-            <span class="text-muted">|</span>
-            <a href="{{ path('demo_index', { _locale: 'es', case: current }) }}" class="text-primary {{ app.request.locale == 'es' ? 'fw-bold' : '' }}">ES</a>
+            {% for loc in locales|default(['en', 'es']) %}
+                {% if not loop.first %}<span class="text-muted">|</span>{% endif %}
+                <a href="{{ path('demo_index', { _locale: loc, case: current }) }}" class="text-primary {{ app.request.locale == loc ? 'fw-bold' : '' }}">{{ loc|upper }}</a>
+            {% endfor %}
         </p>
 
         <ul class="nav nav-pills flex-wrap gap-1 mb-4">
@@ -27,7 +28,7 @@
         {% for message in app.flashes('success') %}
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ 'demo.close'|trans }}"></button>
             </div>
         {% endfor %}
 

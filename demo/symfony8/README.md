@@ -15,6 +15,8 @@ make up
 
 **Language switch:** The locale is in the URL (`/en`, `/es`). Use the **Language** dropdown in the navbar to switch, or go directly to `http://localhost:8055/en` or `http://localhost:8055/es`.
 
+**Use cases:** `?case=payment` (and `delete`, `publish`, `legal`, `cancel`, `batch`, `emergency`, `gate`). Copy-paste FormTypes for a host app: [docs/USE-CASES.md](../../docs/USE-CASES.md).
+
 ## Makefile targets
 
 - `make up` – Start container, Composer install, build assets (Vite)
