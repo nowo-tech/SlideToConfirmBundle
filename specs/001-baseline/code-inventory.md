@@ -1,6 +1,6 @@
 # Code inventory — SlideToConfirmBundle
 
-**Last audited:** 2026-08-24 (aligned with `spec.md` user scenarios and FR-* requirements).
+**Last audited:** 2026-09-25 (aligned with `spec.md` user scenarios and FR-* requirements, including FR-8 FrankenPHP worker).
 
 Production PHP (`src/`):
 

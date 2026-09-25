@@ -17,6 +17,13 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 final class NowoSlideToConfirmBundle extends Bundle
 {
+    public function __construct()
+    {
+        // Boot-once extension cache (not request state). Assigned in __construct so
+        // FrankenPHP worker / FRANKENPHP_RESET_KERNEL unset|false stays ResetInterface-clean.
+        $this->extension = new SlideToConfirmExtension();
+    }
+
     public function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new TwigPathsPass());
@@ -24,17 +31,12 @@ final class NowoSlideToConfirmBundle extends Bundle
 
     /**
      * Returns the container extension that loads the bundle configuration and services.
-     *
-     * @return ExtensionInterface The extension instance (cached after first call)
      */
     public function getContainerExtension(): ExtensionInterface
     {
-        if ($this->extension instanceof ExtensionInterface) {
-            return $this->extension;
-        }
+        /** @var ExtensionInterface $extension */
+        $extension = $this->extension;
 
-        $this->extension = new SlideToConfirmExtension();
-
-        return $this->extension;
+        return $extension;
     }
 }

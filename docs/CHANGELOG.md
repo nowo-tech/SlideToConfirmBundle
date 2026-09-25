@@ -8,16 +8,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.1.1] - 2026-09-25](#111---2026-09-25)
+- [[1.1.0] - 2026-08-24](#110---2026-08-24)
 - [[1.0.0] - 2026-08-23](#100---2026-08-23)
 
 ## [Unreleased]
 
+
+## [1.1.1] - 2026-09-25
+
+### Added
+
+- **FrankenPHP worker audit** — `docs/FRANKENPHP-WORKER-AUDIT.md` for kernel reuse (`FRANKENPHP_RESET_KERNEL` unset/false); linked from README, USAGE, DEMO-FRANKENPHP.
+- Spec **FR-8** / success criterion for worker + PHPStan classic / worker-no-kernel-reset rulesets.
+
+### Changed
+
+- PHPStan includes `ruleset-worker-no-kernel-reset.neon` (targets `FRANKENPHP_RESET_KERNEL` unset/false).
+- `NowoSlideToConfirmBundle` caches its DI extension in `__construct` (boot-once, not request state) so the stricter worker-no-kernel-reset ruleset stays clean.
+
+### Notes
+
+- **No API or configuration changes.** Runtime services were already safe under worker mode without kernel reset; this release documents and locks that guarantee.
 
 ## [1.1.0] - 2026-08-24
 
 ### Added
 
 - add slide-to-confirm validator and expand form widget coverage.
+- Usage docs: complete FormType + controller + Twig example, Stimulus Vite snippet, frontend events, and a dedicated [USE-CASES.md](USE-CASES.md) with copy-paste examples for all eight profiles.
+- Demo UI catalogues and locale switcher for all seven required locales (`en`, `es`, `it`, `fr`, `pt`, `de`, `nl`).
 
 ### Changed
 
@@ -25,21 +45,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Docs:** Spec Kit baseline refresh.
 - **Style:** PHP CS Fixer alignment.
 
-### Notes
-
-- **No API or configuration changes** for integrators unless noted above.
-
-### Added
-
-- Usage docs: complete FormType + controller + Twig example, Stimulus Vite snippet, frontend events, and a dedicated [USE-CASES.md](USE-CASES.md) with copy-paste examples for all eight profiles.
-- Demo UI catalogues and locale switcher for all seven required locales (`en`, `es`, `it`, `fr`, `pt`, `de`, `nl`).
-
 ### Fixed
 
 - Required fields now translate `form.error.not_confirmed` from `NowoSlideToConfirmBundle` (it was looked up in the `validators` domain).
 - The widget falls back to the `messages` domain when a `text` / `confirmed_text` / `hint` key is missing from the bundle catalogue (demo cancel/batch/emergency labels).
-[1.1.0]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.1.0
 
+### Notes
+
+- **No API or configuration changes** for integrators unless noted above.
 
 ## [1.0.0] - 2026-08-23
 
@@ -62,5 +75,7 @@ First public release.
 - JavaScript tooling is **pnpm only** (`npm` / `yarn` are rejected).
 - Host apps can ship the prebuilt IIFE (`assets:install`) or compile the Stimulus controller with their own Vite/Pentatrion entry.
 
-[Unreleased]: https://github.com/nowo-tech/SlideToConfirmBundle/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/nowo-tech/SlideToConfirmBundle/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.1.1
+[1.1.0]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.1.0
 [1.0.0]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.0.0

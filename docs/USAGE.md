@@ -20,6 +20,7 @@ Copy-paste FormType + controller examples for payments, deletes, legal consent, 
 - [Overriding templates and translations](#overriding-templates-and-translations)
 - [Accessibility](#accessibility)
 - [Server-side behaviour](#server-side-behaviour)
+- [FrankenPHP worker](#frankenphp-worker)
 
 ## Including the frontend assets
 
@@ -352,3 +353,9 @@ Override the widget at `templates/bundles/NowoSlideToConfirmBundle/Form/_slide_t
 - Default `mapped: false` — the flag is **not** in `$form->getData()`. Read `$form->get('confirm')->getData()`.
 - A required field adds `SlideConfirmed` (an `IsTrue` with message `form.error.not_confirmed`, translated from `NowoSlideToConfirmBundle`). A crafted POST that omits the checkbox is **invalid**.
 - A crafted POST that sends `confirm=1` **bypasses the gesture**. Treat the slide as confirmation UX, then apply real authorization on the action.
+
+## FrankenPHP worker
+
+This bundle is compatible with FrankenPHP **worker** when the Symfony kernel is **reused** between requests (`FRANKENPHP_RESET_KERNEL` unset or `0` — the Runtime default). Bundle services hold only injected collaborators / compiled configuration; they do not need `kernel.reset`. Host subclasses of `SlideToConfirmType` must stay stateless (or implement `ResetInterface`) and must not store the current form, user or request in properties.
+
+See [FRANKENPHP-WORKER-AUDIT.md](FRANKENPHP-WORKER-AUDIT.md).

@@ -8,7 +8,7 @@
 
 ![FrankenPHP Friendly Worker Mode](docs/images/frankenphp-friendly.png)
 
-This bundle is **FrankenPHP worker mode friendly**.
+This bundle is **FrankenPHP worker mode friendly** (kernel reused / `FRANKENPHP_RESET_KERNEL` unset or `0`). See [docs/FRANKENPHP-WORKER-AUDIT.md](docs/FRANKENPHP-WORKER-AUDIT.md).
 
 ## Table of contents
 
@@ -191,7 +191,8 @@ Run tests and QA with Docker: `make up && make install && make test` (or `make t
 
 - [Use cases](docs/USE-CASES.md) — payments, deletes, legal, gate, and copy-paste FormTypes
 - [Theming](docs/THEMING.md) — CSS tokens, form themes, template overrides
-- [Demo with FrankenPHP](docs/DEMO-FRANKENPHP.md)
+- [Demo with FrankenPHP](docs/DEMO-FRANKENPHP.md) (includes worker mode)
+- [FrankenPHP worker audit (`FRANKENPHP_RESET_KERNEL` unset/false)](docs/FRANKENPHP-WORKER-AUDIT.md)
 - [GitHub Actions CI requirements](docs/GITHUB_CI.md)
 - [PSR evaluation (REQ-CS-007)](docs/PSR.md)
 - [GitHub About fields](docs/GITHUB.md)

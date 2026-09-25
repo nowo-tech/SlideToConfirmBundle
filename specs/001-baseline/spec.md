@@ -18,11 +18,16 @@ As a host app, I use the `gate` profile to unlock a separate submit button witho
 
 - FR-1: Completing the slide sets the checkbox to true.
 - FR-2: When `submit_on_confirm` is true, the widget calls `HTMLFormElement.requestSubmit()`.
-- FR-3: Required fields add `IsTrue` so an incomplete POST is invalid.
+- FR-3: Required fields add `IsTrue` / `SlideConfirmed` so an incomplete POST is invalid.
 - FR-4: Named profiles `default`, `payment`, `danger`, `legal`, `publish`, `gate` are available.
 - FR-5: `gate` does not auto-submit; host may unlock a separate submit button.
 - FR-6: Keyboard (arrows, Home, End, Enter/Space) and RTL are supported.
 - FR-7: Standalone IIFE and Stimulus controller share the same init logic.
+- FR-8: FrankenPHP worker-safe with kernel reuse (`FRANKENPHP_RESET_KERNEL` unset/false): no per-request state in shared services; PHPStan classic + worker-no-kernel-reset rulesets green.
+
+## Success criteria
+
+- FrankenPHP worker audit (`docs/FRANKENPHP-WORKER-AUDIT.md`) documents compatibility with kernel reuse (`FRANKENPHP_RESET_KERNEL` unset/false); PHPStan classic + worker-no-kernel-reset rulesets pass with no ignores.
 
 ## Out of scope
 

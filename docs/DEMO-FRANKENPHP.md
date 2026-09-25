@@ -45,6 +45,8 @@ The bundled demos ship **two** Caddyfiles:
 
 `docker/entrypoint.sh` copies the matching file to `/etc/frankenphp/Caddyfile` from `FRANKENPHP_MODE`. Use `classic` for comfortable Twig/asset refresh; use `worker` to exercise FrankenPHP workers.
 
+The bundle itself is safe under worker with kernel reuse (`FRANKENPHP_RESET_KERNEL` unset/false). See [FRANKENPHP-WORKER-AUDIT.md](FRANKENPHP-WORKER-AUDIT.md).
+
 ---
 
 ## What the demos include
