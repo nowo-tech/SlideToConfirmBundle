@@ -4,7 +4,7 @@
 
 | Overview | Interaction |
 |----------|-------------|
-| ![Idle slide-to-confirm track and thumb](images/demo/overview.png) | ![Confirmed slide-to-confirm control](images/demo/interaction.png) |
+| ![Demo with navbar — Pay case, slider idle](images/demo/overview.png) | ![Demo with navbar — Legal case, slider confirmed](images/demo/interaction.png) |
 
 Regenerate with `make -C demo/symfony8 demo-screenshots` (REQ-DEMO-013).
 

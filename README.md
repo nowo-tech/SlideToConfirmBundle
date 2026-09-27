@@ -167,12 +167,12 @@ Copy-paste FormTypes and controllers for all eight cases: [docs/USE-CASES.md](do
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="docs/images/demo/overview.png" alt="Idle slide-to-confirm track and thumb" />
-      <br /><sub>Idle slide-to-confirm control</sub>
+      <img src="docs/images/demo/overview.png" alt="Demo with navbar — Pay case, slider idle" />
+      <br /><sub>Full demo — Pay, slider idle</sub>
     </td>
     <td align="center" width="50%">
-      <img src="docs/images/demo/interaction.png" alt="Confirmed slide-to-confirm control" />
-      <br /><sub>Confirmed after full slide</sub>
+      <img src="docs/images/demo/interaction.png" alt="Demo with navbar — Legal case, slider confirmed" />
+      <br /><sub>Full demo — Legal, confirmed</sub>
     </td>
   </tr>
 </table>
