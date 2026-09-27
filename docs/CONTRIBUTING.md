@@ -25,6 +25,9 @@ This project follows the [Contributor Covenant Code of Conduct](../CODE_OF_CONDU
 
 ## Running tests and QA
 
+Run `make igor` for the Igor FrankenPHP worker-state audit (REQ-CS-008).
+
+
 From the bundle root:
 
 ```bash

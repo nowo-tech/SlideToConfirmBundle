@@ -7,7 +7,7 @@ SERVICE_PHP  := php
 RUN          := $(COMPOSE) exec -T $(SERVICE_PHP)
 
 .PHONY: help up down down-dev shell install test test-coverage coverage-check coverage-php-percent cs-check cs-fix qa clean ensure-up check-no-cursor-coauthor check-open-prs strip-cursor-coauthor-from-history check-twig-extra
-.PHONY: release-check release-check-demos demo-smoke composer-sync assets build rector rector-dry phpstan update validate validate-translations
+.PHONY: release-check release-check-demos demo-smoke composer-sync assets build rector rector-dry phpstan igor update validate validate-translations
 .PHONY: assets-test assets-dev assets-watch assets-clean
 .PHONY: up-symfony8 down-symfony8 setup-hooks
 
@@ -32,6 +32,7 @@ help:
 	@echo "  rector         Apply Rector refactoring"
 	@echo "  rector-dry     Rector dry-run (no changes)"
 	@echo "  phpstan        Run PHPStan static analysis"
+	@echo "  igor          Run Igor worker-state audit (REQ-CS-008)"
 	@echo "  qa             Run all QA (cs-check + test)"
 	@echo "  release-check  Pre-release: open PRs, cs, phpstan, coverage-check, demos"
 	@echo "  demo-smoke     Demo healthchecks (release-verify)"
@@ -126,7 +127,11 @@ demo-smoke:
 check-twig-extra:
 	@chmod +x .scripts/check-twig-extra.sh
 	@./.scripts/check-twig-extra.sh
-release-check: check-no-cursor-coauthor check-open-prs check-twig-extra ensure-up composer-sync cs-fix cs-check rector-dry phpstan coverage-check assets-test release-check-demos
+
+# Run Igor worker-state audit (REQ-CS-008)
+igor: ensure-up
+	$(COMPOSE) exec -T php composer igor
+release-check: check-no-cursor-coauthor check-open-prs check-twig-extra ensure-up composer-sync cs-fix cs-check rector-dry phpstan igor coverage-check assets-test release-check-demos
 
 release-check-demos:
 	@$(MAKE) -C demo release-check

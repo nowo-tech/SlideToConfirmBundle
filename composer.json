@@ -49,7 +49,8 @@
         "phpunit/phpunit": "^10.0",
         "rector/rector": "^2.0",
         "symfony/yaml": "^6.0 || ^7.0 || ^8.0",
-        "vincentlanglet/twig-cs-fixer": "^4.0"
+        "vincentlanglet/twig-cs-fixer": "^4.0",
+        "igor-php/igor-php": "^0.9.7"
     },
     "autoload": {
         "psr-4": {
@@ -92,7 +93,8 @@
         ],
         "twig:lint": "twig-cs-fixer lint --config=.twig-cs-fixer.php",
         "twig:fix": "twig-cs-fixer fix --config=.twig-cs-fixer.php",
-        "twig:fix:check": "twig-cs-fixer lint --config=.twig-cs-fixer.php --fix"
+        "twig:fix:check": "twig-cs-fixer lint --config=.twig-cs-fixer.php --fix",
+        "igor": "igor-php --no-agent ."
     },
     "scripts-descriptions": {
         "cs-check": "Check code style with PHP-CS-Fixer",
@@ -104,6 +106,7 @@
         "phpstan": "Run PHPStan static analysis",
         "update": "Update composer.lock",
         "validate": "Validate composer.json (composer validate --strict)",
-        "qa": "Run all quality assurance checks"
+        "qa": "Run all quality assurance checks",
+        "igor": "Run Igor FrankenPHP worker-state audit (REQ-CS-008)"
     }
 }
