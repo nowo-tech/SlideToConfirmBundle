@@ -1,5 +1,14 @@
 # Usage
 
+## Screenshots
+
+| Overview | Interaction |
+|----------|-------------|
+| ![Idle slide-to-confirm track and thumb](images/demo/overview.png) | ![Confirmed slide-to-confirm control](images/demo/interaction.png) |
+
+Regenerate with `make -C demo/symfony8 demo-screenshots` (REQ-DEMO-013).
+
+
 `SlideToConfirmType` (and its alias `SwipeToSubmitType`) replace a clickable submit button with a **slide-to-confirm** control. Completing the swipe checks a hidden checkbox (the submitted value) and, by default, calls `form.requestSubmit()`.
 
 The slider is **UX friction**, not an authorization control. Keep CSRF, authentication, and server-side authorization on the host form.
@@ -7,6 +16,8 @@ The slider is **UX friction**, not an authorization control. Keep CSRF, authenti
 Copy-paste FormType + controller examples for payments, deletes, legal consent, and the other built-in profiles: **[USE-CASES.md](USE-CASES.md)**.
 
 ## Table of contents
+
+- [Screenshots](#screenshots)
 
 - [Including the frontend assets](#including-the-frontend-assets)
   - [Standalone script (no Stimulus)](#standalone-script-no-stimulus)

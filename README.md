@@ -164,11 +164,30 @@ Copy-paste FormTypes and controllers for all eight cases: [docs/USE-CASES.md](do
 
 ## Demo
 
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="docs/images/demo/overview.png" alt="Idle slide-to-confirm track and thumb" />
+      <br /><sub>Idle slide-to-confirm control</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/images/demo/interaction.png" alt="Confirmed slide-to-confirm control" />
+      <br /><sub>Confirmed after full slide</sub>
+    </td>
+  </tr>
+</table>
+
 The Symfony 8.1 demo is in `demo/symfony8`. Run from the bundle root: `make up-symfony8` (http://localhost:8055). See [demo/README.md](demo/README.md).
 
 The demos use **FrankenPHP**. Default `FRANKENPHP_MODE=worker` (Caddyfile with `worker { file; watch }`). Set `FRANKENPHP_MODE=classic` for per-request PHP so Twig/asset changes show on refresh (see [docs/DEMO-FRANKENPHP.md](docs/DEMO-FRANKENPHP.md)).
 
 ## Development
+
+```bash
+make -C demo/symfony8 test-e2e
+make -C demo/symfony8 demo-screenshots   # refreshes docs/images/demo/*.png
+```
+
 
 Run tests and QA with Docker: `make up && make install && make test` (or `make test-coverage`, `make qa`). Without Docker: `composer install && composer test`. See [Makefile](Makefile) for all targets.
 
