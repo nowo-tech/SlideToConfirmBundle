@@ -3,12 +3,26 @@
 ## Table of contents
 
 - [Unreleased](#unreleased)
+- [To 1.1.3](#to-113)
 - [To 1.1.2](#to-112)
 - [From 1.1.0 to 1.1.1](#from-110-to-111)
 - [From 1.0.0 to 1.1.0](#from-100-to-110)
 - [1.0.0 (2026-08-23)](#100-2026-08-23)
 
 ## Unreleased
+
+## To 1.1.3
+
+From **1.1.2** — CSP-safe standalone IIFE (no runtime `<style>` inject) + demo Playwright screenshots (REQ-DEMO-013).
+
+```bash
+composer update nowo-tech/slide-to-confirm-bundle
+php bin/console assets:install
+php bin/console cache:clear
+```
+
+- **Required:** keep loading **both** `slide-to-confirm.css` and `slide-to-confirm.js` (CSS via `<link>`). Hosts that previously forked a CSP-safe JS copy can switch back to the package asset.
+- Demo e2e / screenshots are maintainer tooling only.
 
 ## To 1.1.2
 
@@ -19,7 +33,6 @@ composer update nowo-tech/slide-to-confirm-bundle
 php bin/console cache:clear
 ```
 
-No upgrade notes yet.
 - No application upgrade steps for require-dev Igor tooling (REQ-CS-008). Consumers do not pull `igor-php/igor-php` transitively.
 
 
