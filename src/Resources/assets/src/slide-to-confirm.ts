@@ -1,9 +1,12 @@
 /**
  * SlideToConfirmBundle standalone entry.
  * Defines the `nowo-slide-to-confirm` custom element and auto-inits hosts on DOM ready.
+ *
+ * CSP: do not import CSS here — Vite would inject a runtime `<style>` that hosts with
+ * `style-src-elem` nonces reject. Load `slide-to-confirm.css` via a separate `<link>`
+ * (see docs/USAGE.md). The build copies the stylesheet next to this IIFE.
  */
 
-import '../css/slide-to-confirm.css';
 import { createBundleLogger } from './logger';
 import { ensureNowoSlideToConfirmDefined } from './nowo-slide-to-confirm-element';
 import {

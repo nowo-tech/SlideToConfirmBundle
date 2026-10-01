@@ -53,6 +53,8 @@ Equivalent without helpers:
 
 Run `php bin/console assets:install` after install/upgrade. The files are published under `public/bundles/nowoslidetoconfirm/`. The script auto-inits `<nowo-slide-to-confirm>` hosts and watches for dynamically added nodes (Turbo / live forms included).
 
+**CSP:** always include the CSS `<link>` separately. The standalone IIFE does **not** inject styles at runtime (hosts with `style-src-elem` nonces would block that). Do not rely on a JS-only include for layout.
+
 ### Stimulus + Vite
 
 Register the controller from the bundle sources (path relative to `vendor/nowo-tech/slide-to-confirm-bundle`):
