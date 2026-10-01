@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.1.4] - 2026-10-01](#114---2026-10-01)
 - [[1.1.3] - 2026-10-01](#113---2026-10-01)
 - [[1.1.2] - 2026-09-27](#112---2026-09-27)
 - [[1.1.1] - 2026-09-25](#111---2026-09-25)
@@ -15,6 +16,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [[1.0.0] - 2026-08-23](#100---2026-08-23)
 
 ## [Unreleased]
+
+## [1.1.4] - 2026-10-01
+
+### Added
+
+- **FR-9 (baseline spec):** standalone IIFE MUST NOT inject CSS at runtime; hosts load CSS via `<link>` and JS via `<script>`. Documented in README features, INSTALLATION, and success criteria.
+
+### Notes
+
+- **No runtime change** versus **1.1.3** (CSP-safe IIFE already shipped there). This tag locks the requirement in the Spec Kit baseline.
 
 ## [1.1.3] - 2026-10-01
 
@@ -31,8 +42,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - **REQ-CS-008:** `igor-php/igor-php` (require-dev only), root `igor.json`, Composer/`Makefile` `igor` target, and `release-check` wiring for FrankenPHP worker-state audit.
-
-[1.1.2]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.1.2
 
 ## [1.1.1] - 2026-09-25
 
@@ -94,7 +103,8 @@ First public release.
 - JavaScript tooling is **pnpm only** (`npm` / `yarn` are rejected).
 - Host apps can ship the prebuilt IIFE (`assets:install`) or compile the Stimulus controller with their own Vite/Pentatrion entry.
 
-[Unreleased]: https://github.com/nowo-tech/SlideToConfirmBundle/compare/v1.1.3...HEAD
+[Unreleased]: https://github.com/nowo-tech/SlideToConfirmBundle/compare/v1.1.4...HEAD
+[1.1.4]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.1.4
 [1.1.3]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.1.3
 [1.1.2]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.1.2
 [1.1.1]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.1.1

@@ -19,6 +19,14 @@ Packagist uses the **git tag** (this project does not store a version in `compos
 - [ ] Run `make release-check` from the bundle root when Docker is available.
 - [x] Commit all release-related file changes (docs, CHANGELOG, UPGRADING, specs, phpstan).
 
+
+## Pre-release (v1.1.4)
+
+- [x] CHANGELOG: [1.1.4] FR-9 baseline CSP docs; [Unreleased] empty.
+- [x] UPGRADING: To 1.1.4 (docs/spec only).
+- [x] specs/001-baseline FR-9 + success criterion; README CSP feature bullet; INSTALLATION note.
+- [x] Runtime CSP fix remains **1.1.3**; this tag documents it.
+
 ## Tag and GitHub Release
 
 1. Commit the changelog and related files.

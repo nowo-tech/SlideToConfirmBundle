@@ -51,6 +51,7 @@ twig:
 ```
 
 3. **Assets**: `php bin/console assets:install`, then include CSS + JS (see [USAGE.md](USAGE.md#including-the-frontend-assets)) or register `slide-to-confirm` in Stimulus.
+   - Standalone IIFE is **CSP-safe** (no runtime `<style>` inject). Always include the CSS `<link>` separately from the JS (FR-9).
 
 4. **Optional configuration**: [CONFIGURATION.md](CONFIGURATION.md).
 

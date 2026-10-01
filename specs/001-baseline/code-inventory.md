@@ -1,6 +1,6 @@
 # Code inventory — SlideToConfirmBundle
 
-**Last audited:** 2026-09-25 (aligned with `spec.md` user scenarios and FR-* requirements, including FR-8 FrankenPHP worker).
+**Last audited:** 2026-10-01 (aligned with `spec.md` FR-1…FR-9, including FR-9 CSP-safe standalone assets).
 
 Production PHP (`src/`):
 
@@ -22,6 +22,6 @@ Production TypeScript (`src/Resources/assets/`):
 - `src/logger.ts`
 - `src/slide-to-confirm-lib.ts`
 - `src/nowo-slide-to-confirm-element.ts`
-- `src/slide-to-confirm.ts` — IIFE entry
+- `src/slide-to-confirm.ts` — IIFE entry (**no CSS import**; CSP FR-9)
 - `controllers/slide_to_confirm_controller.ts`
 - `css/slide-to-confirm.css`

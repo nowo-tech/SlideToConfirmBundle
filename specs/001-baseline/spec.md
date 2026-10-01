@@ -24,10 +24,12 @@ As a host app, I use the `gate` profile to unlock a separate submit button witho
 - FR-6: Keyboard (arrows, Home, End, Enter/Space) and RTL are supported.
 - FR-7: Standalone IIFE and Stimulus controller share the same init logic.
 - FR-8: FrankenPHP worker-safe with kernel reuse (`FRANKENPHP_RESET_KERNEL` unset/false): no per-request state in shared services; PHPStan classic + worker-no-kernel-reset rulesets green.
+- FR-9: Standalone IIFE MUST NOT inject CSS at runtime (`document.createElement('style')`). Hosts load `slide-to-confirm.css` via `<link>` and `slide-to-confirm.js` via `<script>` (CSP-safe with `style-src-elem` nonces). Stimulus hosts import the CSS from sources in their Vite entry.
 
 ## Success criteria
 
 - FrankenPHP worker audit (`docs/FRANKENPHP-WORKER-AUDIT.md`) documents compatibility with kernel reuse (`FRANKENPHP_RESET_KERNEL` unset/false); PHPStan classic + worker-no-kernel-reset rulesets pass with no ignores.
+- Built `src/Resources/public/slide-to-confirm.js` contains no `createElement("style")` / style-append inject; USAGE documents separate CSS + JS includes.
 
 ## Out of scope
 

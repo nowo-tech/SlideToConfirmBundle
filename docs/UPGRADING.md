@@ -3,6 +3,7 @@
 ## Table of contents
 
 - [Unreleased](#unreleased)
+- [To 1.1.4](#to-114)
 - [To 1.1.3](#to-113)
 - [To 1.1.2](#to-112)
 - [From 1.1.0 to 1.1.1](#from-110-to-111)
@@ -10,6 +11,14 @@
 - [1.0.0 (2026-08-23)](#100-2026-08-23)
 
 ## Unreleased
+
+## To 1.1.4
+
+From **1.1.3** — Spec/docs only (FR-9 CSP asset loading). **No runtime change.**
+
+```bash
+composer update nowo-tech/slide-to-confirm-bundle
+```
 
 ## To 1.1.3
 

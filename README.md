@@ -40,6 +40,7 @@ Looking for **Symfony slide to confirm**, **swipe to submit form type**, **slide
 - ✅ **Track fill** — the travelled portion of the track uses the same colour as the thumb
 - ✅ **Server validation** — required fields add `IsTrue`; an incomplete POST is invalid
 - ✅ **Works with or without Stimulus** — built IIFE + MutationObserver, or a Stimulus controller
+- ✅ **CSP-safe standalone assets** — IIFE does not inject `<style>`; load CSS via `<link>` + JS via `<script>` (see [docs/USAGE.md](docs/USAGE.md))
 - ✅ **TypeScript + Vite + pnpm** — bundle IIFE is built with Vite; the Symfony 8 demo uses **Pentatrion Vite** (`pentatrion/vite-bundle` + `vite-plugin-symfony`) and **pnpm only**
 - ✅ Compatible with **Symfony 7 and 8** and **FrankenPHP**
 
