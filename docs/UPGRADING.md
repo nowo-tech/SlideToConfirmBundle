@@ -3,6 +3,7 @@
 ## Table of contents
 
 - [Unreleased](#unreleased)
+- [To 1.1.5](#to-115)
 - [To 1.1.4](#to-114)
 - [To 1.1.3](#to-113)
 - [To 1.1.2](#to-112)
@@ -11,6 +12,16 @@
 - [1.0.0 (2026-08-23)](#100-2026-08-23)
 
 ## Unreleased
+
+## To 1.1.5
+
+From **1.1.4** — dependency updates.
+
+```bash
+composer update nowo-tech/slide-to-confirm-bundle
+```
+
+No breaking changes. No application upgrade steps.
 
 ## To 1.1.4
 

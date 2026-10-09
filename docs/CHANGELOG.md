@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.1.5] - 2026-10-09](#115---2026-10-09)
 - [[1.1.4] - 2026-10-01](#114---2026-10-01)
 - [[1.1.3] - 2026-10-01](#113---2026-10-01)
 - [[1.1.2] - 2026-09-27](#112---2026-09-27)
@@ -16,6 +17,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [[1.0.0] - 2026-08-23](#100---2026-08-23)
 
 ## [Unreleased]
+
+## [1.1.5] - 2026-10-09
+
+### Dependencies
+
+- Bundle lock: `twig/twig` v3.30.0 and Symfony patch releases.
+- Dev tooling: `igor-php/igor-php` ^0.10 (v0.10.1, Dependabot #23), `nowo-tech/phpstan-frankenphp` v1.2.3 (#24), `phpstan/phpstan` 2.3.1, `phpstan/phpstan-symfony` 2.1.0, `rector/rector` 2.7.0, `phpunit/phpunit` 10.5.66.
+- JS dev: Vite 8.3.2 (#22).
+- Demo (Symfony 8): `symfony/stimulus-bundle` v3.5.1, `twig/twig` v3.30.0, `twig/extra-bundle` v3.29.0, `nowo-tech/hot-reload-bundle` v1.5.5, `nowo-tech/twig-inspector-bundle` v1.1.7.
 
 ## [1.1.4] - 2026-10-01
 
@@ -103,7 +113,8 @@ First public release.
 - JavaScript tooling is **pnpm only** (`npm` / `yarn` are rejected).
 - Host apps can ship the prebuilt IIFE (`assets:install`) or compile the Stimulus controller with their own Vite/Pentatrion entry.
 
-[Unreleased]: https://github.com/nowo-tech/SlideToConfirmBundle/compare/v1.1.4...HEAD
+[Unreleased]: https://github.com/nowo-tech/SlideToConfirmBundle/compare/v1.1.5...HEAD
+[1.1.5]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.1.5
 [1.1.4]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.1.4
 [1.1.3]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.1.3
 [1.1.2]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.1.2
