@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `nowo_slide_to_confirm.form_theme` is now validated against the supported layouts (`enumNode`); an unknown value fails at container compile time instead of silently falling back to the div theme.
 - An unknown `profile` form option is now rejected while resolving the field options (`InvalidOptionsException` when the field is built) instead of throwing a 500 only when the view is rendered.
+- CI/tests: the Symfony 6.4 cell now pins every Symfony component of the graph (incl. transitive `symfony/console`, `symfony/validator`, ...) to the cell constraint and fails if any component escapes the cell major; on PHP 8.4/8.5 it previously mixed `symfony/form` 6.4 with 8.x components and died on incompatible signatures.
 
 ### Changed
 
