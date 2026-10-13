@@ -3,6 +3,7 @@
 ## Table of contents
 
 - [Unreleased](#unreleased)
+- [To 1.1.6](#to-116)
 - [To 1.1.5](#to-115)
 - [To 1.1.4](#to-114)
 - [To 1.1.3](#to-113)
@@ -12,6 +13,16 @@
 - [1.0.0 (2026-08-23)](#100-2026-08-23)
 
 ## Unreleased
+
+## To 1.1.6
+
+From **1.1.5** — dependency refresh and repository maintenance.
+
+```bash
+composer update nowo-tech/slide-to-confirm-bundle
+```
+
+- No breaking changes. No application upgrade steps.
 
 ## To 1.1.5
 
@@ -54,7 +65,6 @@ php bin/console cache:clear
 ```
 
 - No application upgrade steps for require-dev Igor tooling (REQ-CS-008). Consumers do not pull `igor-php/igor-php` transitively.
-
 
 ## From 1.1.0 to 1.1.1
 
