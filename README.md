@@ -168,11 +168,11 @@ Copy-paste FormTypes and controllers for all eight cases: [docs/USE-CASES.md](do
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="docs/images/demo/overview.png" alt="Demo with navbar — Pay case, slider idle" />
+      <img src="docs/images/demo/overview.webp" alt="Demo with navbar — Pay case, slider idle" />
       <br /><sub>Full demo — Pay, slider idle</sub>
     </td>
     <td align="center" width="50%">
-      <img src="docs/images/demo/interaction.png" alt="Demo with navbar — Legal case, slider confirmed" />
+      <img src="docs/images/demo/interaction.webp" alt="Demo with navbar — Legal case, slider confirmed" />
       <br /><sub>Full demo — Legal, confirmed</sub>
     </td>
   </tr>
@@ -186,7 +186,7 @@ The demos use **FrankenPHP**. Default `FRANKENPHP_MODE=worker` (Caddyfile with `
 
 ```bash
 make -C demo/symfony8 test-e2e
-make -C demo/symfony8 demo-screenshots   # refreshes docs/images/demo/*.png
+make -C demo/symfony8 demo-screenshots   # refreshes docs/images/demo/*.webp
 ```
 
 

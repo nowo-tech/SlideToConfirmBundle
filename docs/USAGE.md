@@ -4,7 +4,7 @@
 
 | Overview | Interaction |
 |----------|-------------|
-| ![Demo with navbar — Pay case, slider idle](images/demo/overview.png) | ![Demo with navbar — Legal case, slider confirmed](images/demo/interaction.png) |
+| ![Demo with navbar — Pay case, slider idle](images/demo/overview.webp) | ![Demo with navbar — Legal case, slider confirmed](images/demo/interaction.webp) |
 
 Regenerate with `make -C demo/symfony8 demo-screenshots` (REQ-DEMO-013).
 
