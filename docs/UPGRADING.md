@@ -3,6 +3,7 @@
 ## Table of contents
 
 - [Unreleased](#unreleased)
+- [To 1.2.0](#to-120)
 - [To 1.1.6](#to-116)
 - [To 1.1.5](#to-115)
 - [To 1.1.4](#to-114)
@@ -13,6 +14,14 @@
 - [1.0.0 (2026-08-23)](#100-2026-08-23)
 
 ## Unreleased
+
+## To 1.2.0
+
+From **1.1.6** — strict form_theme, profile validated at build time, Symfony >=6.4, vitest 4.
+
+```bash
+composer update nowo-tech/slide-to-confirm-bundle
+```
 
 - **Symfony 6.4+ required:** the constraint is now `^6.4 || ^7.0 || ^8.0`. Apps on Symfony 6.0–6.3 must upgrade to 6.4 first.
 - **Strict `form_theme`:** `nowo_slide_to_confirm.form_theme` must be one of the layouts listed in [CONFIGURATION.md](CONFIGURATION.md#form-theme-symfony-layouts). Previously an unknown value silently used the div theme; now the container fails to compile. Fix the value (e.g. `form_div_layout.html.twig`).
