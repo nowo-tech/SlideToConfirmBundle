@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 // This file is auto-generated and is for apps only. Bundles SHOULD NOT rely on its content.
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
@@ -784,7 +786,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  * @psalm-type NowoSlideToConfirmConfig = array{
  *     default_profile?: scalar|Param|null, // Name of the profile used when the form option profile is omitted. // Default: "default"
  *     translation_domain?: scalar|Param|null, // Default translation domain for slider texts (bundle uses NowoSlideToConfirmBundle). // Default: "NowoSlideToConfirmBundle"
- *     form_theme?: scalar|Param|null, // Base form layout template. Must match a Symfony form theme (e.g. bootstrap_5_layout.html.twig). // Default: "form_div_layout.html.twig"
+ *     form_theme?: "form_div_layout.html.twig"|"form_table_layout.html.twig"|"bootstrap_5_layout.html.twig"|"bootstrap_5_horizontal_layout.html.twig"|"bootstrap_4_layout.html.twig"|"bootstrap_4_horizontal_layout.html.twig"|"bootstrap_3_layout.html.twig"|"bootstrap_3_horizontal_layout.html.twig"|"foundation_5_layout.html.twig"|"foundation_6_layout.html.twig"|"tailwind_2_layout.html.twig"|Param, // Base form layout template. Must match a supported Symfony form theme (e.g. bootstrap_5_layout.html.twig). // Default: "form_div_layout.html.twig"
  *     debug?: bool|Param, // When true, the frontend logs debug messages to the console. // Default: false
  *     profiles?: array<string, array{ // Default: {"default":{"text":"form.slide_to_confirm","confirmed_text":"form.confirmed","hint":"form.hint.default","variant":"default","threshold":0.85,"submit_on_confirm":true,"reset_on_release":true},"danger":{"text":"form.slide_to_delete","confirmed_text":"form.deleted","hint":"form.hint.danger","variant":"danger","threshold":0.92,"submit_on_confirm":true,"reset_on_release":true},"payment":{"text":"form.slide_to_pay","confirmed_text":"form.paid","hint":"form.hint.payment","variant":"payment","threshold":0.9,"submit_on_confirm":true,"reset_on_release":true},"legal":{"text":"form.slide_to_agree","confirmed_text":"form.agreed","hint":"form.hint.legal","variant":"legal","threshold":0.95,"submit_on_confirm":true,"reset_on_release":true},"publish":{"text":"form.slide_to_publish","confirmed_text":"form.published","hint":"form.hint.publish","variant":"success","threshold":0.85,"submit_on_confirm":true,"reset_on_release":true},"gate":{"text":"form.slide_to_unlock","confirmed_text":"form.unlocked","hint":"form.hint.gate","variant":"default","threshold":0.85,"submit_on_confirm":false,"reset_on_release":false}}
  *         text?: scalar|Param|null, // Default: "form.slide_to_confirm"
