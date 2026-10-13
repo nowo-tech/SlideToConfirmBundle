@@ -141,10 +141,10 @@ jobs:
 
       - name: Commit changes if needed
         run: |
-          if [ -n "$(git status --porcelain)" ]; then
+          if [ -n "$(git status --porcelain -- '*.php')" ]; then
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
-            git add -A
+            git add -u -- '*.php'
             git commit -m "Apply PHP CS Fixer fixes [skip ci]"
             git push
           fi
