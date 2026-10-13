@@ -19,6 +19,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `nowo_slide_to_confirm.form_theme` is now validated against the supported layouts (`enumNode`); an unknown value fails at container compile time instead of silently falling back to the div theme.
+- An unknown `profile` form option is now rejected while resolving the field options (`InvalidOptionsException` when the field is built) instead of throwing a 500 only when the view is rendered.
+
+### Changed
+
+- Minimum Symfony version is now 6.4 (`^6.4 || ^7.0 || ^8.0`), matching what CI tests; a Symfony 6.4 cell was added to the CI matrix.
+- Development: `vitest` and `@vitest/coverage-v8` upgraded to 4.x.
+
 ## [1.1.6] - 2026-10-13
 
 ### Changed

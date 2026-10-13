@@ -7,6 +7,8 @@ namespace Nowo\SlideToConfirmBundle\Tests\Unit\Validator\Constraints;
 use Nowo\SlideToConfirmBundle\Validator\Constraints\SlideConfirmed;
 use Nowo\SlideToConfirmBundle\Validator\Constraints\SlideConfirmedValidator;
 use Symfony\Component\Validator\Constraints\IsTrue;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 /**
@@ -40,5 +42,11 @@ final class SlideConfirmedValidatorTest extends ConstraintValidatorTestCase
     {
         self::assertSame(SlideConfirmedValidator::class, (new SlideConfirmed())->validatedBy());
         self::assertSame('NowoSlideToConfirmBundle', SlideConfirmed::TRANSLATION_DOMAIN);
+    }
+
+    public function testRejectsForeignConstraint(): void
+    {
+        $this->expectException(UnexpectedTypeException::class);
+        $this->validator->validate(true, new NotBlank());
     }
 }

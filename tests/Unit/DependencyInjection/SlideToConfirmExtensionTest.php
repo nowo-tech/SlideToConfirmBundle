@@ -11,6 +11,7 @@ use Nowo\SlideToConfirmBundle\Form\Type\SwipeToSubmitType;
 use Nowo\SlideToConfirmBundle\Profile\SlideToConfirmProfileRegistry;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\FrameworkExtension;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class SlideToConfirmExtensionTest extends TestCase
@@ -73,19 +74,14 @@ final class SlideToConfirmExtensionTest extends TestCase
         );
     }
 
-    public function testPrependFallsBackToDivThemeForUnknownFormTheme(): void
+    public function testPrependRejectsUnknownFormTheme(): void
     {
         $container = new ContainerBuilder();
         $container->prependExtensionConfig(Configuration::ALIAS, ['form_theme' => 'unknown_layout.html.twig']);
         $extension = new SlideToConfirmExtension();
 
+        $this->expectException(InvalidConfigurationException::class);
         $extension->prepend($container);
-
-        $twigConfigs = $container->getExtensionConfig('twig');
-        self::assertSame(
-            ['@NowoSlideToConfirmBundle/Form/slide_to_confirm_theme.html.twig'],
-            $twigConfigs[0]['form_themes'],
-        );
     }
 
     public function testPrependRegistersNamedAssetPackageWhenFrameworkPresent(): void

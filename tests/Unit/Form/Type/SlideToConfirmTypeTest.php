@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Nowo\SlideToConfirmBundle\Tests\Unit\Form\Type;
 
-use InvalidArgumentException;
 use Nowo\SlideToConfirmBundle\DependencyInjection\Configuration;
 use Nowo\SlideToConfirmBundle\Form\SlideToConfirmVariant;
 use Nowo\SlideToConfirmBundle\Form\Type\SlideToConfirmType;
@@ -119,10 +118,17 @@ final class SlideToConfirmTypeTest extends TestCase
         $this->createField(['threshold' => 1.2]);
     }
 
-    public function testUnknownProfileThrowsWhenBuildingTheView(): void
+    public function testUnknownProfileIsRejectedWhenTheFieldIsBuilt(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->createField(['profile' => 'missing'])->createView();
+        // Rejected at build time (options resolution), not later at render time.
+        $this->expectException(InvalidOptionsException::class);
+        $this->createField(['profile' => 'missing']);
+    }
+
+    public function testKnownNonDefaultProfileIsAccepted(): void
+    {
+        $view = $this->createField(['profile' => 'danger'])->createView();
+        self::assertSame('danger', $view->vars['slide_profile']);
     }
 
     public function testRequiredAddsIsTrueConstraintOnce(): void

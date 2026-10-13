@@ -20,8 +20,8 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
  */
 final class SlideToConfirmExtension extends Extension implements PrependExtensionInterface
 {
-    /** @var array<string, string> Map form_theme config value to bundle theme path. */
-    private const FORM_THEME_MAP = [
+    /** @var array<string, string> Supported `form_theme` values mapped to the bundle theme that extends them. */
+    public const FORM_THEME_MAP = [
         'form_div_layout.html.twig'               => '@NowoSlideToConfirmBundle/Form/slide_to_confirm_theme.html.twig',
         'form_table_layout.html.twig'             => '@NowoSlideToConfirmBundle/Form/slide_to_confirm_theme_table.html.twig',
         'bootstrap_5_layout.html.twig'            => '@NowoSlideToConfirmBundle/Form/slide_to_confirm_theme_bootstrap5.html.twig',
@@ -43,7 +43,7 @@ final class SlideToConfirmExtension extends Extension implements PrependExtensio
         $configs   = $container->getExtensionConfig(Configuration::ALIAS);
         $config    = $this->processConfiguration(new Configuration(), $configs);
         $formTheme = $config['form_theme'];
-        $themePath = self::FORM_THEME_MAP[$formTheme] ?? self::FORM_THEME_MAP['form_div_layout.html.twig'];
+        $themePath = self::FORM_THEME_MAP[$formTheme];
 
         $container->prependExtensionConfig('twig', [
             'form_themes' => [$themePath],

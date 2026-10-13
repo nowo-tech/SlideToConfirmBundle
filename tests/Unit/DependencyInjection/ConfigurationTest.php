@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Nowo\SlideToConfirmBundle\Tests\Unit\DependencyInjection;
 
 use Nowo\SlideToConfirmBundle\DependencyInjection\Configuration;
+use Nowo\SlideToConfirmBundle\DependencyInjection\SlideToConfirmExtension;
 use Nowo\SlideToConfirmBundle\Form\SlideToConfirmVariant;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
@@ -77,5 +78,19 @@ final class ConfigurationTest extends TestCase
                 ],
             ],
         ]]);
+    }
+
+    public function testRejectsUnknownFormTheme(): void
+    {
+        $this->expectException(InvalidConfigurationException::class);
+        (new Processor())->processConfiguration(new Configuration(), [['form_theme' => 'my_custom_layout.html.twig']]);
+    }
+
+    public function testAcceptsEverySupportedFormTheme(): void
+    {
+        foreach (array_keys(SlideToConfirmExtension::FORM_THEME_MAP) as $theme) {
+            $processed = (new Processor())->processConfiguration(new Configuration(), [['form_theme' => $theme]]);
+            self::assertSame($theme, $processed['form_theme']);
+        }
     }
 }

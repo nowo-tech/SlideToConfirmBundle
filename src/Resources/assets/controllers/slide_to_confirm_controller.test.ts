@@ -44,4 +44,15 @@ describe('slide_to_confirm_controller', () => {
     await new Promise((r) => setTimeout(r, 0));
     expect(host.getAttribute(ATTR_INIT)).toBeNull();
   });
+
+  it('ignores non-HTML elements (e.g. SVG) on connect and disconnect', async () => {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('data-controller', 'slide-to-confirm');
+    document.body.appendChild(svg);
+    await new Promise((r) => setTimeout(r, 0));
+    expect(svg.getAttribute(ATTR_INIT)).toBeNull();
+    svg.remove();
+    await new Promise((r) => setTimeout(r, 0));
+    expect(svg.getAttribute(ATTR_INIT)).toBeNull();
+  });
 });

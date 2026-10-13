@@ -200,7 +200,7 @@ Built-in profiles (see [CONFIGURATION.md](CONFIGURATION.md)):
 | `publish` | Make public | success | yes |
 | `gate` | Unlock another submit | default | **no** |
 
-Omit `profile` to use `nowo_slide_to_confirm.default_profile` (usually `default`).
+Omit `profile` to use `nowo_slide_to_confirm.default_profile` (usually `default`). An unknown profile name is rejected when the field is added to the form (`InvalidOptionsException`), not later at render time.
 
 Custom profile used by several forms:
 

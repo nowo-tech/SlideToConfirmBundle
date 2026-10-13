@@ -77,6 +77,9 @@ class SlideToConfirmType extends AbstractType
         $resolver->setAllowedTypes('container_css_class', 'string');
         $resolver->setAllowedTypes('constraints', 'array');
 
+        $registry = $this->registry;
+        $resolver->setAllowedValues('profile', static fn (?string $value): bool => $value === null || $registry->has($value));
+
         $resolver->setNormalizer('variant', static function (Options $options, mixed $value): ?SlideToConfirmVariant {
             if ($value === null) {
                 return null;

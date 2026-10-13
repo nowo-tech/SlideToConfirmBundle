@@ -105,6 +105,8 @@ Set `form_theme` to the **same** layout your app uses. The extension prepends th
 | `foundation_6_layout.html.twig` | `slide_to_confirm_theme_foundation6.html.twig` |
 | `tailwind_2_layout.html.twig` | `slide_to_confirm_theme_tailwind2.html.twig` |
 
+Any other value is rejected when the container is compiled (`InvalidConfigurationException`); it no longer falls back silently to the div theme.
+
 Do **not** also list `@NowoSlideToConfirmBundle/Form/slide_to_confirm_theme*.html.twig` in `twig.form_themes`.
 
 The prepended theme only defines the slide widgets. It does **not** `{% use %}` `bootstrap_*_layout.html.twig` (or other host layouts). Doing both registers `form_row` twice and Symfony FormRenderer throws `Undefined array key -1`.

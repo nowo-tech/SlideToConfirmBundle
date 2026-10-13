@@ -354,6 +354,9 @@ describe('slide-to-confirm-lib', () => {
 
       const thumb = host.querySelector('button') as HTMLButtonElement;
       thumb.dispatchEvent(new Event('keydown', { bubbles: true, cancelable: true }));
+      const unrelated = keyEvent('a');
+      thumb.dispatchEvent(unrelated);
+      expect(unrelated.defaultPrevented).toBe(false);
       thumb.dispatchEvent(keyEvent('End'));
       expect((host.querySelector('input') as HTMLInputElement).checked).toBe(true);
     });

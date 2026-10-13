@@ -14,6 +14,10 @@
 
 ## Unreleased
 
+- **Symfony 6.4+ required:** the constraint is now `^6.4 || ^7.0 || ^8.0`. Apps on Symfony 6.0–6.3 must upgrade to 6.4 first.
+- **Strict `form_theme`:** `nowo_slide_to_confirm.form_theme` must be one of the layouts listed in [CONFIGURATION.md](CONFIGURATION.md#form-theme-symfony-layouts). Previously an unknown value silently used the div theme; now the container fails to compile. Fix the value (e.g. `form_div_layout.html.twig`).
+- **Unknown `profile` fails earlier:** passing a `profile` that is not configured now throws `InvalidOptionsException` when the field is added to the form builder, instead of an `InvalidArgumentException` at render time.
+
 ## To 1.1.6
 
 From **1.1.5** — dependency refresh and repository maintenance.
