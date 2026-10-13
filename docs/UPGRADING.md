@@ -12,6 +12,7 @@
 - [From 1.1.0 to 1.1.1](#from-110-to-111)
 - [From 1.0.0 to 1.1.0](#from-100-to-110)
 - [1.0.0 (2026-08-23)](#100-2026-08-23)
+  - [Host app checklist](#host-app-checklist)
 
 ## Unreleased
 
