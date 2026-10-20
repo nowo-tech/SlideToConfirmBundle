@@ -196,12 +196,12 @@ Every Nowo bundle with Spec Kit must ship:
 | `spec.md` | User scenarios, `FR-*` requirements, success criteria (`SC-*`), non-goals, validation commands |
 | `code-inventory.md` | Table mapping **every production file** under `src/` to spec sections and `FR-*` IDs |
 
-**Production code scope:** all files under `src/` that ship with the package (PHP, TS/JS, SCSS, YAML config, Twig views, translations). Exclude `tests/`, `demo/`, `*.test.ts`, and generated caches. Build artifacts (`dist/`) are documented as **outputs** of named sources.
+**Production code scope:** all files under `src/` that ship with the package (PHP, TS/JS, SCSS, YAML config, Twig views, translations). Exclude `tests/`, `demo/` and generated caches. In this bundle the co-located Vitest files (`*.test.ts`) are included as `FR-TEST-TS-001` rows, and `Resources/public/*` is documented as **outputs** of named sources (`FR-BUILD-001`).
 
 **Audit command (maintainers):**
 
 ```bash
-find src -type f ! -path '*/assets/dist/*' ! -name '*.test.ts' | wc -l
+git ls-files src | wc -l   # 44
 ```
 
 The **Total production sources** row in `code-inventory.md` must match this count.
