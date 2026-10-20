@@ -8,10 +8,10 @@ assignees: ''
 ---
 
 <!--
-- Please do not report an issue for a version of `SlideToConfirmBundle` that is no longer supported. Currently supported versions are listed here: https://github.com/nowo-tech/SlideToConfirmBundle#version-information
+- Please do not report an issue for a version of `slide-to-confirm-bundle` that is no longer supported. Currently supported versions are listed here: https://github.com/nowo-tech/SlideToConfirmBundle#version-information
 - Please fill in this template according to your issue.
 - Please keep the table shown below at the top of your issue.
-- You can retrieve `SlideToConfirmBundle` version by running `composer info | grep "SlideToConfirmBundle"`.
+- You can retrieve `slide-to-confirm-bundle` version by running `composer info | grep "slide-to-confirm-bundle"`.
 - You can retrieve PHP version by running `php -v`.
 - Please post code as text (using proper markup). Do not post screenshots of code.
 - Please remove this comment before submitting your issue.
@@ -19,7 +19,7 @@ assignees: ''
 
 | Q                           | A
 | ----------------------------| -----------------------
-| `SlideToConfirmBundle` version    | x.y.z
+| `SlideToConfirmBundle` version        | x.y.z
 | PHP version                 | x.y.z
 | Database                    | MySQL / PostgreSQL / SQLite / Other
 

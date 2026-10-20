@@ -4,6 +4,14 @@ This document describes how to cut a new release of SlideToConfirmBundle.
 
 Packagist uses the **git tag** (this project does not store a version in `composer.json`).
 
+## Table of contents
+
+- [Pre-release (every release)](#pre-release-every-release)
+- [Pre-release (v1.1.1)](#pre-release-v111)
+- [Pre-release (v1.1.4)](#pre-release-v114)
+- [Tag and GitHub Release](#tag-and-github-release)
+- [Post-release](#post-release)
+
 ## Pre-release (every release)
 
 1. Run full QA: `make release-check` (open PRs, CS, PHPStan, coverage, assets tests, demos).

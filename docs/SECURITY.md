@@ -1,5 +1,18 @@
 # Security
 
+## Table of contents
+
+- [Scope](#scope)
+- [Attack surface](#attack-surface)
+- [Threat model](#threat-model)
+- [Mitigations](#mitigations)
+- [Secrets and cryptography](#secrets-and-cryptography)
+- [Logging](#logging)
+- [Dependencies and updates](#dependencies-and-updates)
+- [Permissions / exposure](#permissions--exposure)
+- [AI security audit (REQ-SEC-004)](#ai-security-audit-req-sec-004)
+- [Release security checklist (12.4.1)](#release-security-checklist-1241)
+
 ## Scope
 
 This bundle ships a **Symfony FormType** (slide-to-confirm / swipe-to-submit) plus Twig themes and a browser widget. It does **not** expose HTTP controllers, Messenger handlers, file I/O, subprocesses, or Doctrine entities.

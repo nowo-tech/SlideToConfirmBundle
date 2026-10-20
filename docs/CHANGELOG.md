@@ -20,6 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Documentation: wave-1 REQ compliance — canonical issue templates, tables of contents on long docs, Spec Kit baseline rewritten with domain-grouped requirement IDs, non-goals and validation commands, categorized code inventory (44/44).
+
 ## [1.2.0] - 2026-10-13
 
 ### Fixed

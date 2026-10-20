@@ -2,6 +2,16 @@
 
 This guide covers installing SlideToConfirmBundle in a Symfony 6.4, 7, or 8 application.
 
+## Table of contents
+
+- [Requirements](#requirements)
+- [Install with Composer](#install-with-composer)
+- [Register the bundle](#register-the-bundle)
+  - [With Symfony Flex](#with-symfony-flex)
+  - [Manual registration](#manual-registration)
+- [Twig Extra Bundle (REQ-TWIG-004)](#twig-extra-bundle-req-twig-004)
+- [Next steps](#next-steps)
+
 ## Requirements
 
 - **PHP** `>=8.1 <8.6`

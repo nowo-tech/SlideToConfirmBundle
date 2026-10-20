@@ -10,12 +10,14 @@ This project follows the [Contributor Covenant Code of Conduct](../CODE_OF_CONDU
 
 ## Table of contents
 
+- [Code of Conduct](#code-of-conduct)
 - [Development setup](#development-setup)
 - [Running tests and QA](#running-tests-and-qa)
 - [Code style](#code-style)
 - [Pull requests](#pull-requests)
 - [Documentation](#documentation)
 - [Cursor Agent](#cursor-agent)
+- [Git hooks (REQ-GIT-001)](#git-hooks-req-git-001)
 
 ## Development setup
 

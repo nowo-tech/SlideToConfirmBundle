@@ -2,6 +2,14 @@
 
 Product behaviour for **SlideToConfirmBundle** is specified in this document and in `specs/001-baseline/`.
 
+## Table of contents
+
+- [Product](#product)
+- [User stories](#user-stories)
+- [REQ-* anchors](#req--anchors)
+- [Validation](#validation)
+- [Spec Kit](#spec-kit)
+
 ## Product
 
 A Symfony FormType (`SlideToConfirmType` / `SwipeToSubmitType`) that replaces a click submit with a slide-to-confirm control. Completing the slide checks a checkbox and optionally submits the form. Named profiles cover payment, danger, legal, publish, and gate (unlock) use cases.
