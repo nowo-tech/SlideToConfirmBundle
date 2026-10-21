@@ -3,6 +3,7 @@
 ## Table of contents
 
 - [Unreleased](#unreleased)
+- [To 1.2.1](#to-121)
 - [To 1.2.0](#to-120)
 - [To 1.1.6](#to-116)
 - [To 1.1.5](#to-115)
@@ -15,6 +16,14 @@
   - [Host app checklist](#host-app-checklist)
 
 ## Unreleased
+
+## To 1.2.1
+
+From **1.2.0**:
+
+```bash
+composer update nowo-tech/slide-to-confirm-bundle
+```
 
 ## To 1.2.0
 
