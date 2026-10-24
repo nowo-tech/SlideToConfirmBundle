@@ -6,7 +6,7 @@ COMPOSE      := $(COMPOSE_BIN) -f $(COMPOSE_FILE)
 SERVICE_PHP  := php
 RUN          := $(COMPOSE) exec -T $(SERVICE_PHP)
 
-.PHONY: help up down down-dev shell install test test-coverage coverage-check coverage-php-percent cs-check cs-fix qa clean ensure-up check-no-cursor-coauthor check-open-prs strip-cursor-coauthor-from-history check-twig-extra
+.PHONY: help up down down-dev shell install test test-coverage coverage-check coverage-php-percent cs-check cs-fix qa clean ensure-up check-no-cursor-coauthor check-open-prs strip-cursor-coauthor-from-history check-twig-extra check-no-raw-html-form
 .PHONY: release-check release-check-demos demo-smoke composer-sync assets build rector rector-dry phpstan igor update validate validate-translations
 .PHONY: assets-test assets-dev assets-watch assets-clean
 .PHONY: up-symfony8 down-symfony8 setup-hooks
@@ -128,10 +128,15 @@ check-twig-extra:
 	@chmod +x .scripts/check-twig-extra.sh
 	@./.scripts/check-twig-extra.sh
 
+check-no-raw-html-form:
+	@bash .scripts/check-no-raw-html-form.sh
+
 # Run Igor worker-state audit (REQ-CS-008)
 igor: ensure-up
 	$(COMPOSE) exec -T php composer igor
-release-check: check-no-cursor-coauthor check-open-prs check-twig-extra ensure-up composer-sync cs-fix cs-check rector-dry phpstan igor coverage-check assets-test release-check-demos
+
+# REQ-MAKE-002 order.
+release-check: ensure-up check-no-cursor-coauthor check-open-prs check-twig-extra check-no-raw-html-form composer-sync cs-fix cs-check rector-dry phpstan igor coverage-check release-check-demos assets-test
 
 release-check-demos:
 	@$(MAKE) -C demo release-check
