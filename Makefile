@@ -152,7 +152,7 @@ build:
 
 composer-sync: ensure-up
 	$(RUN) composer validate --strict
-	$(RUN) composer update --no-install
+	$(RUN) composer install --no-interaction --prefer-dist
 
 clean: ensure-up
 	$(RUN) sh -c 'rm -rf vendor .phpunit.cache coverage coverage.xml .php-cs-fixer.cache'
