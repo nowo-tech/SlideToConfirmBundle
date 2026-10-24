@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Developer tooling: `make release-check` runs the full REQ-MAKE-002 chain with `ensure-up` first, the new `check-no-raw-html-form` gate (REQ-TWIG-005) after the Cursor co-author, open-PR and Twig `extra` gates, then composer-sync, cs-fix, cs-check, rector-dry, phpstan, igor, coverage-check, the demo release-check and the TypeScript coverage run (`assets-test`).
+- Internal: applied the pending Rector suggestion (`RepeatedOrEqualToInArrayRector` in `SlideConfirmedValidator`, strict `in_array`); no behaviour change. `make rector-dry` is clean again.
 
 ## [1.2.1] - 2026-10-21
 

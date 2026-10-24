@@ -10,6 +10,8 @@ use Symfony\Component\Validator\Constraints\IsTrueValidator;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
+use function in_array;
+
 /**
  * Same acceptance rules as {@see IsTrueValidator},
  * with messages resolved from {@see SlideConfirmed::TRANSLATION_DOMAIN}.
@@ -22,7 +24,7 @@ final class SlideConfirmedValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, SlideConfirmed::class);
         }
 
-        if ($value === null || $value === true || $value === 1 || $value === '1') {
+        if (in_array($value, [null, true, 1, '1'], true)) {
             return;
         }
 
