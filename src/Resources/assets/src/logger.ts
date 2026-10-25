@@ -43,7 +43,7 @@ export type BundleLoggerOptions = {
 };
 
 export type BundleLogger = {
-  /** Call once at startup. Logs "script loaded" and optional build time. Always shown. */
+  /** Call once at startup. Logs "script loaded" and optional build id. Always shown. */
   scriptLoaded: () => void;
   /** No-op when alwaysLog is true; kept for API compatibility. */
   setDebug: (enabled: boolean) => void;
@@ -80,7 +80,7 @@ type ConsoleLevel = 'debug' | 'info' | 'warn' | 'error';
 function logScriptLoaded(prefix: string, buildTime: string | undefined): void {
   if (buildTime !== undefined && buildTime !== '') {
     console.log(
-      `%c${EMOJI.script} ${prefix} script loaded, build time: %c${buildTime}`,
+      `%c${EMOJI.script} ${prefix} script loaded, build: %c${buildTime}`,
       STYLES.script,
       'color:#059669',
     );

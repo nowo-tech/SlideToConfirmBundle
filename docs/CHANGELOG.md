@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Assets:** reproducible bundle build. `__SLIDE_TO_CONFIRM_BUILD_TIME__` now holds a build id (a hash of the TypeScript/CSS sources and `pnpm-lock.yaml`) instead of the build time, so rebuilding unchanged sources (`make assets`, `make release-check`) no longer rewrites the committed JS; the console line reads `script loaded, build: <id>`.
 - Developer tooling: `make release-check` runs the full REQ-MAKE-002 chain with `ensure-up` first, the new `check-no-raw-html-form` gate (REQ-TWIG-005) after the Cursor co-author, open-PR and Twig `extra` gates, then composer-sync, cs-fix, cs-check, rector-dry, phpstan, igor, coverage-check, the demo release-check and the TypeScript coverage run (`assets-test`).
 - Internal: applied the pending Rector suggestion (`RepeatedOrEqualToInArrayRector` in `SlideConfirmedValidator`, strict `in_array`); no behaviour change. `make rector-dry` is clean again.
 
