@@ -174,6 +174,8 @@ Render the wrapping form with a child loop (REQ-TWIG-003 / REQ-TWIG-005):
 
 Do not add a separate `<button type="submit">` unless you use the **gate** profile.
 
+**Forms (REQ-TWIG-003 / REQ-TWIG-005):** the widget is a Symfony Form type, so host pages and the demo render the surrounding form only through a PHP Form Type and `form_start` / the child loop `{% for child in form %}{% if not child.rendered %}{{ form_row(child) }}{% endif %}{% endfor %}` / `form_end`. Hosts and demos must not reintroduce raw `<form>` / `<input>` / `<textarea>` / `<select>` markup; `make check-no-raw-html-form` (part of `make release-check`) fails when bundle or demo Twig contains them.
+
 ## SwipeToSubmitType alias
 
 `SwipeToSubmitType` is the same widget with block prefix `nowo_swipe_to_submit`. Use it when the field *is* the form submit (batch approve, payroll commit):
