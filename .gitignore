@@ -34,3 +34,6 @@
 
 # Cursor local sandbox (machine-specific; REQ-IDE-005)
 .cursor/sandbox.json
+
+# Local PHPStan override (phpstan.neon.dist is the committed config, REQ-CS-003)
+/phpstan.neon

@@ -41,7 +41,7 @@ A bundle that is safe under **B** is safe under **A**, under `FRANKENPHP_RESET_K
 | Memory growth across requests | ✅ | No caches or accumulating arrays |
 | Blocking I/O and timeouts | ✅ N/A | No I/O at runtime |
 | Third-party static state | ✅ | Only Symfony Form / Validator / Twig, used through their normal APIs |
-| PHPStan FrankenPHP rulesets | ✅ | `ruleset-classic.neon` + `ruleset-worker-no-kernel-reset.neon` included in `phpstan.neon` |
+| PHPStan FrankenPHP rulesets | ✅ | `ruleset-classic.neon` + `ruleset-worker-no-kernel-reset.neon` included in `phpstan.neon.dist` |
 
 ## Services reviewed
 
