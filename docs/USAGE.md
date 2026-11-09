@@ -31,6 +31,7 @@ Copy-paste FormType + controller examples for payments, deletes, legal consent, 
 - [Overriding templates and translations](#overriding-templates-and-translations)
 - [Accessibility](#accessibility)
 - [Server-side behaviour](#server-side-behaviour)
+- [Using it from a DDD / hexagonal application](#using-it-from-a-ddd--hexagonal-application)
 - [FrankenPHP worker](#frankenphp-worker)
 
 ## Including the frontend assets
@@ -368,6 +369,36 @@ Override the widget at `templates/bundles/NowoSlideToConfirmBundle/Form/_slide_t
 - Default `mapped: false` — the flag is **not** in `$form->getData()`. Read `$form->get('confirm')->getData()`.
 - A required field adds `SlideConfirmed` (an `IsTrue` with message `form.error.not_confirmed`, translated from `NowoSlideToConfirmBundle`). A crafted POST that omits the checkbox is **invalid**.
 - A crafted POST that sends `confirm=1` **bypasses the gesture**. Treat the slide as confirmation UX, then apply real authorization on the action.
+
+## Using it from a DDD / hexagonal application
+
+SlideToConfirm is a **presentation** component: a `CheckboxType`-based form type, form themes, a browser script and a
+validation constraint. It has no model, no persistence and no Doctrine dependency.
+
+**Keep the domain free of the bundle**
+
+- The field is unmapped by default (`mapped: false`), so neither your entity nor your command DTO needs a property for
+  it. Check `$form->isValid()` in the controller and then dispatch your domain command.
+- A required field gets `SlideConfirmed` automatically. Do not put `#[SlideConfirmed]` on domain or command classes; if
+  you map the field onto a UI DTO, Symfony's own `IsTrue` is enough.
+- The slide is a UI confirmation step. Business invariants (permissions, balance checks, idempotency) still belong to
+  your application/domain layer, because a crafted POST can send the checkbox value directly.
+
+```php
+$form = $this->createFormBuilder(new TransferInput())     // UI DTO, not an entity
+    ->add('amount', MoneyType::class)
+    ->add('confirm', SlideToConfirmType::class, ['profile' => 'payment'])
+    ->getForm()
+    ->handleRequest($request);
+
+if ($form->isSubmitted() && $form->isValid()) {
+    $this->commandBus->dispatch(new TransferMoney($user->getId(), $form->getData()->amount));
+}
+```
+
+**Known limitations**
+
+- No server-side events or ports; there is nothing to adapt.
 
 ## FrankenPHP worker
 
