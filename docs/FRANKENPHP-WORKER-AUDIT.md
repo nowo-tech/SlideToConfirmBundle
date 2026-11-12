@@ -3,7 +3,7 @@
 | Field | Value |
 |-------|-------|
 | Package | `nowo-tech/slide-to-confirm-bundle` (`symfony-bundle`) |
-| Audited revision | `v1.2.2` (re-checked 2026-11-12; runtime code unchanged since the previous audit) |
+| Audited revision | `v1.2.2` (reviewed again on 2026-11-12 at this version; all shared services are stateless, see the services table) |
 | Audit date | 2026-11-12 (earlier passes kept in the history) |
 | Method | Manual review of every PHP file under `src/` (form types, profile registry, Twig extension, validator, DI extension, configuration, compiler pass, `Resources/config/services.yaml`) + PHPStan FrankenPHP classic + worker-no-kernel-reset rulesets |
 | **Verdict** | ✅ **Compatible** with FrankenPHP worker when the kernel is **not** reset between requests (`FRANKENPHP_RESET_KERNEL` unset or `0`). Every shared service holds only `readonly` constructor config; request data is never stored. |
