@@ -3,8 +3,8 @@
 | Field | Value |
 |-------|-------|
 | Package | `nowo-tech/slide-to-confirm-bundle` (`symfony-bundle`) |
-| Audited revision | release **1.1.1** / `main` |
-| Audit date | 2026-09-25 |
+| Audited revision | `v1.2.2` (reviewed again on 2026-11-12 at this version; all shared services are stateless, see the services table) |
+| Audit date | 2026-11-12 (earlier passes kept in the history) |
 | Method | Manual review of every PHP file under `src/` (form types, profile registry, Twig extension, validator, DI extension, configuration, compiler pass, `Resources/config/services.yaml`) + PHPStan FrankenPHP classic + worker-no-kernel-reset rulesets |
 | **Verdict** | ✅ **Compatible** with FrankenPHP worker when the kernel is **not** reset between requests (`FRANKENPHP_RESET_KERNEL` unset or `0`). Every shared service holds only `readonly` constructor config; request data is never stored. |
 
@@ -14,6 +14,7 @@
 - [Summary](#summary)
 - [Services reviewed](#services-reviewed)
 - [Findings](#findings)
+- [Kept-alive kernel test](#kept-alive-kernel-test)
 - [Usage recommendations in worker mode](#usage-recommendations-in-worker-mode)
 - [Re-audit triggers](#re-audit-triggers)
 
@@ -61,6 +62,14 @@ The `SlideConfirmed` constraint and the `SlideToConfirmVariant` enum are created
 No findings. The bundle's runtime code is limited to building form views (`src/Form/Type/SlideToConfirmType.php`), validating a boolean (`src/Validator/Constraints/SlideConfirmedValidator.php`) and returning asset names (`src/Twig/NowoSlideToConfirmTwigExtension.php`). None of it writes to a property, a static or a global.
 
 Info: the demo production Caddyfile runs in worker mode (`demo/symfony8/docker/frankenphp/Caddyfile`, `worker { ... }`); `Caddyfile.dev` is classic mode on purpose, so template edits show up without restarting.
+
+## Kept-alive kernel test
+
+The bundle is **safe with kernel reset false**: no shared service keeps request data, so nothing needs `kernel.reset`.
+
+`tests/Integration/Worker/WorkerKeptAliveKernelTest::testFormRenderAndSubmitInOneKernelWithoutResetCarriesNoStateAndKeepsMemoryFlat` (REQ-RUNTIME-002) boots ONE kernel (FrameworkBundle, TwigBundle and this bundle, host kernel in `tests/Fixtures/Worker/`) and never calls `services_resetter` or `kernel.reset`. Through `http_kernel` (`handle()` + `terminate()`) it renders (GET) and submits (POST) a host form with a `SlideToConfirmType` field 1000 times (2000 requests), alternating two inputs with different options (text, variant, threshold, CSS class), locales (`en` / `es`) and outcomes (confirmed → valid / not confirmed → invalid). Every response must contain only its own options and verdict, none of the other input's, and a confirmation never carries over to the next request. Memory growth after a 100-iteration warm-up must stay under 4 MiB.
+
+Rule 7 (host entity manager): the bundle has no persistence and never flushes or clears an entity manager; a host must never clear the default entity manager from a reset hook for this bundle's sake.
 
 ## Usage recommendations in worker mode
 
