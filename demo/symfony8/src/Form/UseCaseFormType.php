@@ -4,18 +4,26 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use Nowo\SlideToConfirmBundle\Form\Type\SlideToConfirmType;
+use Nowo\FormKitBundle\Attribute\FormKitConfig;
+use Nowo\FormKitBundle\Form\FormOptionsTrait;
 use Nowo\SlideToConfirmBundle\Form\Type\SwipeToSubmitType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * REQ-DEMO-015: a FormKit form (profile `demo`); the bundle's SlideToConfirmType is added through FormKit's
+ * addSlideToConfirm() (SwipeToSubmitType has no helper, so it goes through addWithDefaults()).
+ *
+ * @extends AbstractType<mixed>
+ */
+#[FormKitConfig('demo')]
 final class UseCaseFormType extends AbstractType
 {
+    use FormOptionsTrait;
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $case = $options['use_case'];
@@ -55,19 +63,19 @@ final class UseCaseFormType extends AbstractType
      */
     private function buildPayment(FormBuilderInterface $builder): void
     {
-        $builder
-            ->add('iban', TextType::class, [
-                'label'    => 'demo.payment.iban',
-                'required' => true,
-            ])
-            ->add('amount', MoneyType::class, [
-                'label'    => 'demo.payment.amount',
-                'currency' => 'EUR',
-                'divisor'  => 1,
-            ])
-            ->add('confirm', SlideToConfirmType::class, [
-                'profile' => 'payment',
-            ]);
+        $this->addText($builder, 'iban', [
+            'label'       => 'demo.payment.iban',
+            'required'    => true,
+            'placeholder' => false,
+            'help'        => false,
+        ]);
+        $this->addWithDefaults($builder, 'amount', MoneyType::class, [
+            'label'    => 'demo.payment.amount',
+            'currency' => 'EUR',
+            'divisor'  => 1,
+            'help'     => false,
+        ]);
+        $this->addConfirm($builder, 'confirm', ['profile' => 'payment']);
     }
 
     /**
@@ -75,15 +83,13 @@ final class UseCaseFormType extends AbstractType
      */
     private function buildDelete(FormBuilderInterface $builder): void
     {
-        $builder
-            ->add('acknowledge', CheckboxType::class, [
-                'label'    => 'demo.delete.acknowledge',
-                'mapped'   => false,
-                'required' => true,
-            ])
-            ->add('confirm', SlideToConfirmType::class, [
-                'profile' => 'danger',
-            ]);
+        $this->addCheckbox($builder, 'acknowledge', [
+            'label'    => 'demo.delete.acknowledge',
+            'mapped'   => false,
+            'required' => true,
+            'help'     => false,
+        ]);
+        $this->addConfirm($builder, 'confirm', ['profile' => 'danger']);
     }
 
     /**
@@ -91,13 +97,12 @@ final class UseCaseFormType extends AbstractType
      */
     private function buildPublish(FormBuilderInterface $builder): void
     {
-        $builder
-            ->add('title', TextType::class, [
-                'label' => 'demo.publish.title',
-            ])
-            ->add('confirm', SlideToConfirmType::class, [
-                'profile' => 'publish',
-            ]);
+        $this->addText($builder, 'title', [
+            'label'       => 'demo.publish.title',
+            'placeholder' => false,
+            'help'        => false,
+        ]);
+        $this->addConfirm($builder, 'confirm', ['profile' => 'publish']);
     }
 
     /**
@@ -105,10 +110,7 @@ final class UseCaseFormType extends AbstractType
      */
     private function buildLegal(FormBuilderInterface $builder): void
     {
-        $builder
-            ->add('confirm', SlideToConfirmType::class, [
-                'profile' => 'legal',
-            ]);
+        $this->addConfirm($builder, 'confirm', ['profile' => 'legal']);
     }
 
     /**
@@ -116,7 +118,7 @@ final class UseCaseFormType extends AbstractType
      */
     private function buildCancel(FormBuilderInterface $builder): void
     {
-        $builder->add('confirm', SlideToConfirmType::class, [
+        $this->addConfirm($builder, 'confirm', [
             'profile'        => 'danger',
             'text'           => 'demo.cancel.slide',
             'confirmed_text' => 'demo.cancel.done',
@@ -128,7 +130,9 @@ final class UseCaseFormType extends AbstractType
      */
     private function buildBatch(FormBuilderInterface $builder): void
     {
-        $builder->add('confirm', SwipeToSubmitType::class, [
+        $this->addWithDefaults($builder, 'confirm', SwipeToSubmitType::class, [
+            'label'   => 'Confirm',
+            'help'    => false,
             'profile' => 'payment',
             'text'    => 'demo.batch.slide',
         ]);
@@ -139,7 +143,7 @@ final class UseCaseFormType extends AbstractType
      */
     private function buildEmergency(FormBuilderInterface $builder): void
     {
-        $builder->add('confirm', SlideToConfirmType::class, [
+        $this->addConfirm($builder, 'confirm', [
             'profile' => 'danger',
             'text'    => 'demo.emergency.slide',
         ]);
@@ -150,16 +154,28 @@ final class UseCaseFormType extends AbstractType
      */
     private function buildGate(FormBuilderInterface $builder): void
     {
-        $builder
-            ->add('unlock', SlideToConfirmType::class, [
-                'profile' => 'gate',
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'demo.gate.submit',
-                'attr'  => [
-                    'disabled'               => 'disabled',
-                    'data-demo-gated-submit' => '1',
-                ],
-            ]);
+        $this->addConfirm($builder, 'unlock', ['profile' => 'gate', 'label' => 'Unlock']);
+        $this->addWithDefaults($builder, 'save', SubmitType::class, [
+            'label' => 'demo.gate.submit',
+            'attr'  => [
+                'class'                  => 'nowo-ui-btn nowo-ui-btn--primary',
+                'disabled'               => 'disabled',
+                'data-demo-gated-submit' => '1',
+            ],
+        ]);
+    }
+
+    /**
+     * @param FormBuilderInterface<mixed> $builder
+     * @param array<string, mixed> $options
+     */
+    private function addConfirm(FormBuilderInterface $builder, string $name, array $options): void
+    {
+        $this->addSlideToConfirm($builder, $name, [
+            'label'       => 'Confirm',
+            'help'        => false,
+            'placeholder' => false,
+            ...$options,
+        ]);
     }
 }

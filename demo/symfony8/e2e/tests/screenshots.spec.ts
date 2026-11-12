@@ -25,7 +25,7 @@ async function boxOf(
 
 async function fitViewportToDemo(page: import('@playwright/test').Page) {
   const main = await boxOf(page, 'main');
-  const nav = await boxOf(page, 'nav.navbar');
+  const nav = await boxOf(page, 'header.nowo-ui-header');
   const top = nav?.y ?? 0;
   const bottom = (main?.y ?? 0) + (main?.height ?? 800);
   const height = Math.min(1600, Math.max(900, Math.ceil(bottom - top + 96)));
@@ -34,12 +34,12 @@ async function fitViewportToDemo(page: import('@playwright/test').Page) {
 
 /** Navbar → main → profiler (union), padded. */
 async function clipDemoFrame(page: import('@playwright/test').Page): Promise<Box> {
-  const nav = await boxOf(page, 'nav.navbar');
+  const nav = await boxOf(page, 'header.nowo-ui-header');
   const main = await boxOf(page, 'main');
   const profiler =
     (await boxOf(page, '.sf-toolbar')) ?? (await boxOf(page, '.sf-minitoolbar'));
   if (!nav || !main) {
-    throw new Error('Missing nav.navbar or main for SlideToConfirm screenshot clip');
+    throw new Error('Missing header.nowo-ui-header or main for SlideToConfirm screenshot clip');
   }
   const boxes = [nav, main, profiler].filter(Boolean) as Box[];
   const x = Math.min(...boxes.map((b) => b.x));
@@ -58,8 +58,8 @@ async function clipDemoFrame(page: import('@playwright/test').Page): Promise<Box
 async function prepareDemoPage(page: import('@playwright/test').Page, path: string) {
   await page.setViewportSize({ width: 1280, height: 1100 });
   await page.goto(path);
-  await expect(page.locator('nav.navbar .navbar-brand')).toBeVisible();
-  await expect(page.locator('main .card')).toBeVisible();
+  await expect(page.locator('header.nowo-ui-header .nowo-ui-brand')).toBeVisible();
+  await expect(page.locator('main .nowo-ui-card')).toBeVisible();
   await expect(page.locator('nowo-slide-to-confirm').first()).toBeVisible();
   await page
     .locator('.sf-toolbar .sf-toolbar-block, .sf-toolbar-status, .sf-minitoolbar')
@@ -103,7 +103,7 @@ test.beforeAll(() => {
 test.describe('SlideToConfirm screenshots (full demo context)', () => {
   test('overview — navbar + payment case, slider idle', async ({ page }) => {
     await prepareDemoPage(page, '/en?case=payment');
-    await expect(page.locator('main .nav-pills .nav-link.active')).toContainText(/Pay|Pagar/i);
+    await expect(page.locator('main .nowo-ui-tabs .nowo-ui-tabs__item--active')).toContainText(/Pay|Pagar/i);
     const host = page.locator('nowo-slide-to-confirm').first();
     await expect(host).not.toHaveClass(/is-confirmed/);
     await captureDemo(page, 'overview.png');
@@ -111,7 +111,7 @@ test.describe('SlideToConfirm screenshots (full demo context)', () => {
 
   test('interaction — navbar + legal case, slider confirmed', async ({ page }) => {
     await prepareDemoPage(page, '/en?case=legal');
-    await expect(page.locator('main .nav-pills .nav-link.active')).toContainText(/Legal/i);
+    await expect(page.locator('main .nowo-ui-tabs .nowo-ui-tabs__item--active')).toContainText(/Legal/i);
     await page.evaluate(() => {
       document.querySelectorAll('form').forEach((form) => {
         form.addEventListener('submit', (e) => e.preventDefault(), { capture: true });

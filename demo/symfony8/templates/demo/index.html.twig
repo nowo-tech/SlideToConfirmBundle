@@ -2,49 +2,35 @@
 
 {% block title %}{{ 'demo.page_title'|trans }} – {{ ('demo.case.' ~ current ~ '.title')|trans }}{% endblock %}
 
+{% block nowo_ui_page_header %}
+    {{ include(nowo_ui_partial('page_header'), {
+        title: 'demo.heading'|trans,
+        intro: 'demo.description'|trans,
+    }) }}
+{% endblock %}
+
 {% block body %}
-<div class="row justify-content-center">
-    <div class="col-lg-8">
-        <h1 class="mb-3">{{ 'demo.heading'|trans }}</h1>
-        <p class="lead text-muted">{{ 'demo.description'|trans }}</p>
-        <p class="text-muted small mb-4">
-            {{ 'demo.language_switch_hint'|trans }}
-            {% for loc in locales|default(['en', 'es']) %}
-                {% if not loop.first %}<span class="text-muted">|</span>{% endif %}
-                <a href="{{ path('demo_index', { _locale: loc, case: current }) }}" class="text-primary {{ app.request.locale == loc ? 'fw-bold' : '' }}">{{ loc|upper }}</a>
-            {% endfor %}
-        </p>
+    {% set _items = [] %}
+    {% for case in use_cases %}
+        {% set _items = _items|merge([{
+            label: ('demo.case.' ~ case ~ '.nav')|trans,
+            href: path('demo_index', { _locale: app.request.locale, case: case }),
+            current: current == case,
+        }]) %}
+    {% endfor %}
+    {{ include(nowo_ui_partial('tabs'), { items: _items, aria_label: 'demo.heading'|trans }) }}
 
-        <ul class="nav nav-pills flex-wrap gap-1 mb-4">
-            {% for case in use_cases %}
-                <li class="nav-item">
-                    <a class="nav-link {{ current == case ? 'active' : '' }}" href="{{ path('demo_index', { _locale: app.request.locale, case: case }) }}">
-                        {{ ('demo.case.' ~ case ~ '.nav')|trans }}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ 'demo.close'|trans }}"></button>
-            </div>
-        {% endfor %}
-
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <h2 class="h5">{{ ('demo.case.' ~ current ~ '.title')|trans }}</h2>
-                <p class="text-muted">{{ ('demo.case.' ~ current ~ '.body')|trans }}</p>
-                {{ form_start(form, { attr: { class: 'needs-validation' } }) }}
-                    {% for child in form %}
-                        {% if not child.rendered %}
-                            {{ form_row(child) }}
-                        {% endif %}
-                    {% endfor %}
-                {{ form_end(form) }}
-            </div>
+    <section class="nowo-ui-card" data-testid="demo-case">
+        <div class="nowo-ui-card__body">
+            <h2 class="nowo-ui-card__title">{{ ('demo.case.' ~ current ~ '.title')|trans }}</h2>
+            <p class="nowo-ui-muted">{{ ('demo.case.' ~ current ~ '.body')|trans }}</p>
+            {{ form_start(form) }}
+                {% for child in form %}
+                    {% if not child.rendered %}
+                        {{ form_row(child) }}
+                    {% endif %}
+                {% endfor %}
+            {{ form_end(form) }}
         </div>
-    </div>
-</div>
+    </section>
 {% endblock %}
