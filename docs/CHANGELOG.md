@@ -24,6 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Demo uses the UiKit base style and FormKit forms (REQ-DEMO-014/015)
+
 - Tests (REQ-RUNTIME-002): `WorkerKeptAliveKernelTest` renders and submits a host form 1000 times in ONE kernel without any reset, alternating two inputs and locales, and asserts no state carries over and flat memory. `docs/FRANKENPHP-WORKER-AUDIT.md` refreshed (version, test, reset-false statement, rule 7).
 - PHPStan config renamed `phpstan.neon` → `phpstan.neon.dist` (REQ-CS-003); a local `phpstan.neon` is gitignored and, when present, overrides it.
 - Docs: USAGE states that host and demo forms are Symfony Form Types rendered with `form_start` / the `not child.rendered` child loop / `form_end`, and that raw `<form>` / `<input>` must not be reintroduced; `check-no-raw-html-form` enforces it in `release-check` (REQ-TWIG-005 rule 9).
