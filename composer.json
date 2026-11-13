@@ -85,6 +85,10 @@
         "cs-fix": "php-cs-fixer fix",
         "test": "phpunit --color=always",
         "test-coverage": "phpunit --color=always --coverage-text --coverage-html=coverage --coverage-clover=coverage.xml",
+        "test-coverage-100": [
+            "@test-coverage",
+            "php .scripts/check-coverage.php coverage.xml --min-percent=100"
+        ],
         "rector": "rector process",
         "rector-dry": "rector process --dry-run --no-progress-bar",
         "phpstan": "phpstan analyse --memory-limit=512M",
@@ -104,6 +108,7 @@
         "cs-fix": "Fix code style with PHP-CS-Fixer",
         "test": "Run PHPUnit tests",
         "test-coverage": "Run PHPUnit tests with code coverage",
+        "test-coverage-100": "Run test-coverage and fail if statement or element coverage is below 100% (REQ-TEST-003)",
         "rector": "Apply Rector refactoring",
         "rector-dry": "Run Rector in dry-run mode",
         "phpstan": "Run PHPStan static analysis",
