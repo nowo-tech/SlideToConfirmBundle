@@ -323,7 +323,7 @@ $builder
     ]);
 ```
 
-Try them in the demo: `make up-symfony8` → http://localhost:8055/?case=payment (`delete`, `publish`, `legal`, `cancel`, `batch`, `emergency`, `gate`).
+Try them in the demo: `make up-symfony8` → http://localhost:8055/en/payment (`delete`, `publish`, `legal`, `cancel`, `batch`, `emergency`, `gate`).
 
 ## Frontend events
 
