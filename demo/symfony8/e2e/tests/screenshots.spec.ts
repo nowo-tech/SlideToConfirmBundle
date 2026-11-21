@@ -24,24 +24,11 @@ async function captureDemo(page: import('@playwright/test').Page, file: string) 
   await page.screenshot({ path: resolve(outDir, file) });
 }
 
-/** Drag thumb to the end of the track for a clear confirmed visual. */
-async function confirmByDrag(page: import('@playwright/test').Page) {
+/** Confirm with the keyboard (End), the same path as the e2e spec: the thumb ends at the track end. */
+async function confirmByKeyboard(page: import('@playwright/test').Page) {
   const host = page.locator('nowo-slide-to-confirm').first();
-  const thumb = host.locator('[role="slider"], .nowo-slide-to-confirm__thumb').first();
-  const track = host.locator('.nowo-slide-to-confirm__track').first();
-  await expect(thumb).toBeVisible();
-  const thumbBox = await thumb.boundingBox();
-  const trackBox = await track.boundingBox();
-  if (!thumbBox || !trackBox) {
-    throw new Error('Missing thumb/track boxes for slide confirm');
-  }
-  const startX = thumbBox.x + thumbBox.width / 2;
-  const startY = thumbBox.y + thumbBox.height / 2;
-  const endX = trackBox.x + trackBox.width - thumbBox.width / 2;
-  await page.mouse.move(startX, startY);
-  await page.mouse.down();
-  await page.mouse.move(endX, startY, { steps: 12 });
-  await page.mouse.up();
+  await host.locator('[role="slider"]').focus();
+  await page.keyboard.press('End');
   await expect(host).toHaveClass(/is-confirmed/, { timeout: 5000 });
 }
 
@@ -66,7 +53,7 @@ test.describe('SlideToConfirm screenshots (full demo context)', () => {
         form.addEventListener('submit', (e) => e.preventDefault(), { capture: true });
       });
     });
-    await confirmByDrag(page);
+    await confirmByKeyboard(page);
     await captureDemo(page, 'interaction.png');
   });
 });

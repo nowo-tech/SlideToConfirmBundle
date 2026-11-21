@@ -12,7 +12,7 @@
 {% block body %}
     {% embed '@NowoUiKit/demo_platform/_section.html.twig' with {title: ('demo.case.' ~ current ~ '.title')|trans, intro: ('demo.case.' ~ current ~ '.body')|trans, kind: 'form', testid: 'demo-case'} %}
         {% block section_body %}
-            {{ form_start(form, { attr: { id: 'demo-form', novalidate: 'novalidate' } }) }}
+            {{ form_start(form, { attr: { id: 'demo-form', class: 'nowo-ui-form', novalidate: 'novalidate' } }) }}
                 {% for child in form %}
                     {% if not child.rendered and child.vars.name != 'save' %}
                         {{ form_row(child) }}

@@ -266,7 +266,7 @@
             "dist": {
                 "type": "path",
                 "url": "/var/slide-to-confirm-bundle",
-                "reference": "a05b18bee05809e268ddea21302d42fad2bd5fd5"
+                "reference": "50b5ff89d160e97948435516eb111bf8c2aa9336"
             },
             "require": {
                 "php": ">=8.2 <8.6",
