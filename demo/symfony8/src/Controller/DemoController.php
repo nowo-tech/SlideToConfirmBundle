@@ -38,12 +38,13 @@ final class DemoController extends AbstractController
         return $this->redirectToRoute('demo_index', ['_locale' => 'en'], Response::HTTP_FOUND);
     }
 
-    #[Route('/{_locale}', name: 'demo_index', requirements: ['_locale' => 'en|es|it|fr|pt|de|nl'], methods: ['GET', 'POST'])]
-    public function index(Request $request, TranslatorInterface $translator): Response
+    #[Route('/{_locale}/{case}', name: 'demo_index', requirements: ['_locale' => 'en|es|it|fr|pt|de|nl', 'case' => 'payment|delete|publish|legal|cancel|batch|emergency|gate'], defaults: ['case' => 'payment'], methods: ['GET', 'POST'])]
+    public function index(Request $request, TranslatorInterface $translator, string $case = 'payment'): Response
     {
-        $case = (string) $request->query->get('case', 'payment');
-        if (!in_array($case, self::USE_CASES, true)) {
-            $case = 'payment';
+        // Legacy links: /en?case=legal now lives at /en/legal.
+        $legacy = (string) $request->query->get('case', '');
+        if ('' !== $legacy && in_array($legacy, self::USE_CASES, true)) {
+            return $this->redirectToRoute('demo_index', ['_locale' => $request->getLocale(), 'case' => $legacy], Response::HTTP_MOVED_PERMANENTLY);
         }
 
         $form = $this->createForm(UseCaseFormType::class, null, [

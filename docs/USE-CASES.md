@@ -4,7 +4,7 @@ Use `SlideToConfirmType` (or the `SwipeToSubmitType` alias) whenever a **click i
 
 The slider is **confirmation UX**, not authorization. Keep CSRF, authentication, and server-side checks on the host form. A crafted POST can still send `confirm=1`.
 
-Live examples of every case below: Symfony 8 demo (`make up-symfony8`, http://localhost:8055, `?case=payment` and friends). Form code: `demo/symfony8/src/Form/UseCaseFormType.php`.
+Live examples of every case below: Symfony 8 demo (`make up-symfony8`, http://localhost:8055, `/en/payment` and friends). Form code: `demo/symfony8/src/Form/UseCaseFormType.php`.
 
 ## Table of contents
 

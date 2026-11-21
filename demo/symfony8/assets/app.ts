@@ -6,7 +6,6 @@ import { Application } from '@hotwired/stimulus';
 import SlideToConfirmController from '@bundle/controllers/slide_to_confirm_controller.ts';
 import { createBundleLogger } from '@bundle/src/logger.ts';
 import { setBundleLogger } from '@bundle/src/slide-to-confirm-lib.ts';
-import '@bundle/css/slide-to-confirm.css';
 
 declare const __SLIDE_TO_CONFIRM_BUILD_TIME__: string;
 
@@ -26,8 +25,8 @@ document.addEventListener('nowo-slide-to-confirm:confirmed', (event: Event) => {
   if (!(host instanceof HTMLElement)) {
     return;
   }
-  const form = host.closest('form');
-  const submit = form?.querySelector<HTMLButtonElement>('[data-demo-gated-submit]');
+  // The gated submit sits in the section card footer (outside the form, linked with the form attribute).
+  const submit = document.querySelector<HTMLButtonElement>('[data-demo-gated-submit]');
   if (submit) {
     submit.disabled = false;
   }

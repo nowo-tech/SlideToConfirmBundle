@@ -26,7 +26,7 @@ CSRF, authentication, and authorization of the wrapping form belong to the **hos
 | Form POST | Hidden checkbox value (`true` when the slide completed or a client posted the field checked) |
 | Form options / YAML profiles | Labels, variant, threshold, submit flag |
 | Twig | Widget labels/hints (translated strings) |
-| Query string in the demo | `?case=` allow-listed use-case keys |
+| Query string in the demo | `?case=` (legacy, redirected) | allow-listed use-case keys |
 | Asset helper | Filename passed to `nowo_slide_to_confirm_asset_path()` |
 
 ## Threat model

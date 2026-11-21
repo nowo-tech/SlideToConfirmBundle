@@ -1,36 +1,33 @@
-{#- REQ-DEMO-014: the demo shell is UiKit's admin layout with UiKit's default theme (nowo-ui.css from the bundle's own
-    asset package, no CSS framework, no CDN). The Vite entry only carries the bundle's own slide-to-confirm controller/CSS. -#}
-{% extends '@NowoUiKit/layout/admin.html.twig' %}
-
+{#- REQ-DEMO-014: the demo runs inside UiKit's shared demo platform shell. This file only declares the demo. The Vite entry
+    only carries the bundle's own slide-to-confirm controller. -#}
+{% extends '@NowoUiKit/demo_platform/layout.html.twig' %}
+{% set _locale = app.request.locale|default('en') %}
+{% set nowo_ui_demo_platform = {
+    bundle: 'Slide to Confirm',
+    home_route: 'demo_index',
+    home_params: {_locale: _locale},
+    repository: 'https://github.com/nowo-tech/SlideToConfirmBundle',
+    translation_domain: 'messages',
+    locales: ['en', 'es', 'it', 'fr', 'pt', 'de', 'nl'],
+    nav: [
+        {label: 'demo.case.payment.nav', route: 'demo_index', params: {_locale: _locale, case: 'payment'}, section: 'demo.title', testid: 'demo-nav-demo_index-payment'},
+        {label: 'demo.case.delete.nav', route: 'demo_index', params: {_locale: _locale, case: 'delete'}, section: 'demo.title', testid: 'demo-nav-demo_index-delete'},
+        {label: 'demo.case.publish.nav', route: 'demo_index', params: {_locale: _locale, case: 'publish'}, section: 'demo.title', testid: 'demo-nav-demo_index-publish'},
+        {label: 'demo.case.legal.nav', route: 'demo_index', params: {_locale: _locale, case: 'legal'}, section: 'demo.title', testid: 'demo-nav-demo_index-legal'},
+        {label: 'demo.case.cancel.nav', route: 'demo_index', params: {_locale: _locale, case: 'cancel'}, section: 'demo.title', testid: 'demo-nav-demo_index-cancel'},
+        {label: 'demo.case.batch.nav', route: 'demo_index', params: {_locale: _locale, case: 'batch'}, section: 'demo.title', testid: 'demo-nav-demo_index-batch'},
+        {label: 'demo.case.emergency.nav', route: 'demo_index', params: {_locale: _locale, case: 'emergency'}, section: 'demo.title', testid: 'demo-nav-demo_index-emergency'},
+        {label: 'demo.case.gate.nav', route: 'demo_index', params: {_locale: _locale, case: 'gate'}, section: 'demo.title', testid: 'demo-nav-demo_index-gate'},
+    ],
+} %}
 {% block nowo_ui_document_title %}{% block title %}{{ 'demo.title'|trans }}{% endblock %}{% endblock %}
 
 {% block nowo_ui_styles %}
     {{ parent() }}
-    {{ vite_entry_link_tags('app') }}
+    {# SlideToConfirmBundle: the widget's own stylesheet (a shipped bundle asset); the Vite entry only carries the controller. #}
+    <link rel="stylesheet" href="{{ asset('/bundles/nowoslidetoconfirm/slide-to-confirm.css') }}">
     {% block styles %}{% endblock %}
 {% endblock %}
-
-{% block nowo_ui_navigation %}
-    {% set locale_labels = {
-        en: 'English',
-        es: 'Español',
-        it: 'Italiano',
-        fr: 'Français',
-        pt: 'Português',
-        de: 'Deutsch',
-        nl: 'Nederlands',
-    } %}
-    <header class="nowo-ui-header" data-testid="demo-masthead">
-        <a class="nowo-ui-brand" href="{{ path('demo_index', { _locale: app.request.locale }) }}">{{ 'demo.brand'|trans }}</a>
-        <nav class="nowo-ui-menu" aria-label="{{ 'demo.language'|trans }}">
-            {% for loc in locales|default(['en', 'es']) %}
-                <a class="nowo-ui-link" href="{{ path('demo_index', { _locale: loc, case: current|default('payment') }) }}" title="{{ locale_labels[loc] }}"{% if app.request.locale == loc %} aria-current="page"{% endif %}>{{ loc|upper }}</a>
-            {% endfor %}
-        </nav>
-    </header>
-{% endblock %}
-
-{% block nowo_ui_content %}{% block body %}{% endblock %}{% endblock %}
 
 {% block nowo_ui_scripts %}
     {{ parent() }}

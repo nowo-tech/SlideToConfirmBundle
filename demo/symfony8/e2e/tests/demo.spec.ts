@@ -2,14 +2,14 @@ import { test, expect } from '@playwright/test';
 
 test.describe('SlideToConfirm demo', () => {
   test('payment case shows slide widget', async ({ page }) => {
-    const response = await page.goto('/en?case=payment');
+    const response = await page.goto('/en/payment');
     expect(response?.ok()).toBeTruthy();
     await expect(page.locator('nowo-slide-to-confirm').first()).toBeVisible();
     await expect(page.locator('[role="slider"]').first()).toBeVisible();
   });
 
   test('End key confirms the slider', async ({ page }) => {
-    await page.goto('/en?case=legal');
+    await page.goto('/en/legal');
     const host = page.locator('nowo-slide-to-confirm').first();
     await expect(host).toBeVisible();
     await page.evaluate(() => {

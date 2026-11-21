@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Demo: runs in UiKit's demo platform shell (`nowo-tech/ui-kit-bundle` ^2.60); the demo's own header is gone and the pages use the shell page headers and section cards. The use cases now live in the path (`/en/payment`); `/en?case=legal` redirects. Demo only, no bundle change.
 - Demo uses the UiKit base style and FormKit forms (REQ-DEMO-014/015)
 
 - Tests (REQ-RUNTIME-002): `WorkerKeptAliveKernelTest` renders and submits a host form 1000 times in ONE kernel without any reset, alternating two inputs and locales, and asserts no state carries over and flat memory. `docs/FRANKENPHP-WORKER-AUDIT.md` refreshed (version, test, reset-false statement, rule 7).

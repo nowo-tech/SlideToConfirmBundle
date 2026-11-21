@@ -161,7 +161,7 @@ $builder
     ->add('save', SubmitType::class);
 ```
 
-Copy-paste FormTypes and controllers for all eight cases: [docs/USE-CASES.md](docs/USE-CASES.md). Quick snippets: [docs/USAGE.md](docs/USAGE.md#use-cases). Demo: `?case=payment` (and `delete`, `publish`, `legal`, `cancel`, `batch`, `emergency`, `gate`).
+Copy-paste FormTypes and controllers for all eight cases: [docs/USE-CASES.md](docs/USE-CASES.md). Quick snippets: [docs/USAGE.md](docs/USAGE.md#use-cases). Demo: `/en/payment` (and `delete`, `publish`, `legal`, `cancel`, `batch`, `emergency`, `gate`).
 
 ## Demo
 
