@@ -43,7 +43,7 @@ final class DemoController extends AbstractController
     {
         // Legacy links: /en?case=legal now lives at /en/legal.
         $legacy = (string) $request->query->get('case', '');
-        if ('' !== $legacy && in_array($legacy, self::USE_CASES, true)) {
+        if ($legacy !== '' && in_array($legacy, self::USE_CASES, true)) {
             return $this->redirectToRoute('demo_index', ['_locale' => $request->getLocale(), 'case' => $legacy], Response::HTTP_MOVED_PERMANENTLY);
         }
 
