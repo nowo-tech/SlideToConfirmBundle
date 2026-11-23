@@ -33,6 +33,7 @@ Copy-paste FormType + controller examples for payments, deletes, legal consent, 
 - [Server-side behaviour](#server-side-behaviour)
 - [Using it from a DDD / hexagonal application](#using-it-from-a-ddd--hexagonal-application)
 - [FrankenPHP worker](#frankenphp-worker)
+- [Browser console](#browser-console)
 
 ## Including the frontend assets
 
@@ -405,3 +406,7 @@ if ($form->isSubmitted() && $form->isValid()) {
 This bundle is compatible with FrankenPHP **worker** when the Symfony kernel is **reused** between requests (`FRANKENPHP_RESET_KERNEL` unset or `0` — the Runtime default). Bundle services hold only injected collaborators / compiled configuration; they do not need `kernel.reset`. Host subclasses of `SlideToConfirmType` must stay stateless (or implement `ResetInterface`) and must not store the current form, user or request in properties.
 
 See [FRANKENPHP-WORKER-AUDIT.md](FRANKENPHP-WORKER-AUDIT.md).
+
+## Browser console
+
+The bundle's script logs one line when it loads (`📦 [slide-to-confirm] script loaded, build: 2026-11-23 14:05 UTC`) so a developer can tell which build a page runs. To silence it, set `<html data-nowo-console="quiet">` or `globalThis.NOWO_CONSOLE = 'quiet'` before the script loads; nothing is printed then. The default is unchanged.
