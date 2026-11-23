@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.3.0] - 2026-11-23](#130---2026-11-23)
 - [[1.2.2] - 2026-10-25](#122---2026-10-25)
 - [[1.2.1] - 2026-10-21](#121---2026-10-21)
 - [[1.2.0] - 2026-10-13](#120---2026-10-13)
@@ -21,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [[1.0.0] - 2026-08-23](#100---2026-08-23)
 
 ## [Unreleased]
+
+## [1.3.0] - 2026-11-23
 
 ### Tests
 
@@ -180,7 +183,8 @@ First public release.
 - JavaScript tooling is **pnpm only** (`npm` / `yarn` are rejected).
 - Host apps can ship the prebuilt IIFE (`assets:install`) or compile the Stimulus controller with their own Vite/Pentatrion entry.
 
-[Unreleased]: https://github.com/nowo-tech/SlideToConfirmBundle/compare/v1.2.2...HEAD
+[Unreleased]: https://github.com/nowo-tech/SlideToConfirmBundle/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.3.0
 [1.2.2]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.2.2
 [1.2.1]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.2.1
 [1.2.0]: https://github.com/nowo-tech/SlideToConfirmBundle/releases/tag/v1.2.0
