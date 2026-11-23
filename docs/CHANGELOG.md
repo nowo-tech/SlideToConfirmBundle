@@ -35,6 +35,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PHPStan config renamed `phpstan.neon` → `phpstan.neon.dist` (REQ-CS-003); a local `phpstan.neon` is gitignored and, when present, overrides it.
 - Docs: USAGE states that host and demo forms are Symfony Form Types rendered with `form_start` / the `not child.rendered` child loop / `form_end`, and that raw `<form>` / `<input>` must not be reintroduced; `check-no-raw-html-form` enforces it in `release-check` (REQ-TWIG-005 rule 9).
 - Docs: new USAGE section "Using it from a DDD / hexagonal application" (where the bundle sits in a hexagonal host, the ports, events and DTOs to build an anti-corruption layer on, and the known limitations).
+- **Console**: the script-loaded line of `slide-to-confirm.js` now reads `📦 [slide-to-confirm] script loaded, build: 2026-11-23 14:05 UTC`: a readable UTC build time instead of the opaque source hash. The time comes from the committed `build-info.json` (`{sourceHash, builtAt}`): the source hash stays the change detector, `builtAt` is reused while the sources are unchanged and renewed only when they change, so rebuilding unchanged sources never rewrites the committed assets (no wall-clock stamp, no git date).
+
+### Added
+
+- **Console**: quiet switch for the script-loaded line: `<html data-nowo-console="quiet">` or `globalThis.NOWO_CONSOLE = 'quiet'` prints nothing. The default is unchanged.
 
 ## [1.2.2] - 2026-10-25
 
