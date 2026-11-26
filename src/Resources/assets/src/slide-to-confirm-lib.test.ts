@@ -24,6 +24,11 @@ import {
   TARGET_TRACK,
 } from './slide-to-confirm-lib';
 
+// REQ-ASSETS-005: every test starts with an empty once-guard registry.
+beforeEach(() => {
+  delete (globalThis as { __nowoScriptBannerNames?: unknown }).__nowoScriptBannerNames;
+});
+
 function stubPointerCapture(): void {
   if (typeof HTMLElement.prototype.setPointerCapture !== 'function') {
     HTMLElement.prototype.setPointerCapture = function setPointerCapture(): void {};

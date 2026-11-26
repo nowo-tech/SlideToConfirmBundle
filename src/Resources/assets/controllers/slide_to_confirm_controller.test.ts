@@ -4,6 +4,11 @@ import { createBundleLogger } from '../src/logger';
 import { ATTR_INIT, setBundleLogger } from '../src/slide-to-confirm-lib';
 import SlideToConfirmController from './slide_to_confirm_controller';
 
+// REQ-ASSETS-005: every test starts with an empty once-guard registry.
+beforeEach(() => {
+  delete (globalThis as { __nowoScriptBannerNames?: unknown }).__nowoScriptBannerNames;
+});
+
 describe('slide_to_confirm_controller', () => {
   let application: Application;
 
