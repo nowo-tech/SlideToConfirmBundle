@@ -14,7 +14,7 @@ This guide covers installing SlideToConfirmBundle in a Symfony 6.4, 7, or 8 appl
 
 ## Requirements
 
-- **PHP** `>=8.1 <8.6`
+- **PHP** `>=8.1 <8.7`
 - **Symfony** `^6.4 || ^7.0 || ^8.0`
 - **symfony/form**, **symfony/twig-bundle**, **symfony/translation**, **symfony/validator**
 - **Stimulus** optional (`symfony/stimulus-bundle` or `@hotwired/stimulus`)
